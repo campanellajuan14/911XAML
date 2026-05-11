@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>NineOneOneReality.Launcher</RootNamespace>
+    <AssemblyName>NineOneOneReality.Launcher</AssemblyName>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <StartupObject>NineOneOneReality.Launcher.App</StartupObject>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <Company>911 Career Training</Company>
+    <Product>9-1-1 Reality Simulator</Product>
+    <Description>9-1-1 Call Taking / Radio Dispatch Simulator Launcher</Description>
+    <Copyright>Copyright (c) 911 Career Training</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Fonts\*.otf" />
+    <Resource Include="Resources\Fonts\*.ttf" />
+    <Resource Include="Resources\Images\**\*.png" />
+    <Resource Include="Resources\Images\**\*.jpg" />
+  </ItemGroup>
+
+</Project>
