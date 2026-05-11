@@ -1,0 +1,50 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--  Theme-independent visual effects (drop shadows, glows)  -->
+
+    <!--  Orange glow under the START button and the orange separator line  -->
+    <DropShadowEffect x:Key="Effect.OrangeGlow"
+                      BlurRadius="24"
+                      Opacity="0.65"
+                      ShadowDepth="0"
+                      Color="#FFFF6A00" />
+
+    <!--  Tighter glow for the orange brand mark in the header  -->
+    <DropShadowEffect x:Key="Effect.OrangeGlow.Tight"
+                      BlurRadius="12"
+                      Opacity="0.55"
+                      ShadowDepth="0"
+                      Color="#FFFF6A00" />
+
+    <!--  Subtle text drop shadow for legibility on the cityscape background  -->
+    <DropShadowEffect x:Key="Effect.TextShadow"
+                      BlurRadius="4"
+                      Opacity="0.75"
+                      ShadowDepth="2"
+                      Color="#FF000000" />
+
+    <!--  Hero title shadow (deeper, more pronounced)  -->
+    <DropShadowEffect x:Key="Effect.HeroShadow"
+                      BlurRadius="8"
+                      Opacity="0.85"
+                      ShadowDepth="4"
+                      Direction="270"
+                      Color="#FF000000" />
+
+    <!--  Subtle elevation for cards in the light theme (folder view rows)  -->
+    <DropShadowEffect x:Key="Effect.CardElevation.Sm"
+                      BlurRadius="6"
+                      Opacity="0.08"
+                      ShadowDepth="1"
+                      Direction="270"
+                      Color="#FF000000" />
+
+    <DropShadowEffect x:Key="Effect.CardElevation.Md"
+                      BlurRadius="14"
+                      Opacity="0.10"
+                      ShadowDepth="2"
+                      Direction="270"
+                      Color="#FF000000" />
+
+</ResourceDictionary>

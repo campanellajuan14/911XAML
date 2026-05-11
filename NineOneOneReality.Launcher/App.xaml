@@ -1,0 +1,25 @@
+<Application x:Class="NineOneOneReality.Launcher.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             ShutdownMode="OnLastWindowClose">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+                <!--  Theme-independent resources  -->
+                <ResourceDictionary Source="/Themes/Typography.xaml" />
+                <ResourceDictionary Source="/Themes/Brushes.Brand.xaml" />
+                <ResourceDictionary Source="/Themes/Effects.xaml" />
+                <ResourceDictionary Source="/Resources/Icons.xaml" />
+                <ResourceDictionary Source="/Animations/MicroInteractions.xaml" />
+
+                <!--  Custom control templates (use DynamicResource for theme brushes)  -->
+                <ResourceDictionary Source="/Controls/NavButton.xaml" />
+                <ResourceDictionary Source="/Controls/PrimaryButton.xaml" />
+                <ResourceDictionary Source="/Controls/StatusPill.xaml" />
+                <ResourceDictionary Source="/Controls/HeaderBar.xaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

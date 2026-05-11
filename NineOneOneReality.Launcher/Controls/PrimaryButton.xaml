@@ -1,0 +1,149 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--
+        PRIMARY BUTTON
+        ==============
+        The big orange "START" button on the active dark screen.
+
+        Per the spec PDF:
+          Width      : 420-460 px
+          Height     : 78-86 px
+          Corner     : 8-12 px
+          Fill       : orange vertical gradient (Brush.PrimaryButton.Idle)
+          Hover      : slightly brighter orange (Brush.PrimaryButton.Hover)
+          Pressed    : slightly darker orange (Brush.PrimaryButton.Pressed)
+          Text       : white, Montserrat ExtraBold ~38px, all caps
+    -->
+
+    <Style x:Key="PrimaryButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="440" />
+        <Setter Property="Height" Value="82" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Background" Value="{StaticResource Brush.PrimaryButton.Idle}" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontFamily" Value="{StaticResource Font.Montserrat}" />
+        <Setter Property="FontWeight" Value="ExtraBold" />
+        <Setter Property="FontSize" Value="{StaticResource Font.Size.PrimaryButton}" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <!--  Outer glow layer  -->
+                        <Border x:Name="GlowLayer"
+                                Margin="-6"
+                                Background="{StaticResource Brush.Brand.Orange.Glow}"
+                                CornerRadius="14"
+                                Opacity="0.0">
+                            <Border.Effect>
+                                <BlurEffect Radius="22" />
+                            </Border.Effect>
+                        </Border>
+
+                        <!--  Main button surface  -->
+                        <Border x:Name="Surface"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="10"
+                                SnapsToDevicePixels="True">
+                            <Border.RenderTransform>
+                                <ScaleTransform x:Name="SurfaceScale"
+                                                CenterX="220"
+                                                CenterY="41"
+                                                ScaleX="1.0"
+                                                ScaleY="1.0" />
+                            </Border.RenderTransform>
+
+                            <ContentPresenter x:Name="LabelHost"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              RecognizesAccessKey="True"
+                                              TextElement.FontFamily="{TemplateBinding FontFamily}"
+                                              TextElement.FontSize="{TemplateBinding FontSize}"
+                                              TextElement.FontWeight="{TemplateBinding FontWeight}"
+                                              TextElement.Foreground="{TemplateBinding Foreground}" />
+                        </Border>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+
+                        <!--  Hover: brighten gradient + soft glow ramp-in  -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="GlowLayer"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.55"
+                                                         Duration="{StaticResource Duration.Short}">
+                                            <DoubleAnimation.EasingFunction>
+                                                <CubicEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="GlowLayer"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.0"
+                                                         Duration="{StaticResource Duration.Short}" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                            <Setter TargetName="Surface" Property="Background" Value="{StaticResource Brush.PrimaryButton.Hover}" />
+                        </Trigger>
+
+                        <!--  Pressed: darker gradient + slight scale-down (97%)  -->
+                        <Trigger Property="IsPressed" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="SurfaceScale"
+                                                         Storyboard.TargetProperty="ScaleX"
+                                                         To="0.97"
+                                                         Duration="{StaticResource Duration.Micro}" />
+                                        <DoubleAnimation Storyboard.TargetName="SurfaceScale"
+                                                         Storyboard.TargetProperty="ScaleY"
+                                                         To="0.97"
+                                                         Duration="{StaticResource Duration.Micro}" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="SurfaceScale"
+                                                         Storyboard.TargetProperty="ScaleX"
+                                                         To="1.0"
+                                                         Duration="{StaticResource Duration.Micro}" />
+                                        <DoubleAnimation Storyboard.TargetName="SurfaceScale"
+                                                         Storyboard.TargetProperty="ScaleY"
+                                                         To="1.0"
+                                                         Duration="{StaticResource Duration.Micro}" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                            <Setter TargetName="Surface" Property="Background" Value="{StaticResource Brush.PrimaryButton.Pressed}" />
+                        </Trigger>
+
+                        <!--  Disabled  -->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.45" />
+                            <Setter Property="Cursor" Value="Arrow" />
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

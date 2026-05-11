@@ -1,0 +1,46 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--
+        Brand colors are theme-INDEPENDENT. The orange brand identity, the
+        status green, and the white pulse stay the same in dark and light
+        screens. Hex values come directly from the spec PDF.
+    -->
+
+    <Color x:Key="Color.Brand.Orange">#FFFF7A00</Color>
+    <Color x:Key="Color.Brand.Orange.Bright">#FFFF8C1A</Color>
+    <Color x:Key="Color.Brand.Orange.Deep">#FFE85F00</Color>
+    <Color x:Key="Color.Brand.Orange.Glow">#FFFF6A00</Color>
+    <Color x:Key="Color.Brand.Orange.Pressed">#FFCC5400</Color>
+
+    <Color x:Key="Color.Status.Green">#FF5AC85A</Color>
+    <Color x:Key="Color.Status.Green.Bright">#FF66FF66</Color>
+    <Color x:Key="Color.Status.Red">#FFE53935</Color>
+
+    <SolidColorBrush x:Key="Brush.Brand.Orange" Color="{StaticResource Color.Brand.Orange}" />
+    <SolidColorBrush x:Key="Brush.Brand.Orange.Bright" Color="{StaticResource Color.Brand.Orange.Bright}" />
+    <SolidColorBrush x:Key="Brush.Brand.Orange.Deep" Color="{StaticResource Color.Brand.Orange.Deep}" />
+    <SolidColorBrush x:Key="Brush.Brand.Orange.Glow" Color="{StaticResource Color.Brand.Orange.Glow}" />
+    <SolidColorBrush x:Key="Brush.Brand.Orange.Pressed" Color="{StaticResource Color.Brand.Orange.Pressed}" />
+
+    <SolidColorBrush x:Key="Brush.Status.Green" Color="{StaticResource Color.Status.Green}" />
+    <SolidColorBrush x:Key="Brush.Status.Green.Bright" Color="{StaticResource Color.Status.Green.Bright}" />
+    <SolidColorBrush x:Key="Brush.Status.Red" Color="{StaticResource Color.Status.Red}" />
+
+    <!--  START button vertical gradient (top to bottom: bright -> glow)  -->
+    <LinearGradientBrush x:Key="Brush.PrimaryButton.Idle" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0.0" Color="{StaticResource Color.Brand.Orange.Bright}" />
+        <GradientStop Offset="1.0" Color="{StaticResource Color.Brand.Orange.Glow}" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="Brush.PrimaryButton.Hover" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0.0" Color="#FFFFA040" />
+        <GradientStop Offset="1.0" Color="{StaticResource Color.Brand.Orange.Bright}" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="Brush.PrimaryButton.Pressed" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0.0" Color="{StaticResource Color.Brand.Orange.Deep}" />
+        <GradientStop Offset="1.0" Color="{StaticResource Color.Brand.Orange.Pressed}" />
+    </LinearGradientBrush>
+
+</ResourceDictionary>

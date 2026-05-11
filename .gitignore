@@ -1,0 +1,30 @@
+## Visual Studio / .NET
+bin/
+obj/
+.vs/
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+## Build outputs
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Bb]uild/
+[Bb]uildLog.*
+
+## NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+
+## Rider
+.idea/
+
+## OS
+.DS_Store
+Thumbs.db
+desktop.ini
