@@ -55,14 +55,23 @@ was the missing piece during the prototype phase — without it the asset
 read as a "rectangle of art pasted onto a black background" instead of a
 seamless layer.
 
-### Asset note
+### Asset note (artist delivery, May 2026)
 
-The cityscape file currently in the project is the **1002 × 558 PNG** the
-client supplied. That renders fine as a 0.42-opacity background layer on a
-1080p monitor. When her artist re-exports at the full **3840 × 2160** spec
-from *City Scape Background.odt*, dropping the new file at the same path
-(`Resources/Images/citymap_dark_4k.png`) will sharpen the layer
-automatically across 4K and multi-monitor setups — no XAML change needed.
+The client supplied a **new** cityscape image from their artist (the
+isometric orange road grid on black). It was received through chat; there
+was no separate source file attached.
+
+**Technical reality after ingest:** the file arrived as **JPEG data** inside a
+`.png` filename, decoded at **1024 × 572** pixels (not the 5376 × 3008 label
+on the filename — chat pipelines often recompress and downscale). The
+project stores a **proper PNG** at `Resources/Images/citymap_dark_4k.png`
+(~960 KB) so WPF decodes reliably. That resolution is enough for a crisp hero
+background at **1080p** with `Stretch="UniformToFill"` and `HighQuality`
+scaling at the current **0.42** opacity.
+
+**If the artist later sends a true high-res export** (e.g. 3840 × 2160 per
+*City Scape Background.odt*, or the original 5376 × 3008 master from their
+tooling), overwrite the same path — **no XAML change needed**.
 
 ## Acceptance criteria checklist
 
