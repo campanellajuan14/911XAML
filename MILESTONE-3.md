@@ -32,6 +32,8 @@ dotnet run --project NineOneOneReality.Launcher -- --dark
 
 Opens **Active - Dark** (unchanged M2 screen).
 
+**Milestone 4 (inactive monitors):** see `MILESTONE-4.md` — `dotnet run --project NineOneOneReality.Launcher -- --m4` or `--inactive=instructor` / `student-basic` / `student-procom`.
+
 ---
 
 ## Acceptance checklist (typical M3 contract)

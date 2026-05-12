@@ -1,0 +1,60 @@
+<Window x:Class="NineOneOneReality.Launcher.Views.Inactive.InactiveStudentBasicWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="9-1-1 Reality — BASIC Student Inactive"
+        Width="1920"
+        Height="1080"
+        MinWidth="1280"
+        MinHeight="720"
+        Background="{DynamicResource Brush.Theme.Background}"
+        FontFamily="{StaticResource Font.Montserrat}"
+        SnapsToDevicePixels="True"
+        UseLayoutRounding="True"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Themes/Theme.Dark.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="78" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ContentControl Grid.Row="0" Style="{StaticResource HeaderBarStyle}">
+            <Grid VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0"
+                       Height="44"
+                       Margin="24,0,0,0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       RenderOptions.BitmapScalingMode="HighQuality"
+                       Source="/Resources/Images/911-reality-logo.png" />
+                <TextBlock Grid.Column="1"
+                           Margin="20,0,32,0"
+                           VerticalAlignment="Center"
+                           FontSize="13"
+                           FontWeight="Bold"
+                           Foreground="{DynamicResource Brush.Theme.Foreground.Muted}"
+                           Text="BASIC MODEL — STUDENT INACTIVE MONITOR"
+                           TextTrimming="CharacterEllipsis" />
+            </Grid>
+        </ContentControl>
+
+        <Grid Grid.Row="1" ClipToBounds="True">
+            <Image RenderOptions.BitmapScalingMode="HighQuality"
+                   Source="/Resources/Images/inactive-callcards-source.png"
+                   Stretch="UniformToFill" />
+        </Grid>
+    </Grid>
+</Window>

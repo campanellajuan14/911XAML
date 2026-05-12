@@ -9,8 +9,12 @@ namespace NineOneOneReality.Launcher;
 
 public partial class App : Application
 {
-    // M3 default: light active screen. Pass --dark on the command line for the
-    // dark skin (same layout, Theme.Dark.xaml merged in ActiveDarkWindow).
+    // Default: M3 light active screen. CLI switches:
+    //   --dark              → ActiveDarkWindow
+    //   --m4                → M4 picker (three inactive placeholders)
+    //   --inactive=<name>   → one inactive window directly:
+    //                           instructor | student-basic | student-procom
+    //                         (aliases: basic, procom)
     //
     // OutputType=WinExe means stdout/stderr are detached, so any exception
     // raised during InitializeComponent() or at runtime would otherwise
@@ -27,16 +31,44 @@ public partial class App : Application
         base.OnStartup(e);
 
         var dark = false;
+        var m4Picker = false;
+        string? inactive = null;
+
         if (e.Args != null)
         {
             foreach (var a in e.Args)
             {
                 if (string.Equals(a, "--dark", StringComparison.Ordinal))
-                {
                     dark = true;
-                    break;
-                }
+                else if (string.Equals(a, "--m4", StringComparison.Ordinal))
+                    m4Picker = true;
+                else if (a.StartsWith("--inactive=", StringComparison.Ordinal))
+                    inactive = a.Substring("--inactive=".Length).Trim();
             }
+        }
+
+        if (!string.IsNullOrEmpty(inactive))
+        {
+            switch (inactive.ToLowerInvariant())
+            {
+                case "instructor":
+                    new Views.Inactive.InactiveInstructorWindow().Show();
+                    return;
+                case "student-basic":
+                case "basic":
+                    new Views.Inactive.InactiveStudentBasicWindow().Show();
+                    return;
+                case "student-procom":
+                case "procom":
+                    new Views.Inactive.InactiveStudentProcomWindow().Show();
+                    return;
+            }
+        }
+
+        if (m4Picker)
+        {
+            new Views.Inactive.M4PickerWindow().Show();
+            return;
         }
 
         if (dark)
