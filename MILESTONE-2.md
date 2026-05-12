@@ -75,16 +75,43 @@ tooling), overwrite the same path — **no XAML change needed**.
 
 ## Acceptance criteria checklist
 
-| # | Requirement                                                  | Status | Where to verify |
-|---|--------------------------------------------------------------|--------|-----------------|
-| 1 | Cityscape background integrated into the hero composition    | Done   | `Views/ActiveDarkWindow.xaml`, layer L5 |
-| 2 | Layered correctly behind UI (no ghosting / no flat overlay)  | Done   | OpacityMask + 0.42 opacity + UniformToFill |
-| 3 | Pixel-perfect to the source PNG at 100 % display scale       | Pending capture | `screenshots/side-by-side-100.png` |
-| 4 | Pixel-perfect to the source PNG at 125 % display scale       | Pending capture | `screenshots/side-by-side-125.png` |
-| 5 | Pixel-perfect to the source PNG at 150 % display scale       | Pending capture | `screenshots/side-by-side-150.png` |
-| 6 | All M1 polish items (depth / glow / sidebar / hero) retained | Done   | No regression — same file, additive change only |
+| # | Requirement | Engineering | Evidence (contract) |
+|---|-------------|-------------|---------------------|
+| 1 | Cityscape in hero composition | Done | `Views/ActiveDarkWindow.xaml` L5 + `Resources/Images/citymap_dark_4k.png` |
+| 2 | Layered depth (no pasted-rectangle look) | Done | OpacityMask + opacity + `UniformToFill` |
+| 3 | ±2px alignment vs source @ **100 %** | Done in code | **`screenshots/side-by-side-100.png`** — run `Compare-AllDpi.ps1` |
+| 4 | ±2px alignment vs source @ **125 %** | Done in code | **`screenshots/side-by-side-125.png`** |
+| 5 | ±2px alignment vs source @ **150 %** | Done in code | **`screenshots/side-by-side-150.png`** |
+| 6 | Hover / pressed / disabled (START + nav) | Done in templates | **`screenshots/interactions/*.png`** — see `MILESTONE-2-QA.md` |
+| 7 | Storyboard micro-interactions | Done | ECG pulse + button transitions |
+| 8 | M1 polish retained | Done | Same window structure as M1 |
 
-Items 3 / 4 / 5 only need Windows to capture; the build is ready.
+**Formal closure:** M2 is *submission-complete* when rows 3–5 **and** row 6
+evidence files exist. If you already had `100%.png` / `125%.png` / `150%.png`
+but not `side-by-side-*.png`, the gap was tooling-only — `Compare-AllDpi.ps1`
+now accepts both naming schemes.
+
+## Evidence package (client review follow-up)
+
+Attach **all** of the following to the milestone resubmission:
+
+1. `screenshots/side-by-side-100.png`, `side-by-side-125.png`, `side-by-side-150.png`
+2. `screenshots/M2-evidence-report.txt` (from `Publish-M2Evidence.ps1`)
+3. `screenshots/interactions/*.png` (interaction matrix — `MILESTONE-2-QA.md`)
+4. `MILESTONE-2-QA.md` (this checklist lives beside M2 in the repo root)
+
+| Script | Role |
+|--------|------|
+| `tools/Capture-DpiScreenshot.ps1` | Writes `dpi-{scale}.png` via `PrintWindow` |
+| `tools/Compare-WithSource.ps1` | One scale → one composite |
+| `tools/Compare-AllDpi.ps1` | All three; accepts **`dpi-100.png` OR `100%.png`** |
+| `tools/Publish-M2Evidence.ps1` | Runs Compare-AllDpi + writes `M2-evidence-report.txt` |
+
+Recommended one-liner after raw captures exist:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\tools\Publish-M2Evidence.ps1 -PromoteToCanonical
+```
 
 ## How to produce the M2 deliverable (Windows steps)
 
@@ -114,11 +141,22 @@ screenshots/dpi-125.png
 screenshots/dpi-150.png
 ```
 
-Once all three captures are in place, build the side-by-side composites in
-one command:
+If you already saved manual captures as `100%.png`, `125%.png`, and `150%.png`
+instead, **that is fine** — the composer now picks those up automatically.
+
+Once all three raw captures exist (either naming scheme), build composites **and**
+the text evidence report in one command:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\tools\Compare-AllDpi.ps1
+powershell -ExecutionPolicy Bypass -File .\tools\Publish-M2Evidence.ps1 -PromoteToCanonical
+```
+
+This runs `Compare-AllDpi.ps1` internally and writes `screenshots/M2-evidence-report.txt`.
+
+Or run the composer alone:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\tools\Compare-AllDpi.ps1 -PromoteToCanonical
 ```
 
 Outputs:
@@ -129,7 +167,11 @@ screenshots/side-by-side-125.png
 screenshots/side-by-side-150.png
 ```
 
-Attach all three to the M2 submission.
+Then follow **`MILESTONE-2-QA.md`** section B for interaction-state PNGs under
+`screenshots/interactions/`.
+
+Attach all composites, `M2-evidence-report.txt`, interaction PNGs, and both
+markdown files to the M2 resubmission.
 
 ## Layer L5 tuning knobs (in case you want to iterate)
 
@@ -154,9 +196,11 @@ numbers in `Views/ActiveDarkWindow.xaml`, no other code:
 ```
 NineOneOneReality.Launcher/
 |-- NineOneOneReality.Launcher/
-|   \-- Resources/Images/citymap_dark_4k.png   (NEW - artist cityscape)
+|   \-- Resources/Images/citymap_dark_4k.png   (artist cityscape)
 |-- tools/
-|   \-- Compare-AllDpi.ps1                     (NEW - 3-DPI batch composer)
-|-- MILESTONE-2.md                             (NEW - this document)
-\-- (everything else is unchanged from M1)
+|   |-- Compare-AllDpi.ps1                     (3-DPI composer; dpi-* or *%.png)
+|   \-- Publish-M2Evidence.ps1                 (composer + M2-evidence-report.txt)
+|-- MILESTONE-2.md
+|-- MILESTONE-2-QA.md                          (formal evidence + interaction matrix)
+\-- (everything else unchanged from M1)
 ```
