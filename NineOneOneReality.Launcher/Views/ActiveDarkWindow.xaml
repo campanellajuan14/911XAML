@@ -386,28 +386,33 @@
                     </Rectangle.Fill>
                 </Rectangle>
 
-                <!--  L5  cityscape silhouette PLACEHOLDER.
-                      When the artist supplies a transparent PNG that contains
-                      ONLY the city skyline / orange-road glow (no UI, no text),
-                      set Source below and uncomment.
+                <!--  L5  cityscape background.
+                      Artist-supplied dark-base + orange-road-glow PNG. Stretched
+                      to fill the hero pane edge-to-edge and held at low opacity
+                      so it sits behind the dashboard UI without competing with
+                      the title, ECG, or START button. A vertical soft mask
+                      fades the top and bottom edges so the image blends into
+                      the dark base instead of cutting hard.
 
-                <Image Source="/Resources/Images/citymap_dark_4k.png"
-                       Stretch="UniformToFill"
-                       Height="520"
-                       VerticalAlignment="Center"
-                       Opacity="0.35"
-                       IsHitTestVisible="False"
-                       RenderOptions.BitmapScalingMode="HighQuality">
+                      File: Resources/Images/citymap_dark_4k.png
+                      (Awaiting 3840 x 2160 re-export from client's artist;
+                       the current 1002 x 558 source renders fine on 1080p and
+                       will get sharper automatically when the higher-res file
+                       drops into the same path.)  -->
+                <Image IsHitTestVisible="False"
+                       Opacity="0.42"
+                       RenderOptions.BitmapScalingMode="HighQuality"
+                       Source="/Resources/Images/citymap_dark_4k.png"
+                       Stretch="UniformToFill">
                     <Image.OpacityMask>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                             <GradientStop Offset="0.00" Color="#00000000" />
-                            <GradientStop Offset="0.25" Color="#FF000000" />
-                            <GradientStop Offset="0.75" Color="#FF000000" />
+                            <GradientStop Offset="0.18" Color="#FF000000" />
+                            <GradientStop Offset="0.82" Color="#FF000000" />
                             <GradientStop Offset="1.00" Color="#00000000" />
                         </LinearGradientBrush>
                     </Image.OpacityMask>
                 </Image>
-                -->
 
                 <!--  L6  multi-stop radial spotlight behind the hero stack.
                       Three stops give a softer falloff than the prototype's
