@@ -9,7 +9,8 @@ namespace NineOneOneReality.Launcher;
 
 public partial class App : Application
 {
-    // Prototype scope: open the single dark active screen.
+    // M3 default: light active screen. Pass --dark on the command line for the
+    // dark skin (same layout, Theme.Dark.xaml merged in ActiveDarkWindow).
     //
     // OutputType=WinExe means stdout/stderr are detached, so any exception
     // raised during InitializeComponent() or at runtime would otherwise
@@ -25,7 +26,23 @@ public partial class App : Application
 
         base.OnStartup(e);
 
-        new Views.ActiveDarkWindow().Show();
+        var dark = false;
+        if (e.Args != null)
+        {
+            foreach (var a in e.Args)
+            {
+                if (string.Equals(a, "--dark", StringComparison.Ordinal))
+                {
+                    dark = true;
+                    break;
+                }
+            }
+        }
+
+        if (dark)
+            new Views.ActiveDarkWindow().Show();
+        else
+            new Views.ActiveLightWindow().Show();
     }
 
     private void OnDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)
