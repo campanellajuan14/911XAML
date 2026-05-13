@@ -3,11 +3,14 @@
                     xmlns:sys="clr-namespace:System;assembly=System.Runtime">
 
     <!--
-        Montserrat is delivered as a variable TTF embedded in the assembly.
-        The pack URI ends with "#Montserrat" (the family name, not the
-        filename). All font weights resolve from this single file.
+        Client Fixes M4.pdf: UI lettering should be Roboto Condensed.
+        Roboto Condensed Regular (Apache 2.0, Google Fonts) is embedded as TTF.
+        The pack URI uses the font family name "Roboto Condensed" (see TTF name table).
+
+        Key name Font.Montserrat is kept for historical reasons so existing
+        StaticResource bindings keep working; it now resolves to Roboto Condensed.
     -->
-    <FontFamily x:Key="Font.Montserrat">pack://application:,,,/Resources/Fonts/#Montserrat</FontFamily>
+    <FontFamily x:Key="Font.Montserrat">pack://application:,,,/Resources/Fonts/#Roboto Condensed</FontFamily>
 
     <!--  Type scale (px values per spec PDF, matching the source PNG at 1920x1080)  -->
 
@@ -33,7 +36,7 @@
     <!--  e.g. "911 REALITY SIMULATOR" in the top header  -->
 
     <sys:Double x:Key="Font.Size.SidebarBrand">18</sys:Double>
-    <!--  sidebar top label ("INSTRUCTOR 2") - tuned to fit the 260px column without truncation  -->
+    <!--  sidebar top label (Windows computer name) - tuned for 260px column  -->
 
     <sys:Double x:Key="Font.Size.HeaderMeta">20</sys:Double>
     <!--  SIMULATION READY / 11:23 AM  -->

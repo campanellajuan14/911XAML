@@ -1,6 +1,7 @@
 <Window x:Class="NineOneOneReality.Launcher.Views.ActiveDarkWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:assist="clr-namespace:NineOneOneReality.Launcher"
         Title="9-1-1 Reality Simulator (Active - Dark)"
         Width="1920"
         Height="1080"
@@ -13,7 +14,8 @@
         TextOptions.TextRenderingMode="ClearType"
         UseLayoutRounding="True"
         WindowStartupLocation="CenterScreen"
-        WindowState="Maximized">
+        WindowState="Maximized"
+        Loaded="OnWindowLoaded">
 
     <!--
         ACTIVE DARK SCREEN  (M1 - Alignment Proof)
@@ -28,12 +30,11 @@
           2. Glow layering     - multi-pass DropShadowEffects on the title, an
                                   orange halo behind the wordmark, intensified
                                   ECG bloom, floor-glow under the START button.
-          3. Sidebar spacing   - hairline dividers between sections, taller
-                                  nav rows for breathing room, polished
-                                  ENTER MODEL pill.
-          4. Hero scale        - wordmark logo where the placeholder badge was,
-                                  rebalanced title sizes, wider ECG, tightened
-                                  vertical rhythm.
+          3. Sidebar spacing   - hairline dividers, rounded semi-transparent
+                                  panel, colored Training / System icons,
+                                  INSTRUCTOR footer chip (client Fixes M4).
+          4. Hero scale        - centered white wordmark from client SVG (PNG),
+                                  no duplicate "9-1-1 REALITY SIMULATOR" titling.
 
         Theme architecture unchanged: Theme.Dark.xaml is merged at the Window
         level so a parallel Light window can swap it for Theme.Light.xaml and
@@ -46,35 +47,6 @@
                 <ResourceDictionary Source="/Themes/Theme.Dark.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <!--  Free-form model input pill (sidebar bottom).  -->
-            <Style x:Key="ModelInputBox" TargetType="TextBox">
-                <Setter Property="FontFamily" Value="{StaticResource Font.Montserrat}" />
-                <Setter Property="FontSize" Value="13" />
-                <Setter Property="FontWeight" Value="Bold" />
-                <Setter Property="Foreground" Value="{DynamicResource Brush.Theme.Foreground}" />
-                <Setter Property="Background" Value="Transparent" />
-                <Setter Property="BorderThickness" Value="0" />
-                <Setter Property="Padding" Value="0" />
-                <Setter Property="VerticalContentAlignment" Value="Center" />
-                <Setter Property="HorizontalContentAlignment" Value="Center" />
-                <Setter Property="CaretBrush" Value="{StaticResource Brush.Brand.Orange}" />
-                <Setter Property="SelectionBrush" Value="{StaticResource Brush.Brand.Orange}" />
-                <Setter Property="MaxLength" Value="22" />
-                <Setter Property="CharacterCasing" Value="Upper" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="TextBox">
-                            <ScrollViewer x:Name="PART_ContentHost"
-                                          Margin="0"
-                                          Background="Transparent"
-                                          Focusable="False"
-                                          HorizontalScrollBarVisibility="Hidden"
-                                          VerticalScrollBarVisibility="Hidden" />
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
             <!--  Hairline divider used between sidebar sections.  -->
             <Style x:Key="Sidebar.Divider" TargetType="Border">
                 <Setter Property="Height" Value="1" />
@@ -82,23 +54,6 @@
                 <Setter Property="Background" Value="{DynamicResource Brush.Theme.Border.Subtle}" />
                 <Setter Property="SnapsToDevicePixels" Value="True" />
             </Style>
-
-            <!--  Stacked-glow effect for the giant hero title (warm outer halo +
-                  inner shadow used together via a single DropShadowEffect with
-                  large blur radius and high opacity; a second pass is impossible
-                  in XAML without nesting in a VisualBrush, so we keep one strong
-                  glow here and let the cinematic background carry the rest).  -->
-            <DropShadowEffect x:Key="Effect.HeroTitleGlow"
-                              BlurRadius="32"
-                              Opacity="0.55"
-                              ShadowDepth="0"
-                              Color="#FFFF7A00" />
-
-            <DropShadowEffect x:Key="Effect.HeroTitleInk"
-                              BlurRadius="8"
-                              Opacity="0.85"
-                              ShadowDepth="0"
-                              Color="#FF000000" />
         </ResourceDictionary>
     </Window.Resources>
 
@@ -110,30 +65,18 @@
 
         <!--  =================================================================
               ROW 0 - HEADER BAR
-              The wordmark logo (Resources/Images/911-reality-logo.png) sits on
-              the left, the role badge "INSTRUCTOR 2" is in the sidebar top
-              (per the SOW: "Identification of the role by computer name"),
-              right side carries SIMULATION status and clock.
+              Client Fixes M4.pdf: no wordmark in the header strip — status +
+              clock only. (Wordmark remains in the hero / inactive flows as spec’d.)
               ================================================================= -->
         <ContentControl Grid.Row="0" Style="{StaticResource HeaderBarStyle}">
             <Grid VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <!--  Left: brand wordmark  -->
-                <Image Grid.Column="0"
-                       Height="52"
-                       Margin="20,0,0,0"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center"
-                       RenderOptions.BitmapScalingMode="HighQuality"
-                       Source="/Resources/Images/911-reality-logo.png" />
-
                 <!--  Right: simulation status + clock  -->
-                <StackPanel Grid.Column="2"
+                <StackPanel Grid.Column="1"
                             Orientation="Horizontal"
                             VerticalAlignment="Center">
                     <ContentControl Content="SIMULATION:"
@@ -160,11 +103,15 @@
             </Grid.ColumnDefinitions>
 
             <!--  ========== SIDEBAR ==========
-                  Polished spacing: hairline dividers between sections so the
-                  visual rhythm is brand / primary nav / training / system /
-                  model input - five distinct zones instead of one long list.  -->
+                  Rounded semi-transparent stack + colored Training/System icons
+                  (per client reference).  -->
             <Border Grid.Column="0"
-                    Background="{DynamicResource Brush.Theme.Sidebar}">
+                    Background="Transparent"
+                    Padding="10,10,8,10">
+                <Border Background="{DynamicResource Brush.Theme.Sidebar}"
+                        BorderBrush="{DynamicResource Brush.Theme.Sidebar.Frame}"
+                        BorderThickness="1"
+                        CornerRadius="14">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -184,7 +131,7 @@
                         <RowDefinition Height="Auto" />
                         <!--  7  SYSTEM section  -->
                         <RowDefinition Height="Auto" />
-                        <!--  8  model input footer  -->
+                        <!--  8  INSTRUCTOR footer  -->
                     </Grid.RowDefinitions>
 
                     <!--  0  Brand / role identifier  -->
@@ -208,13 +155,14 @@
                                       Fill="{StaticResource Brush.Brand.Orange}"
                                       Stretch="Uniform" />
                             </Border>
-                            <TextBlock Margin="12,0,0,0"
+                            <TextBlock x:Name="RoleComputerNameText"
+                                       Margin="12,0,0,0"
                                        VerticalAlignment="Center"
                                        FontFamily="{StaticResource Font.Montserrat}"
                                        FontSize="{StaticResource Font.Size.SidebarBrand}"
                                        FontWeight="ExtraBold"
                                        Foreground="{StaticResource Brush.Brand.Orange}"
-                                       Text="INSTRUCTOR 2"
+                                       Text="COMPUTER"
                                        TextTrimming="CharacterEllipsis" />
                         </StackPanel>
                     </StackPanel>
@@ -225,6 +173,8 @@
                     <!--  2  Primary nav  -->
                     <StackPanel Grid.Row="2" Margin="0,4,0,4">
                         <RadioButton Content="Dashboard"
+                                     Checked="OnDashboardNavChecked"
+                                     Unchecked="OnDashboardNavUnchecked"
                                      Style="{StaticResource NavButtonStyle}"
                                      Tag="{StaticResource Icon.Dashboard}" />
                         <RadioButton Content="Start Simulation"
@@ -257,10 +207,12 @@
                                    Foreground="{StaticResource Brush.Brand.Orange}"
                                    Text="TRAINING RESOURCES" />
                         <RadioButton GroupName="TrainingNav"
+                                     assist:NavIconAssist.IdleFill="{StaticResource Brush.NavIcon.Layers}"
                                      Content="Welcome - Start Here"
                                      Style="{StaticResource NavButtonStyle}"
                                      Tag="{StaticResource Icon.StartHere}" />
                         <RadioButton GroupName="TrainingNav"
+                                     assist:NavIconAssist.IdleFill="{StaticResource Brush.NavIcon.Cube}"
                                      Content="9-1-1 Academy / AI"
                                      Style="{StaticResource NavButtonStyle}"
                                      Tag="{StaticResource Icon.Academy}" />
@@ -278,48 +230,45 @@
                                    Foreground="{StaticResource Brush.Brand.Orange}"
                                    Text="SYSTEM" />
                         <RadioButton GroupName="SystemNav"
+                                     assist:NavIconAssist.IdleFill="{StaticResource Brush.NavIcon.Restart}"
                                      Content="Restart"
                                      Style="{StaticResource NavButtonStyle}"
                                      Tag="{StaticResource Icon.Restart}" />
                         <RadioButton GroupName="SystemNav"
+                                     assist:NavIconAssist.IdleFill="{StaticResource Brush.NavIcon.Shutdown}"
                                      Content="Shutdown"
                                      Style="{StaticResource NavButtonStyle}"
                                      Tag="{StaticResource Icon.Shutdown}" />
                     </StackPanel>
 
-                    <!--  8  Lower model label - free-form input.  -->
+                    <!--  8  INSTRUCTOR role chip (client reference).  -->
                     <Border Grid.Row="8"
                             Margin="14,16,14,18"
-                            Padding="14,11"
-                            BorderBrush="{DynamicResource Brush.Theme.Border}"
+                            Padding="12,10"
+                            Background="Transparent"
+                            BorderBrush="#CCFFFFFF"
                             BorderThickness="1"
-                            CornerRadius="999">
-                        <Grid>
-                            <TextBlock HorizontalAlignment="Center"
+                            CornerRadius="10">
+                        <StackPanel HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Orientation="Horizontal">
+                            <Path Width="22"
+                                  Height="22"
+                                  VerticalAlignment="Center"
+                                  Data="{StaticResource Icon.UserAvatar.Outline}"
+                                  Fill="{DynamicResource Brush.Theme.Foreground}"
+                                  Stretch="Uniform" />
+                            <TextBlock Margin="10,0,0,0"
                                        VerticalAlignment="Center"
                                        FontFamily="{StaticResource Font.Montserrat}"
                                        FontSize="13"
                                        FontWeight="Bold"
-                                       Foreground="{DynamicResource Brush.Theme.Foreground.Muted}"
-                                       IsHitTestVisible="False"
-                                       Text="ENTER MODEL">
-                                <TextBlock.Style>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="Visibility" Value="Collapsed" />
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Text, ElementName=ModelInputBox}" Value="">
-                                                <Setter Property="Visibility" Value="Visible" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </TextBlock.Style>
-                            </TextBlock>
-                            <TextBox x:Name="ModelInputBox"
-                                     Style="{StaticResource ModelInputBox}"
-                                     ToolTip="Enter your simulator model (e.g. BASIC, PLUS, PROCOMM)" />
-                        </Grid>
+                                       Foreground="{DynamicResource Brush.Theme.Foreground}"
+                                       Text="INSTRUCTOR" />
+                        </StackPanel>
                     </Border>
                 </Grid>
+                </Border>
             </Border>
 
             <!--  ========== HERO PANEL ==========
@@ -334,7 +283,7 @@
                     L7   scanline overlay                (per City Scape doc)
                     L8   vignette                        (legibility frame)
                     L9   top orange separator stripe     (continues from header)
-                    L10  hero content stack              (wordmark, title, ECG,
+                    L10  hero content stack              (white wordmark, ECG,
                                                           button, status)
                   ============================================================ -->
             <Grid Grid.Column="1" ClipToBounds="True">
@@ -462,10 +411,13 @@
                 <StackPanel HorizontalAlignment="Center"
                             VerticalAlignment="Center">
 
-                    <!--  Wordmark logo with orange halo behind  -->
-                    <Grid Width="560" Height="220" HorizontalAlignment="Center">
-                        <Ellipse Width="540"
-                                 Height="200"
+                    <!--  Centered white wordmark (rasterized from client 911 reality.svg).  -->
+                    <Grid Width="760"
+                          Height="300"
+                          HorizontalAlignment="Center"
+                          Margin="0,0,0,4">
+                        <Ellipse Width="720"
+                                 Height="260"
                                  HorizontalAlignment="Center"
                                  VerticalAlignment="Center"
                                  IsHitTestVisible="False">
@@ -477,10 +429,12 @@
                                 </RadialGradientBrush>
                             </Ellipse.Fill>
                         </Ellipse>
-                        <Image HorizontalAlignment="Center"
+                        <Image MaxWidth="700"
+                               MaxHeight="280"
+                               HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                RenderOptions.BitmapScalingMode="HighQuality"
-                               Source="/Resources/Images/911-reality-logo.png"
+                               Source="/Resources/Images/911-reality-logo-hero-white.png"
                                Stretch="Uniform">
                             <Image.Effect>
                                 <DropShadowEffect BlurRadius="22"
@@ -491,36 +445,11 @@
                         </Image>
                     </Grid>
 
-                    <!--  Hero title - rebalanced sizes + multi-pass glow  -->
-                    <Grid Margin="0,8,0,0" HorizontalAlignment="Center">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0"
-                                   HorizontalAlignment="Center"
-                                   Effect="{StaticResource Effect.HeroTitleGlow}"
-                                   FontFamily="{StaticResource Font.Montserrat}"
-                                   FontSize="{StaticResource Font.Size.HeroTitleMain}"
-                                   FontWeight="Black"
-                                   Foreground="{DynamicResource Brush.Theme.Foreground}"
-                                   Text="9-1-1 REALITY" />
-                        <TextBlock Grid.Row="1"
-                                   Margin="0,-6,0,0"
-                                   HorizontalAlignment="Center"
-                                   Effect="{StaticResource Effect.HeroTitleInk}"
-                                   FontFamily="{StaticResource Font.Montserrat}"
-                                   FontSize="{StaticResource Font.Size.HeroTitleAccent}"
-                                   FontWeight="Black"
-                                   Foreground="{DynamicResource Brush.Theme.Foreground}"
-                                   Text="SIMULATOR" />
-                    </Grid>
-
                     <!--  ECG pulse line - wider + stronger bloom  -->
                     <Path x:Name="EcgPulseLine"
                           Width="620"
                           Height="36"
-                          Margin="0,10,0,0"
+                          Margin="0,18,0,0"
                           HorizontalAlignment="Center"
                           Data="{StaticResource Icon.PulseLine}"
                           Stretch="Fill"
@@ -584,22 +513,6 @@
                                     Content="SYSTEM STATUS:"
                                     Style="{StaticResource StatusPill.System}"
                                     Tag="READY" />
-
-                    <!--  Scenario state lines  -->
-                    <TextBlock Margin="0,8,0,0"
-                               HorizontalAlignment="Center"
-                               FontFamily="{StaticResource Font.Montserrat}"
-                               FontSize="20"
-                               FontWeight="Bold"
-                               Foreground="{StaticResource Brush.Brand.Orange}"
-                               Text="NO SCENARIO LOADED" />
-                    <TextBlock Margin="0,4,0,0"
-                               HorizontalAlignment="Center"
-                               FontFamily="{StaticResource Font.Montserrat}"
-                               FontSize="18"
-                               FontWeight="Medium"
-                               Foreground="{DynamicResource Brush.Theme.Foreground.Soft}"
-                               Text="AWAITING INSTRUCTOR" />
                 </StackPanel>
             </Grid>
         </Grid>

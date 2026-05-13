@@ -28,27 +28,13 @@
         </Grid.RowDefinitions>
 
         <ContentControl Grid.Row="0" Style="{StaticResource HeaderBarStyle}">
-            <Grid VerticalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Image Grid.Column="0"
-                       Height="44"
-                       Margin="24,0,0,0"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center"
-                       RenderOptions.BitmapScalingMode="HighQuality"
-                       Source="/Resources/Images/911-reality-logo.png" />
-                <TextBlock Grid.Column="1"
-                           Margin="20,0,32,0"
-                           VerticalAlignment="Center"
-                           FontSize="13"
-                           FontWeight="Bold"
-                           Foreground="{DynamicResource Brush.Theme.Foreground.Muted}"
-                           Text="BASIC MODEL — STUDENT INACTIVE MONITOR"
-                           TextTrimming="CharacterEllipsis" />
-            </Grid>
+            <!--  Fixes M4.pdf: header is logo-only, centered. White mark when
+                  `911-reality-logo-white.png` is supplied under Resources/Images.  -->
+            <Image Height="58"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   RenderOptions.BitmapScalingMode="HighQuality"
+                   Source="/Resources/Images/911-reality-logo-white.png" />
         </ContentControl>
 
         <Grid Grid.Row="1" ClipToBounds="True">

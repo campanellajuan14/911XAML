@@ -22,8 +22,11 @@
     <Color x:Key="Color.Theme.Surface.Elevated">#FF141414</Color>
     <!--  hover and focus overlay surfaces  -->
 
-    <Color x:Key="Color.Theme.Sidebar">#FF1F2227</Color>
-    <!--  sampled from sidebar in source PNG (slate-charcoal)  -->
+    <!--  Semi-transparent panel (client: rounded + glassy vs flat opaque).  -->
+    <Color x:Key="Color.Theme.Sidebar">#E6282C33</Color>
+
+    <Color x:Key="Color.Theme.Sidebar.Frame">#55FFFFFF</Color>
+    <!--  hairline around the rounded sidebar stack  -->
 
     <Color x:Key="Color.Theme.Sidebar.ItemHover">#FF2A2D33</Color>
     <Color x:Key="Color.Theme.Sidebar.ItemSelected">#FF35373E</Color>
@@ -41,6 +44,11 @@
     <Color x:Key="Color.Theme.IconNeutral">#FFE8E8E8</Color>
     <!--  default sidebar icon stroke color in dark theme  -->
 
+    <Color x:Key="Color.NavIcon.Layers">#FF26C6DA</Color>
+    <Color x:Key="Color.NavIcon.Cube">#FFAB47BC</Color>
+    <Color x:Key="Color.NavIcon.Restart">#FF29B6F6</Color>
+    <Color x:Key="Color.NavIcon.Shutdown">#FFEF5350</Color>
+
     <Color x:Key="Color.Theme.UserAvatar.Bg">#FF2A2D33</Color>
     <Color x:Key="Color.Theme.UserAvatar.Border">#FF4A4D54</Color>
 
@@ -51,6 +59,7 @@
     <SolidColorBrush x:Key="Brush.Theme.Surface.Elevated" Color="{StaticResource Color.Theme.Surface.Elevated}" />
 
     <SolidColorBrush x:Key="Brush.Theme.Sidebar" Color="{StaticResource Color.Theme.Sidebar}" />
+    <SolidColorBrush x:Key="Brush.Theme.Sidebar.Frame" Color="{StaticResource Color.Theme.Sidebar.Frame}" />
     <SolidColorBrush x:Key="Brush.Theme.Sidebar.ItemHover" Color="{StaticResource Color.Theme.Sidebar.ItemHover}" />
     <SolidColorBrush x:Key="Brush.Theme.Sidebar.ItemSelected" Color="{StaticResource Color.Theme.Sidebar.ItemSelected}" />
 
@@ -64,6 +73,11 @@
     <SolidColorBrush x:Key="Brush.Theme.Foreground.Subtle" Color="{StaticResource Color.Theme.Foreground.Subtle}" />
 
     <SolidColorBrush x:Key="Brush.Theme.IconNeutral" Color="{StaticResource Color.Theme.IconNeutral}" />
+
+    <SolidColorBrush x:Key="Brush.NavIcon.Layers" Color="{StaticResource Color.NavIcon.Layers}" />
+    <SolidColorBrush x:Key="Brush.NavIcon.Cube" Color="{StaticResource Color.NavIcon.Cube}" />
+    <SolidColorBrush x:Key="Brush.NavIcon.Restart" Color="{StaticResource Color.NavIcon.Restart}" />
+    <SolidColorBrush x:Key="Brush.NavIcon.Shutdown" Color="{StaticResource Color.NavIcon.Shutdown}" />
 
     <SolidColorBrush x:Key="Brush.Theme.UserAvatar.Bg" Color="{StaticResource Color.Theme.UserAvatar.Bg}" />
     <SolidColorBrush x:Key="Brush.Theme.UserAvatar.Border" Color="{StaticResource Color.Theme.UserAvatar.Border}" />
