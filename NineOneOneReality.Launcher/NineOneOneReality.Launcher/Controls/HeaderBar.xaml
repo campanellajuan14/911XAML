@@ -62,9 +62,9 @@
 
     <!--
         ACTIVE MAIN WINDOWS  (ActiveDark / ActiveLight)
-        Same chrome as HeaderBarStyle but without the 2px orange rule under
-        the title row. That line reads as a yellow/orange sliver where the
-        header meets the sidebar in the client's reference layout.
+        Same chrome as HeaderBarStyle but without the 2px orange rule inside this
+        template (Active*Window.xaml adds a full-width under-header glow row in
+        column 1 so it spans only the main pane, matching the demo reference).
     -->
     <Style x:Key="HeaderBarStyle.Active" TargetType="{x:Type ContentControl}">
         <Setter Property="Height" Value="78" />

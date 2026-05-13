@@ -58,6 +58,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="78" />
+            <RowDefinition Height="5" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -67,7 +68,7 @@
 
         <!--  ========== SIDEBAR (full window height; demo reference).  ========== -->
         <Border Grid.Row="0"
-                    Grid.RowSpan="2"
+                    Grid.RowSpan="3"
                     Grid.Column="0"
                     Background="Transparent"
                     Padding="0">
@@ -325,6 +326,54 @@
             </Grid>
         </ContentControl>
 
+        <!--  Under-header glow: center reads darker / richer yellow-orange; edges
+              wash out to pale yellow then transparent (wide stop spacing = soft fade).  -->
+        <Grid Grid.Row="1"
+              Grid.Column="1"
+              Height="5"
+              VerticalAlignment="Stretch"
+              IsHitTestVisible="False">
+            <!--  Wide soft halo (pale yellow falloff).  -->
+            <Rectangle Height="3"
+                       VerticalAlignment="Center"
+                       Opacity="0.85">
+                <Rectangle.Fill>
+                    <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                        <GradientStop Offset="0.00" Color="#00000000" />
+                        <GradientStop Offset="0.10" Color="#12FFFFB0" />
+                        <GradientStop Offset="0.22" Color="#22FFEE99" />
+                        <GradientStop Offset="0.35" Color="#30FFDD77" />
+                        <GradientStop Offset="0.45" Color="#38FFCC55" />
+                        <GradientStop Offset="0.50" Color="#35FFBB44" />
+                        <GradientStop Offset="0.55" Color="#38FFCC55" />
+                        <GradientStop Offset="0.65" Color="#30FFDD77" />
+                        <GradientStop Offset="0.78" Color="#22FFEE99" />
+                        <GradientStop Offset="0.90" Color="#12FFFFB0" />
+                        <GradientStop Offset="1.00" Color="#00000000" />
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <!--  Core line: darker amber center, still yellowing toward edges.  -->
+            <Rectangle Height="2"
+                       VerticalAlignment="Center">
+                <Rectangle.Fill>
+                    <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                        <GradientStop Offset="0.00" Color="#00000000" />
+                        <GradientStop Offset="0.12" Color="#18FFFFAA" />
+                        <GradientStop Offset="0.26" Color="#35FFDD88" />
+                        <GradientStop Offset="0.38" Color="#55FFBB55" />
+                        <GradientStop Offset="0.46" Color="#A0FF9900" />
+                        <GradientStop Offset="0.50" Color="#E8FF7700" />
+                        <GradientStop Offset="0.54" Color="#A0FF9900" />
+                        <GradientStop Offset="0.62" Color="#55FFBB55" />
+                        <GradientStop Offset="0.74" Color="#35FFDD88" />
+                        <GradientStop Offset="0.88" Color="#18FFFFAA" />
+                        <GradientStop Offset="1.00" Color="#00000000" />
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Grid>
+
         <!--  ========== HERO PANEL ==========
                   Cinematic-depth layer order (bottom to top):
                     L1   dark base                       (Window background)
@@ -338,7 +387,7 @@
                     L8   vignette                        (legibility frame)
                     L9   hero chrome (centered wordmark, ECG, button, status)
                   ============================================================ -->
-        <Grid Grid.Row="1"
+        <Grid Grid.Row="2"
                   Grid.Column="1"
                   ClipToBounds="True">
 
@@ -566,40 +615,6 @@
                 </StackPanel>
             </Grid>
 
-            <!--  Hero top rule: fixed-width centered accent (same spirit as HeaderBar
-                      separator). Full-stretch gradient read as a long yellow band on wide
-                      layouts; width is independent of sidebar selection / window size.  -->
-            <Grid Width="280"
-                      Height="4"
-                      HorizontalAlignment="Center"
-                      VerticalAlignment="Top"
-                      IsHitTestVisible="False">
-                <Rectangle Height="1"
-                               VerticalAlignment="Center"
-                               Opacity="0.5">
-                    <Rectangle.Fill>
-                        <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
-                            <GradientStop Offset="0.0" Color="#00000000" />
-                            <GradientStop Offset="0.42" Color="#55FF7A00" />
-                            <GradientStop Offset="0.58" Color="#55FF7A00" />
-                            <GradientStop Offset="1.0" Color="#00000000" />
-                        </LinearGradientBrush>
-                    </Rectangle.Fill>
-                </Rectangle>
-                <Rectangle Width="180"
-                               Height="2"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               Fill="{StaticResource Brush.Brand.Orange.Bright}"
-                               Opacity="0.95">
-                    <Rectangle.Effect>
-                        <DropShadowEffect BlurRadius="14"
-                                              Opacity="0.88"
-                                              ShadowDepth="0"
-                                              Color="#FFFFCC66" />
-                    </Rectangle.Effect>
-                </Rectangle>
-            </Grid>
         </Grid>
     </Grid>
 </Window>
