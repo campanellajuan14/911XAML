@@ -1,0 +1,124 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+
+    <!--
+        Client Fixes M4.pdf: UI lettering should be Roboto Condensed.
+        Roboto Condensed Regular (Apache 2.0, Google Fonts) is embedded as TTF.
+        The pack URI uses the font family name "Roboto Condensed" (see TTF name table).
+
+        Key name Font.Montserrat is kept for historical reasons so existing
+        StaticResource bindings keep working; it now resolves to Roboto Condensed.
+    -->
+    <FontFamily x:Key="Font.Montserrat">pack://application:,,,/Resources/Fonts/#Roboto Condensed</FontFamily>
+
+    <!--  Type scale (px values per spec PDF, matching the source PNG at 1920x1080)  -->
+
+    <sys:Double x:Key="Font.Size.HeroTitle">160</sys:Double>
+    <!--  e.g. "MAPPING" / "9-1-1 REALITY" hero  -->
+
+    <sys:Double x:Key="Font.Size.HeroTitleMain">88</sys:Double>
+    <!--  rebalanced hero title for the active dark screen ("9-1-1 REALITY")  -->
+
+    <sys:Double x:Key="Font.Size.HeroTitleAccent">76</sys:Double>
+    <!--  the second hero line ("SIMULATOR") sits slightly smaller for visual rhythm  -->
+
+    <sys:Double x:Key="Font.Size.Subtitle">58</sys:Double>
+    <!--  e.g. "9-1-1 REALITY SIMULATOR"  -->
+
+    <sys:Double x:Key="Font.Size.SectionLabel">32</sys:Double>
+    <!--  e.g. "START SIMULATION" label above the button  -->
+
+    <sys:Double x:Key="Font.Size.PrimaryButton">38</sys:Double>
+    <!--  the START button text  -->
+
+    <sys:Double x:Key="Font.Size.HeaderBrand">28</sys:Double>
+    <!--  e.g. "911 REALITY SIMULATOR" in the top header  -->
+
+    <sys:Double x:Key="Font.Size.SidebarBrand">18</sys:Double>
+    <!--  sidebar top label (Windows computer name) - tuned for 260px column  -->
+
+    <sys:Double x:Key="Font.Size.HeaderMeta">20</sys:Double>
+    <!--  SIMULATION READY / 11:23 AM  -->
+
+    <sys:Double x:Key="Font.Size.NavItem">15</sys:Double>
+    <!--  sidebar nav items - tuned so longest labels ("User Manuals / IT Info",
+         "Listen To Recordings", "Welcome - Start Here") fit without truncation  -->
+
+    <sys:Double x:Key="Font.Size.NavSection">14</sys:Double>
+    <!--  sidebar section headers (TRAINING RESOURCES, SYSTEM)  -->
+
+    <sys:Double x:Key="Font.Size.Body">16</sys:Double>
+    <sys:Double x:Key="Font.Size.BodySmall">14</sys:Double>
+    <sys:Double x:Key="Font.Size.Caption">12</sys:Double>
+
+    <!--  Reusable text styles (apply via Style="{StaticResource Text.Hero}" etc)  -->
+
+    <Style x:Key="Text.Hero" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="{StaticResource Font.Montserrat}" />
+        <Setter Property="FontWeight" Value="Black" />
+        <Setter Property="FontSize" Value="{StaticResource Font.Size.HeroTitle}" />
+        <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
+        <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+    </Style>
+
+    <Style x:Key="Text.Subtitle" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="{StaticResource Font.Montserrat}" />
+        <Setter Property="FontWeight" Value="ExtraBold" />
+        <Setter Property="FontSize" Value="{StaticResource Font.Size.Subtitle}" />
+        <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+    </Style>
+
+    <Style x:Key="Text.SectionLabel" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="{StaticResource Font.Montserrat}" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="{StaticResource Font.Size.SectionLabel}" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+    </Style>
+
+    <Style x:Key="Text.HeaderBrand" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="{StaticResource Font.Montserrat}" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="{StaticResource Font.Size.HeaderBrand}" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+    </Style>
+
+    <Style x:Key="Text.HeaderMeta" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="{StaticResource Font.Montserrat}" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="FontSize" Value="{StaticResource Font.Size.HeaderMeta}" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+    </Style>
+
+    <Style x:Key="Text.NavItem" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="{StaticResource Font.Montserrat}" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="FontSize" Value="{StaticResource Font.Size.NavItem}" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+    </Style>
+
+    <!--
+        WPF has no first-class letter-spacing/tracking on TextBlock (CharacterSpacing
+        is UWP-only). For the all-caps section labels we keep the typeface and
+        weight; if the visual proves too tight in design review we can switch to
+        TextBlock with explicit Run elements separated by thin spaces, or use
+        Typography.* OpenType features that the Montserrat variable font exposes.
+    -->
+    <Style x:Key="Text.NavSection" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="{StaticResource Font.Montserrat}" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="{StaticResource Font.Size.NavSection}" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+    </Style>
+
+    <Style x:Key="Text.Body" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="{StaticResource Font.Montserrat}" />
+        <Setter Property="FontWeight" Value="Regular" />
+        <Setter Property="FontSize" Value="{StaticResource Font.Size.Body}" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+    </Style>
+
+</ResourceDictionary>

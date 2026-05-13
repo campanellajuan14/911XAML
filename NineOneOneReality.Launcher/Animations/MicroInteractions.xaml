@@ -1,0 +1,21 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--
+        Reusable timeline + easing constants for micro-interactions.
+        The SOW asks for animations that are "subtle, fast, non-distracting".
+
+        These are exposed as Duration / EasingFunction resources so they can be
+        referenced from any ControlTemplate's Storyboard, keeping all timing
+        consistent across the launcher.
+    -->
+
+    <Duration x:Key="Duration.Micro">0:0:0.12</Duration>
+    <Duration x:Key="Duration.Short">0:0:0.18</Duration>
+    <Duration x:Key="Duration.Medium">0:0:0.28</Duration>
+
+    <CubicEase x:Key="Easing.Out" EasingMode="EaseOut" />
+    <CubicEase x:Key="Easing.In" EasingMode="EaseIn" />
+    <CubicEase x:Key="Easing.InOut" EasingMode="EaseInOut" />
+
+</ResourceDictionary>
