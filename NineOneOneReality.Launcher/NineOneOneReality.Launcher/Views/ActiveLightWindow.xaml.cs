@@ -1,4 +1,3 @@
-using System;
 using System.Windows;
 
 namespace NineOneOneReality.Launcher.Views;
@@ -10,11 +9,6 @@ public partial class ActiveLightWindow : Window
     public ActiveLightWindow()
     {
         InitializeComponent();
-    }
-
-    private void OnWindowLoaded(object sender, RoutedEventArgs e)
-    {
-        RoleComputerNameText.Text = Environment.MachineName;
     }
 
     private void OnDashboardNavChecked(object sender, RoutedEventArgs e)

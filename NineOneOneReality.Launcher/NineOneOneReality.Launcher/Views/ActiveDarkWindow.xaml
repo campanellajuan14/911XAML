@@ -14,8 +14,7 @@
         TextOptions.TextRenderingMode="ClearType"
         UseLayoutRounding="True"
         WindowStartupLocation="CenterScreen"
-        WindowState="Maximized"
-        Loaded="OnWindowLoaded">
+        WindowState="Maximized">
 
     <!--
         ACTIVE DARK SCREEN  (M1 - Alignment Proof)
@@ -98,29 +97,41 @@
                         <!--  8  INSTRUCTOR footer  -->
                     </Grid.RowDefinitions>
 
-                    <!--  0  Machine identity (product strip lives in the header bar).  -->
+                    <!--  0  Instructor strip: orange headset + white “911” (numerals not tinted by brand fill).  -->
                     <StackPanel Grid.Row="0" Margin="14,18,14,12">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <Border Width="42"
                                     Height="42"
                                     Background="#FF1A1A1A"
                                     CornerRadius="21">
-                                <Path Width="26"
+                                <Grid Width="26"
                                       Height="26"
                                       HorizontalAlignment="Center"
-                                      VerticalAlignment="Center"
-                                      Data="{StaticResource Icon.HeadsetBadge}"
-                                      Fill="{StaticResource Brush.Brand.Orange}"
-                                      Stretch="Uniform" />
+                                      VerticalAlignment="Center">
+                                    <Path HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          Data="{StaticResource Icon.HeadsetBadge}"
+                                          Fill="{StaticResource Brush.Brand.Orange}"
+                                          Stretch="Uniform" />
+                                    <TextBlock HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               Margin="0,5,0,0"
+                                               FontFamily="{StaticResource Font.Montserrat}"
+                                               FontSize="9.5"
+                                               FontWeight="ExtraBold"
+                                               Foreground="#FFFFFFFF"
+                                               IsHitTestVisible="False"
+                                               Text="911"
+                                               TextOptions.TextFormattingMode="Display" />
+                                </Grid>
                             </Border>
-                            <TextBlock x:Name="RoleComputerNameText"
-                                       Margin="12,0,0,0"
+                            <TextBlock Margin="12,0,0,0"
                                        VerticalAlignment="Center"
                                        FontFamily="{StaticResource Font.Montserrat}"
                                        FontSize="{StaticResource Font.Size.SidebarBrand}"
                                        FontWeight="ExtraBold"
                                        Foreground="{StaticResource Brush.Brand.Orange}"
-                                       Text="COMPUTER"
+                                       Text="INSTRUCTOR 2"
                                        TextTrimming="CharacterEllipsis" />
                         </StackPanel>
                     </StackPanel>
@@ -267,22 +278,23 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <!--  Demo: orange chip + white silhouette + "911 REALITY SIMULATOR".  -->
+                <!--  Brand: dispatcher raster on header bg (no opaque chip; clip only).  -->
                 <StackPanel Grid.Column="0"
                             Orientation="Horizontal"
                             VerticalAlignment="Center">
-                    <Border Width="40"
-                            Height="40"
-                            Background="{StaticResource Brush.Brand.Orange}"
-                            CornerRadius="20">
-                        <Path Width="22"
-                              Height="22"
-                              HorizontalAlignment="Center"
-                              VerticalAlignment="Center"
-                              Data="{StaticResource Icon.UserAvatar.Outline}"
-                              Fill="#FFFFFFFF"
-                              Stretch="Uniform" />
-                    </Border>
+                    <Grid Width="40"
+                          Height="40">
+                        <Grid.Clip>
+                            <EllipseGeometry Center="20,20" RadiusX="20" RadiusY="20" />
+                        </Grid.Clip>
+                        <Image Width="40"
+                               Height="40"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               Source="/Resources/Images/header-brand-dispatcher.png"
+                               Stretch="Uniform" />
+                    </Grid>
                     <StackPanel Margin="12,0,0,0" VerticalAlignment="Center">
                         <TextBlock FontFamily="{StaticResource Font.Montserrat}"
                                    FontSize="16"
