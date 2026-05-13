@@ -106,31 +106,30 @@
                   (per client reference).  -->
             <Border Grid.Column="0"
                     Background="Transparent"
-                    Padding="10,10,8,10">
+                    Margin="14,14,12,14"
+                    Padding="0">
                 <Border Background="{DynamicResource Brush.Theme.Sidebar}"
-                        BorderBrush="{DynamicResource Brush.Theme.Sidebar.Frame}"
+                        BorderBrush="{DynamicResource Brush.Theme.Border.Subtle}"
                         BorderThickness="1"
-                        CornerRadius="14">
+                        CornerRadius="14,0,0,14">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <!--  0  brand block (role identifier)  -->
                         <RowDefinition Height="Auto" />
-                        <!--  1  divider  -->
+                        <!--  1  primary nav  -->
                         <RowDefinition Height="Auto" />
-                        <!--  2  primary nav  -->
+                        <!--  2  divider  -->
                         <RowDefinition Height="Auto" />
-                        <!--  3  divider  -->
-                        <RowDefinition Height="Auto" />
-                        <!--  4  TRAINING RESOURCES section  -->
+                        <!--  3  TRAINING RESOURCES section  -->
                         <RowDefinition Height="*" />
-                        <!--  5  spacer that pushes SYSTEM down  -->
+                        <!--  4  spacer that pushes SYSTEM down  -->
                         <RowDefinition Height="Auto" />
-                        <!--  6  divider  -->
+                        <!--  5  divider  -->
                         <RowDefinition Height="Auto" />
-                        <!--  7  SYSTEM section  -->
+                        <!--  6  SYSTEM section  -->
                         <RowDefinition Height="Auto" />
-                        <!--  8  INSTRUCTOR footer  -->
+                        <!--  7  INSTRUCTOR footer  -->
                     </Grid.RowDefinitions>
 
                     <!--  0  Instructor strip: client 911-headset badge + “INSTRUCTOR 2”.  -->
@@ -168,11 +167,8 @@
                         </StackPanel>
                     </StackPanel>
 
-                    <!--  1  divider  -->
-                    <Border Grid.Row="1" Style="{StaticResource Sidebar.Divider}" />
-
-                    <!--  2  Primary nav  -->
-                    <StackPanel Grid.Row="2" Margin="0,4,0,4">
+                    <!--  1  Primary nav  -->
+                    <StackPanel Grid.Row="1" Margin="0,4,0,4">
                         <RadioButton Content="Dashboard"
                                      Checked="OnDashboardNavChecked"
                                      Unchecked="OnDashboardNavUnchecked"
@@ -196,11 +192,11 @@
                                      Tag="{StaticResource Icon.Settings}" />
                     </StackPanel>
 
-                    <!--  3  divider  -->
-                    <Border Grid.Row="3" Style="{StaticResource Sidebar.Divider}" />
+                    <!--  2  divider  -->
+                    <Border Grid.Row="2" Style="{StaticResource Sidebar.Divider}" />
 
-                    <!--  4  Training resources section  -->
-                    <StackPanel Grid.Row="4">
+                    <!--  3  Training resources section  -->
+                    <StackPanel Grid.Row="3">
                         <TextBlock Margin="28,0,14,10"
                                    FontFamily="{StaticResource Font.Montserrat}"
                                    FontSize="{StaticResource Font.Size.NavSection}"
@@ -219,11 +215,11 @@
                                      Tag="{StaticResource Icon.Academy}" />
                     </StackPanel>
 
-                    <!--  6  divider (Row 5 is spacer)  -->
-                    <Border Grid.Row="6" Style="{StaticResource Sidebar.Divider}" />
+                    <!--  5  divider (Row 4 is spacer)  -->
+                    <Border Grid.Row="5" Style="{StaticResource Sidebar.Divider}" />
 
-                    <!--  7  System section  -->
-                    <StackPanel Grid.Row="7">
+                    <!--  6  System section  -->
+                    <StackPanel Grid.Row="6">
                         <TextBlock Margin="28,0,14,10"
                                    FontFamily="{StaticResource Font.Montserrat}"
                                    FontSize="{StaticResource Font.Size.NavSection}"
@@ -242,8 +238,8 @@
                                      Tag="{StaticResource Icon.Shutdown}" />
                     </StackPanel>
 
-                    <!--  8  INSTRUCTOR role chip (client reference).  -->
-                    <Border Grid.Row="8"
+                    <!--  7  INSTRUCTOR role chip (client reference).  -->
+                    <Border Grid.Row="7"
                             Margin="14,16,14,18"
                             Padding="12,10"
                             Background="Transparent"
