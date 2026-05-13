@@ -3,6 +3,7 @@
                     xmlns:assist="clr-namespace:NineOneOneReality.Launcher">
 
     <assist:NavIconIdleFillConverter x:Key="NavIconIdleFillConverter" />
+    <assist:NavIconSlotVisibilityConverter x:Key="NavIconSlotVisibilityConverter" />
 
     <!--
         NAV BUTTON
@@ -12,15 +13,16 @@
         keeps single-selection behaviour without code-behind.
 
         Required attached/exposed properties:
-          - Tag          : Geometry of the icon (e.g. {StaticResource Icon.Dashboard})
+          - Tag          : Geometry for vector icons (fallback when BitmapIcon is unset)
+          - BitmapIcon   : optional pack path for PNG (e.g. /Resources/Images/nav-sidebar-dashboard.png);
+                           when set, the bitmap is shown instead of the Path.
           - Content      : the label text (e.g. "Dashboard")
           - IsChecked    : selected state (driven by GroupName binding)
 
         Theme dependence:
           - Foreground/icon = Brush.Theme.Foreground.Soft (idle)
           - Hover bg        = Brush.Theme.Sidebar.ItemHover
-          - Selected bg     = Brush.Theme.Sidebar.ItemSelected
-          - Selected accent = Brush.Brand.Orange (left bar + icon tint)
+          - Selected        = Sidebar.ItemSelected pill + orange icon (no left accent bar)
     -->
 
     <Style x:Key="NavButtonStyle" TargetType="{x:Type RadioButton}">
@@ -46,13 +48,7 @@
                                 CornerRadius="10"
                                 SnapsToDevicePixels="True" />
 
-                        <!--  Selected accent bar on the left  -->
-                        <Border x:Name="AccentBar"
-                                Width="3"
-                                Margin="0"
-                                HorizontalAlignment="Left"
-                                Background="Transparent"
-                                CornerRadius="2" />
+                        <!--  Left accent bar removed (client: no yellow/orange strip on selection).  -->
 
                         <!--  Content row: icon + label  -->
                         <Grid Margin="14,0,12,0">
@@ -61,6 +57,23 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
+                            <Image x:Name="IconBitmap"
+                                   Grid.Column="0"
+                                   Width="22"
+                                   Height="22"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   RenderOptions.BitmapScalingMode="HighQuality"
+                                   SnapsToDevicePixels="True"
+                                   Stretch="Uniform"
+                                   Visibility="{Binding Path=(assist:NavIconAssist.BitmapIcon),
+                                                        RelativeSource={RelativeSource TemplatedParent},
+                                                        Converter={StaticResource NavIconSlotVisibilityConverter},
+                                                        ConverterParameter=Bitmap}"
+                                   Source="{Binding Path=(assist:NavIconAssist.BitmapIcon),
+                                                     RelativeSource={RelativeSource TemplatedParent},
+                                                     Mode=OneWay}" />
+
                             <Path x:Name="IconPath"
                                   Grid.Column="0"
                                   Width="22"
@@ -68,7 +81,11 @@
                                   HorizontalAlignment="Center"
                                   VerticalAlignment="Center"
                                   Data="{TemplateBinding Tag}"
-                                  Stretch="Uniform">
+                                  Stretch="Uniform"
+                                  Visibility="{Binding Path=(assist:NavIconAssist.BitmapIcon),
+                                                        RelativeSource={RelativeSource TemplatedParent},
+                                                        Converter={StaticResource NavIconSlotVisibilityConverter},
+                                                        ConverterParameter=Vector}">
                                 <Path.Fill>
                                     <MultiBinding Converter="{StaticResource NavIconIdleFillConverter}">
                                         <Binding Path="(assist:NavIconAssist.IdleFill)"
@@ -108,11 +125,18 @@
                             <Setter TargetName="Bg" Property="Background" Value="{DynamicResource Brush.Theme.Sidebar.ItemHover}" />
                         </Trigger>
 
-                        <!--  Selected: orange accent bar + tinted icon + emphasised text  -->
+                        <!--  Selected: pill background + tinted vector icon OR orange glow on bitmap + emphasised text.  -->
                         <Trigger Property="IsChecked" Value="True">
                             <Setter TargetName="Bg" Property="Background" Value="{DynamicResource Brush.Theme.Sidebar.ItemSelected}" />
-                            <Setter TargetName="AccentBar" Property="Background" Value="{StaticResource Brush.Brand.Orange}" />
                             <Setter TargetName="IconPath" Property="Fill" Value="{StaticResource Brush.Brand.Orange}" />
+                            <Setter TargetName="IconBitmap" Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect BlurRadius="10"
+                                                      Opacity="0.82"
+                                                      ShadowDepth="0"
+                                                      Color="#FFFA7C00" />
+                                </Setter.Value>
+                            </Setter>
                             <Setter Property="Foreground" Value="{DynamicResource Brush.Theme.Foreground}" />
                         </Trigger>
 

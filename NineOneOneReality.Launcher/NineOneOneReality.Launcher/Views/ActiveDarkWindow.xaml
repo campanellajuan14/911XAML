@@ -58,7 +58,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="78" />
-            <RowDefinition Height="5" />
+            <RowDefinition Height="7" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -98,33 +98,24 @@
                         <!--  8  INSTRUCTOR footer  -->
                     </Grid.RowDefinitions>
 
-                    <!--  0  Instructor strip: orange headset + white “911” (numerals not tinted by brand fill).  -->
+                    <!--  0  Instructor strip: client 911-headset badge + “INSTRUCTOR 2”.  -->
                     <StackPanel Grid.Row="0" Margin="14,18,14,12">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <Border Width="42"
                                     Height="42"
-                                    Background="#FF1A1A1A"
-                                    CornerRadius="21">
-                                <Grid Width="26"
-                                      Height="26"
-                                      HorizontalAlignment="Center"
-                                      VerticalAlignment="Center">
-                                    <Path HorizontalAlignment="Center"
-                                          VerticalAlignment="Center"
-                                          Data="{StaticResource Icon.HeadsetBadge}"
-                                          Fill="{StaticResource Brush.Brand.Orange}"
-                                          Stretch="Uniform" />
-                                    <TextBlock HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               Margin="0,5,0,0"
-                                               FontFamily="{StaticResource Font.Montserrat}"
-                                               FontSize="9.5"
-                                               FontWeight="ExtraBold"
-                                               Foreground="#FFFFFFFF"
-                                               IsHitTestVisible="False"
-                                               Text="911"
-                                               TextOptions.TextFormattingMode="Display" />
-                                </Grid>
+                                    Background="#FF000000"
+                                    CornerRadius="21"
+                                    ClipToBounds="True"
+                                    SnapsToDevicePixels="True">
+                                <!--  Black matte + fill clip: avoids grey slivers from theme avatar bg.  -->
+                                <Image Width="42"
+                                       Height="42"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       RenderOptions.BitmapScalingMode="HighQuality"
+                                       SnapsToDevicePixels="True"
+                                       Source="/Resources/Images/instructor-2-911-badge.png"
+                                       Stretch="UniformToFill" />
                             </Border>
                             <TextBlock Margin="12,0,0,0"
                                        VerticalAlignment="Center"
@@ -326,51 +317,37 @@
             </Grid>
         </ContentControl>
 
-        <!--  Under-header glow: center reads darker / richer yellow-orange; edges
-              wash out to pale yellow then transparent (wide stop spacing = soft fade).  -->
+        <!--  Under-header glow: same stepped ramp as ECG (Brush.Hero.EcgPulseStroke).  -->
         <Grid Grid.Row="1"
               Grid.Column="1"
-              Height="5"
+              Height="7"
               VerticalAlignment="Stretch"
               IsHitTestVisible="False">
-            <!--  Wide soft halo (pale yellow falloff).  -->
-            <Rectangle Height="3"
-                       VerticalAlignment="Center"
-                       Opacity="0.85">
-                <Rectangle.Fill>
-                    <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+            <Rectangle VerticalAlignment="Stretch"
+                       Fill="{StaticResource Brush.Hero.EcgPulseStroke}"
+                       Opacity="0.52">
+                <Rectangle.OpacityMask>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                         <GradientStop Offset="0.00" Color="#00000000" />
-                        <GradientStop Offset="0.10" Color="#12FFFFB0" />
-                        <GradientStop Offset="0.22" Color="#22FFEE99" />
-                        <GradientStop Offset="0.35" Color="#30FFDD77" />
-                        <GradientStop Offset="0.45" Color="#38FFCC55" />
-                        <GradientStop Offset="0.50" Color="#35FFBB44" />
-                        <GradientStop Offset="0.55" Color="#38FFCC55" />
-                        <GradientStop Offset="0.65" Color="#30FFDD77" />
-                        <GradientStop Offset="0.78" Color="#22FFEE99" />
-                        <GradientStop Offset="0.90" Color="#12FFFFB0" />
+                        <GradientStop Offset="0.22" Color="#6FFFFFFF" />
+                        <GradientStop Offset="0.50" Color="#FFFFFFFF" />
+                        <GradientStop Offset="0.78" Color="#6FFFFFFF" />
                         <GradientStop Offset="1.00" Color="#00000000" />
                     </LinearGradientBrush>
-                </Rectangle.Fill>
+                </Rectangle.OpacityMask>
             </Rectangle>
-            <!--  Core line: darker amber center, still yellowing toward edges.  -->
             <Rectangle Height="2"
-                       VerticalAlignment="Center">
-                <Rectangle.Fill>
-                    <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                       VerticalAlignment="Center"
+                       Fill="{StaticResource Brush.Hero.EcgPulseStroke}">
+                <Rectangle.OpacityMask>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                         <GradientStop Offset="0.00" Color="#00000000" />
-                        <GradientStop Offset="0.12" Color="#18FFFFAA" />
-                        <GradientStop Offset="0.26" Color="#35FFDD88" />
-                        <GradientStop Offset="0.38" Color="#55FFBB55" />
-                        <GradientStop Offset="0.46" Color="#A0FF9900" />
-                        <GradientStop Offset="0.50" Color="#E8FF7700" />
-                        <GradientStop Offset="0.54" Color="#A0FF9900" />
-                        <GradientStop Offset="0.62" Color="#55FFBB55" />
-                        <GradientStop Offset="0.74" Color="#35FFDD88" />
-                        <GradientStop Offset="0.88" Color="#18FFFFAA" />
+                        <GradientStop Offset="0.28" Color="#D0FFFFFF" />
+                        <GradientStop Offset="0.50" Color="#FFFFFFFF" />
+                        <GradientStop Offset="0.72" Color="#D0FFFFFF" />
                         <GradientStop Offset="1.00" Color="#00000000" />
                     </LinearGradientBrush>
-                </Rectangle.Fill>
+                </Rectangle.OpacityMask>
             </Rectangle>
         </Grid>
 
@@ -385,11 +362,11 @@
                     L6   multi-stop radial spotlight     (warm halo behind logo)
                     L7   scanline overlay                (per City Scape doc)
                     L8   vignette                        (legibility frame)
-                    L9   hero chrome (centered wordmark, ECG, button, status)
+                    L9   hero chrome (wordmark top, then ECG, START, status)
                   ============================================================ -->
         <Grid Grid.Row="2"
                   Grid.Column="1"
-                  ClipToBounds="True">
+                  ClipToBounds="False">
 
             <!--  L2  vector grid texture  -->
             <Rectangle>
@@ -509,11 +486,46 @@
                 <StackPanel HorizontalAlignment="Center"
                                 VerticalAlignment="Center">
                     <StackPanel.RenderTransform>
-                        <!--  Nudge stack after reorder (pulse + actions above wordmark).  -->
-                        <TranslateTransform Y="28" />
+                        <!--  Wordmark above start block; modest vertical nudge.  -->
+                        <TranslateTransform Y="18" />
                     </StackPanel.RenderTransform>
 
-                    <!--  ECG + start block above the wordmark (looser reference: fewer status lines).  -->
+                    <!--  Centered white wordmark (top of hero stack).  -->
+                    <Grid Width="1200"
+                          Height="440"
+                          HorizontalAlignment="Center"
+                          Margin="0,0,0,0">
+                        <Ellipse Width="1140"
+                                 Height="440"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                                 IsHitTestVisible="False">
+                            <Ellipse.Fill>
+                                <RadialGradientBrush>
+                                    <GradientStop Offset="0.00" Color="#55FF7A00" />
+                                    <GradientStop Offset="0.60" Color="#15FF7A00" />
+                                    <GradientStop Offset="1.00" Color="#00000000" />
+                                </RadialGradientBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <Image MaxWidth="1140"
+                               MaxHeight="440"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               Source="/Resources/Images/911-reality-logo-hero-white.png"
+                               Stretch="Uniform">
+                            <Image.Effect>
+                                <DropShadowEffect BlurRadius="22"
+                                                  Opacity="0.55"
+                                                  ShadowDepth="0"
+                                                  Color="#FFFF7A00" />
+                            </Image.Effect>
+                        </Image>
+                    </Grid>
+
+                    <!--  Start block: pulled up toward wordmark (layout margin, not render-only transform).  -->
+                    <StackPanel Margin="0,-86,0,0">
                     <Path x:Name="EcgPulseLine"
                           Width="680"
                           Height="40"
@@ -521,7 +533,7 @@
                           HorizontalAlignment="Center"
                           Data="{StaticResource Icon.PulseLine}"
                           Stretch="Fill"
-                          Stroke="{StaticResource Brush.Brand.Orange}"
+                          Stroke="{StaticResource Brush.Hero.EcgPulseStroke}"
                           StrokeEndLineCap="Round"
                           StrokeStartLineCap="Round"
                           StrokeThickness="3">
@@ -529,7 +541,7 @@
                             <DropShadowEffect BlurRadius="20"
                                               Opacity="0.95"
                                               ShadowDepth="0"
-                                              Color="#FFFF6A00" />
+                                              Color="#FFFA7C00" />
                         </Path.Effect>
                         <Path.Triggers>
                             <EventTrigger RoutedEvent="FrameworkElement.Loaded">
@@ -574,44 +586,11 @@
                         <Button Content="START" Style="{StaticResource PrimaryButtonStyle}" />
                     </Grid>
 
-                    <ContentControl Margin="0,20,0,32"
+                    <ContentControl Margin="0,10,0,18"
                                     Content="SYSTEM STATUS:"
                                     Style="{StaticResource StatusPill.System}"
                                     Tag="READY" />
-
-                    <!--  Centered white wordmark (rasterized from client 911 reality.svg).  -->
-                    <Grid Width="1200"
-                          Height="480"
-                          HorizontalAlignment="Center"
-                          Margin="0,0,0,0">
-                        <Ellipse Width="1140"
-                                 Height="440"
-                                 HorizontalAlignment="Center"
-                                 VerticalAlignment="Center"
-                                 IsHitTestVisible="False">
-                            <Ellipse.Fill>
-                                <RadialGradientBrush>
-                                    <GradientStop Offset="0.00" Color="#55FF7A00" />
-                                    <GradientStop Offset="0.60" Color="#15FF7A00" />
-                                    <GradientStop Offset="1.00" Color="#00000000" />
-                                </RadialGradientBrush>
-                            </Ellipse.Fill>
-                        </Ellipse>
-                        <Image MaxWidth="1140"
-                               MaxHeight="440"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               RenderOptions.BitmapScalingMode="HighQuality"
-                               Source="/Resources/Images/911-reality-logo-hero-white.png"
-                               Stretch="Uniform">
-                            <Image.Effect>
-                                <DropShadowEffect BlurRadius="22"
-                                                  Opacity="0.55"
-                                                  ShadowDepth="0"
-                                                  Color="#FFFF7A00" />
-                            </Image.Effect>
-                        </Image>
-                    </Grid>
+                    </StackPanel>
                 </StackPanel>
             </Grid>
 

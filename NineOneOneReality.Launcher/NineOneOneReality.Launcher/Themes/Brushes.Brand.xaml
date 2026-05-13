@@ -43,4 +43,34 @@
         <GradientStop Offset="1.0" Color="{StaticResource Color.Brand.Orange.Pressed}" />
     </LinearGradientBrush>
 
+    <!--
+        Hero ECG trace: tips fade out; then #734F22 family; each step toward
+        horizontal center is lighter → peak #FA7C00 (client selection).
+    -->
+    <LinearGradientBrush x:Key="Brush.Hero.EcgPulseStroke" StartPoint="0,0.5" EndPoint="1,0.5">
+        <GradientStop Offset="0.00" Color="#00000000" />
+        <GradientStop Offset="0.05" Color="#504A3018" />
+        <GradientStop Offset="0.10" Color="#68734F22" />
+        <GradientStop Offset="0.16" Color="#80734F22" />
+        <GradientStop Offset="0.22" Color="#98804A22" />
+        <GradientStop Offset="0.28" Color="#B0905028" />
+        <GradientStop Offset="0.34" Color="#CCA06030" />
+        <GradientStop Offset="0.40" Color="#E0B87840" />
+        <GradientStop Offset="0.44" Color="#F0CC9048" />
+        <GradientStop Offset="0.47" Color="#F8DC9858" />
+        <GradientStop Offset="0.49" Color="#FCE8A868" />
+        <GradientStop Offset="0.50" Color="#FFFA7C00" />
+        <GradientStop Offset="0.51" Color="#FCE8A868" />
+        <GradientStop Offset="0.53" Color="#F8DC9858" />
+        <GradientStop Offset="0.56" Color="#F0CC9048" />
+        <GradientStop Offset="0.60" Color="#E0B87840" />
+        <GradientStop Offset="0.66" Color="#CCA06030" />
+        <GradientStop Offset="0.72" Color="#B0905028" />
+        <GradientStop Offset="0.78" Color="#98804A22" />
+        <GradientStop Offset="0.84" Color="#80734F22" />
+        <GradientStop Offset="0.90" Color="#68734F22" />
+        <GradientStop Offset="0.95" Color="#504A3018" />
+        <GradientStop Offset="1.00" Color="#00000000" />
+    </LinearGradientBrush>
+
 </ResourceDictionary>

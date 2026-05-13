@@ -133,39 +133,29 @@
                         <!--  8  INSTRUCTOR footer  -->
                     </Grid.RowDefinitions>
 
-                    <!--  0  Instructor strip: orange headset + white “911”.  -->
+                    <!--  0  Instructor strip: client 911-headset badge + “INSTRUCTOR 2”.  -->
                     <StackPanel Grid.Row="0" Margin="14,18,14,12">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <Border Width="42"
                                     Height="42"
-                                    Background="#FF1A1A1A"
-                                    CornerRadius="21">
+                                    Background="#FF000000"
+                                    CornerRadius="21"
+                                    ClipToBounds="True"
+                                    SnapsToDevicePixels="True">
                                 <Border.Effect>
                                     <DropShadowEffect BlurRadius="16"
                                                       Opacity="0.55"
                                                       ShadowDepth="0"
                                                       Color="#FFFF7A00" />
                                 </Border.Effect>
-                                <Grid Width="26"
-                                      Height="26"
-                                      HorizontalAlignment="Center"
-                                      VerticalAlignment="Center">
-                                    <Path HorizontalAlignment="Center"
-                                          VerticalAlignment="Center"
-                                          Data="{StaticResource Icon.HeadsetBadge}"
-                                          Fill="{StaticResource Brush.Brand.Orange}"
-                                          Stretch="Uniform" />
-                                    <TextBlock HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               Margin="0,5,0,0"
-                                               FontFamily="{StaticResource Font.Montserrat}"
-                                               FontSize="9.5"
-                                               FontWeight="ExtraBold"
-                                               Foreground="#FFFFFFFF"
-                                               IsHitTestVisible="False"
-                                               Text="911"
-                                               TextOptions.TextFormattingMode="Display" />
-                                </Grid>
+                                <Image Width="42"
+                                       Height="42"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       RenderOptions.BitmapScalingMode="HighQuality"
+                                       SnapsToDevicePixels="True"
+                                       Source="/Resources/Images/instructor-2-911-badge.png"
+                                       Stretch="UniformToFill" />
                             </Border>
                             <TextBlock Margin="12,0,0,0"
                                        VerticalAlignment="Center"
