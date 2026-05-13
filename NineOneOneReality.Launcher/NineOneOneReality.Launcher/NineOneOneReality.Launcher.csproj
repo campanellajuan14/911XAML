@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -27,6 +27,8 @@
     <Resource Include="Resources\Fonts\*.ttf" />
     <Resource Include="Resources\Images\**\*.png" />
     <Resource Include="Resources\Images\**\*.jpg" />
+    <!--  Vector source for instructor chip (WPF renders Path/Canvas in XAML, not this file).  -->
+    <None Include="Resources\Images\instructor-profile.svg" />
   </ItemGroup>
 
 </Project>

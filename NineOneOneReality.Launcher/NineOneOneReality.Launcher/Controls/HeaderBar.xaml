@@ -60,4 +60,27 @@
         </Setter>
     </Style>
 
+    <!--
+        ACTIVE MAIN WINDOWS  (ActiveDark / ActiveLight)
+        Same chrome as HeaderBarStyle but without the 2px orange rule under
+        the title row. That line reads as a yellow/orange sliver where the
+        header meets the sidebar in the client's reference layout.
+    -->
+    <Style x:Key="HeaderBarStyle.Active" TargetType="{x:Type ContentControl}">
+        <Setter Property="Height" Value="78" />
+        <Setter Property="Background" Value="{DynamicResource Brush.Theme.Background}" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ContentControl}">
+                    <Grid Background="{TemplateBinding Background}">
+                        <ContentPresenter Margin="32,0,32,0"
+                                          VerticalAlignment="Center" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

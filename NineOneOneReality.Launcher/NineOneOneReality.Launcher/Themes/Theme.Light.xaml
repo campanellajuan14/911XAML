@@ -23,6 +23,8 @@
     <Color x:Key="Color.Theme.Sidebar">#FFFFFFFF</Color>
     <!--  white sidebar (per source PNG)  -->
 
+    <Color x:Key="Color.Theme.Sidebar.Frame">#00000000</Color>
+
     <Color x:Key="Color.Theme.Sidebar.ItemHover">#FFFFEDDB</Color>
     <Color x:Key="Color.Theme.Sidebar.ItemSelected">#FFFFE0BF</Color>
     <!--  light orange wash for selected nav item (matches Dashboard row)  -->
@@ -39,6 +41,11 @@
     <Color x:Key="Color.Theme.IconNeutral">#FF424D56</Color>
     <!--  matches the Dashboard.svg cls-1 fill in light context  -->
 
+    <Color x:Key="Color.NavIcon.Layers">#FF00838F</Color>
+    <Color x:Key="Color.NavIcon.Cube">#FF8E24AA</Color>
+    <Color x:Key="Color.NavIcon.Restart">#FF0288D1</Color>
+    <Color x:Key="Color.NavIcon.Shutdown">#FFE53935</Color>
+
     <Color x:Key="Color.Theme.UserAvatar.Bg">#FFEEF0F3</Color>
     <Color x:Key="Color.Theme.UserAvatar.Border">#FFD0D5DB</Color>
 
@@ -49,6 +56,7 @@
     <SolidColorBrush x:Key="Brush.Theme.Surface.Elevated" Color="{StaticResource Color.Theme.Surface.Elevated}" />
 
     <SolidColorBrush x:Key="Brush.Theme.Sidebar" Color="{StaticResource Color.Theme.Sidebar}" />
+    <SolidColorBrush x:Key="Brush.Theme.Sidebar.Frame" Color="{StaticResource Color.Theme.Sidebar.Frame}" />
     <SolidColorBrush x:Key="Brush.Theme.Sidebar.ItemHover" Color="{StaticResource Color.Theme.Sidebar.ItemHover}" />
     <SolidColorBrush x:Key="Brush.Theme.Sidebar.ItemSelected" Color="{StaticResource Color.Theme.Sidebar.ItemSelected}" />
 
@@ -63,13 +71,22 @@
 
     <SolidColorBrush x:Key="Brush.Theme.IconNeutral" Color="{StaticResource Color.Theme.IconNeutral}" />
 
+    <SolidColorBrush x:Key="Brush.NavIcon.Layers" Color="{StaticResource Color.NavIcon.Layers}" />
+    <SolidColorBrush x:Key="Brush.NavIcon.Cube" Color="{StaticResource Color.NavIcon.Cube}" />
+    <SolidColorBrush x:Key="Brush.NavIcon.Restart" Color="{StaticResource Color.NavIcon.Restart}" />
+    <SolidColorBrush x:Key="Brush.NavIcon.Shutdown" Color="{StaticResource Color.NavIcon.Shutdown}" />
+
     <SolidColorBrush x:Key="Brush.Theme.UserAvatar.Bg" Color="{StaticResource Color.Theme.UserAvatar.Bg}" />
     <SolidColorBrush x:Key="Brush.Theme.UserAvatar.Border" Color="{StaticResource Color.Theme.UserAvatar.Border}" />
 
-    <!--  Light-theme hero vignette is unused (no cityscape) but kept to satisfy template references.  -->
+    <!--  Active light hero: soft edge wash so title / wordmark stay legible over
+          cityscape + orange glow layers (same L8 slot as dark; stronger than
+          near-transparent placeholder used before M3).  -->
     <LinearGradientBrush x:Key="Brush.Theme.HeroVignette" StartPoint="0.5,0" EndPoint="0.5,1">
-        <GradientStop Offset="0.0" Color="#08000000" />
-        <GradientStop Offset="1.0" Color="#08000000" />
+        <GradientStop Offset="0.0" Color="#55F5F6F8" />
+        <GradientStop Offset="0.45" Color="#00F5F6F8" />
+        <GradientStop Offset="0.55" Color="#00F5F6F8" />
+        <GradientStop Offset="1.0" Color="#66E8EAEF" />
     </LinearGradientBrush>
 
 </ResourceDictionary>
