@@ -12,13 +12,13 @@
 
     <!--  ===== Color palette ===== -->
 
-    <Color x:Key="Color.Theme.Background">#FFF5F6F8</Color>
-    <!--  pale cool gray main canvas  -->
+    <Color x:Key="Color.Theme.Background">#FFFFFFFF</Color>
+    <!--  solid white main canvas (light mode client: not transparent, just white).  -->
 
     <Color x:Key="Color.Theme.Surface">#FFFFFFFF</Color>
     <!--  card / panel background  -->
 
-    <Color x:Key="Color.Theme.Surface.Elevated">#FFFAFBFC</Color>
+    <Color x:Key="Color.Theme.Surface.Elevated">#FFFFFFFF</Color>
 
     <Color x:Key="Color.Theme.Sidebar">#FFFFFFFF</Color>
     <!--  white sidebar (per source PNG)  -->
@@ -79,14 +79,7 @@
     <SolidColorBrush x:Key="Brush.Theme.UserAvatar.Bg" Color="{StaticResource Color.Theme.UserAvatar.Bg}" />
     <SolidColorBrush x:Key="Brush.Theme.UserAvatar.Border" Color="{StaticResource Color.Theme.UserAvatar.Border}" />
 
-    <!--  Active light hero: soft edge wash so title / wordmark stay legible over
-          cityscape + orange glow layers (same L8 slot as dark; stronger than
-          near-transparent placeholder used before M3).  -->
-    <LinearGradientBrush x:Key="Brush.Theme.HeroVignette" StartPoint="0.5,0" EndPoint="0.5,1">
-        <GradientStop Offset="0.0" Color="#55F5F6F8" />
-        <GradientStop Offset="0.45" Color="#00F5F6F8" />
-        <GradientStop Offset="0.55" Color="#00F5F6F8" />
-        <GradientStop Offset="1.0" Color="#66E8EAEF" />
-    </LinearGradientBrush>
+    <!--  Active light hero: opaque white wash (client: not transparent, just white).  -->
+    <SolidColorBrush x:Key="Brush.Theme.HeroVignette" Color="#FFFFFFFF" />
 
 </ResourceDictionary>
