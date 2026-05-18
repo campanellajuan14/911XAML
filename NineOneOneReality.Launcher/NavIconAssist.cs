@@ -24,6 +24,52 @@ public sealed class NavIconSlotVisibilityConverter : IValueConverter
 }
 
 /// <summary>
+/// Visibility for Svg / Bitmap / Path icon slots in <c>NavButtonStyle</c> when <see cref="NavIconAssist.SvgIcon" /> is used.
+/// ConverterParameter: <c>Svg</c>, <c>Bitmap</c>, or <c>Path</c> (vector geometry from <c>Tag</c>).
+/// </summary>
+public sealed class NavIconSlotMultiVisibilityConverter : IMultiValueConverter
+{
+    public object Convert(object[] values, Type targetType, object? parameter, CultureInfo culture)
+    {
+        var svg = values.Length > 0 ? values[0] as string : null;
+        var bmp = values.Length > 1 ? values[1] as string : null;
+        var hasSvg = !string.IsNullOrWhiteSpace(svg);
+        var hasBmp = !string.IsNullOrWhiteSpace(bmp);
+        var slot = parameter as string ?? string.Empty;
+        var visible = slot.Equals("Svg", StringComparison.OrdinalIgnoreCase)
+            ? hasSvg
+            : slot.Equals("Bitmap", StringComparison.OrdinalIgnoreCase)
+                ? !hasSvg && hasBmp
+                : !hasSvg && !hasBmp;
+        return visible ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    public object[] ConvertBack(object value, Type[] targetTypes, object? parameter, CultureInfo culture) =>
+        throw new NotSupportedException();
+}
+
+/// <summary>Converts attached SVG pack path string to <see cref="Uri"/> for SvgViewbox.UriSource.</summary>
+public sealed class NavIconSvgUriConverter : IValueConverter
+{
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        if (value is not string s || string.IsNullOrWhiteSpace(s))
+            return null;
+        try
+        {
+            return new Uri(s, UriKind.RelativeOrAbsolute);
+        }
+        catch (UriFormatException)
+        {
+            return null;
+        }
+    }
+
+    public object ConvertBack(object value, Type targetType, object? parameter, CultureInfo culture) =>
+        throw new NotSupportedException();
+}
+
+/// <summary>
 /// Optional per-row idle fill for sidebar <see cref="System.Windows.Controls.RadioButton" /> icons
 /// (Training Resources + System accents). When unset, <c>NavButtonStyle</c> uses <c>Brush.Theme.IconNeutral</c>.
 /// </summary>
@@ -39,6 +85,17 @@ public static class NavIconAssist
     public static void SetBitmapIcon(DependencyObject element, string? value) => element.SetValue(BitmapIconProperty, value);
 
     public static string? GetBitmapIcon(DependencyObject element) => (string?)element.GetValue(BitmapIconProperty);
+
+    /// <summary>Optional pack URI for a vector sidebar icon (SVG embedded as resource).</summary>
+    public static readonly DependencyProperty SvgIconProperty = DependencyProperty.RegisterAttached(
+        "SvgIcon",
+        typeof(string),
+        typeof(NavIconAssist),
+        new FrameworkPropertyMetadata(null));
+
+    public static void SetSvgIcon(DependencyObject element, string? value) => element.SetValue(SvgIconProperty, value);
+
+    public static string? GetSvgIcon(DependencyObject element) => (string?)element.GetValue(SvgIconProperty);
 
     public static readonly DependencyProperty IdleFillProperty = DependencyProperty.RegisterAttached(
         "IdleFill",

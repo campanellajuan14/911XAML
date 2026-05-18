@@ -13,7 +13,7 @@
           Fill       : orange vertical gradient (Brush.PrimaryButton.Idle)
           Hover      : slightly brighter orange (Brush.PrimaryButton.Hover)
           Pressed    : slightly darker orange (Brush.PrimaryButton.Pressed)
-          Text       : white, Roboto Condensed Bold ~38px, all caps
+          Text       : white, Roboto Condensed ExtraBold ~38px, all caps
     -->
 
     <Style x:Key="PrimaryButtonStyle" TargetType="{x:Type Button}">
@@ -23,7 +23,7 @@
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Background" Value="{StaticResource Brush.PrimaryButton.Idle}" />
         <Setter Property="Foreground" Value="White" />
-        <Setter Property="FontFamily" Value="{StaticResource Font.Montserrat}" />
+        <Setter Property="FontFamily" Value="{StaticResource Font.RobotoCondensed}" />
         <Setter Property="FontWeight" Value="ExtraBold" />
         <Setter Property="FontSize" Value="{StaticResource Font.Size.PrimaryButton}" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />

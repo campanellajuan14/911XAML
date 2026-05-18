@@ -3,13 +3,11 @@
                     xmlns:sys="clr-namespace:System;assembly=System.Runtime">
 
     <!--
-        Client spec: all UI lettering uses Roboto Condensed (embedded TTFs under Resources/Fonts).
+        All UI text: Roboto Condensed (embedded TTF under Resources/Fonts).
         Font.Montserrat is a legacy key name; it resolves to the same family.
     -->
     <FontFamily x:Key="Font.RobotoCondensed">pack://application:,,,/Resources/Fonts/#Roboto Condensed</FontFamily>
     <FontFamily x:Key="Font.Montserrat">pack://application:,,,/Resources/Fonts/#Roboto Condensed</FontFamily>
-
-    <!--  Type scale (px values per spec PDF, matching the source PNG at 1920x1080)  -->
 
     <sys:Double x:Key="Font.Size.HeroTitle">160</sys:Double>
     <sys:Double x:Key="Font.Size.HeroTitleMain">88</sys:Double>
@@ -26,49 +24,37 @@
     <sys:Double x:Key="Font.Size.BodySmall">14</sys:Double>
     <sys:Double x:Key="Font.Size.Caption">12</sys:Double>
 
-    <!--  App-wide default: Roboto Condensed on all standard text controls  -->
-
-    <Style TargetType="{x:Type TextBlock}">
+    <!--  App-wide default: every page inherits Roboto Condensed unless overridden.  -->
+    <Style TargetType="{x:Type Control}">
         <Setter Property="FontFamily" Value="{StaticResource Font.RobotoCondensed}" />
     </Style>
-
+    <Style TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="{StaticResource Font.RobotoCondensed}" />
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+    </Style>
     <Style TargetType="{x:Type TextBox}">
         <Setter Property="FontFamily" Value="{StaticResource Font.RobotoCondensed}" />
     </Style>
-
     <Style TargetType="{x:Type Label}">
         <Setter Property="FontFamily" Value="{StaticResource Font.RobotoCondensed}" />
     </Style>
-
-    <Style TargetType="{x:Type Button}">
-        <Setter Property="FontFamily" Value="{StaticResource Font.RobotoCondensed}" />
-    </Style>
-
-    <Style TargetType="{x:Type ToggleButton}">
-        <Setter Property="FontFamily" Value="{StaticResource Font.RobotoCondensed}" />
-    </Style>
-
-    <Style TargetType="{x:Type CheckBox}">
-        <Setter Property="FontFamily" Value="{StaticResource Font.RobotoCondensed}" />
-    </Style>
-
-    <Style TargetType="{x:Type RadioButton}">
-        <Setter Property="FontFamily" Value="{StaticResource Font.RobotoCondensed}" />
-    </Style>
-
     <Style TargetType="{x:Type ComboBox}">
         <Setter Property="FontFamily" Value="{StaticResource Font.RobotoCondensed}" />
     </Style>
-
-  <Style TargetType="{x:Type GroupBox}">
+    <Style TargetType="{x:Type CheckBox}">
+        <Setter Property="FontFamily" Value="{StaticResource Font.RobotoCondensed}" />
+    </Style>
+    <Style TargetType="{x:Type RadioButton}">
+        <Setter Property="FontFamily" Value="{StaticResource Font.RobotoCondensed}" />
+    </Style>
+    <Style TargetType="{x:Type ListBoxItem}">
         <Setter Property="FontFamily" Value="{StaticResource Font.RobotoCondensed}" />
     </Style>
 
-    <!--  Reusable text styles (apply via Style="{StaticResource Text.Hero}" etc)  -->
-
     <Style x:Key="Text.Hero" TargetType="{x:Type TextBlock}">
         <Setter Property="FontFamily" Value="{StaticResource Font.RobotoCondensed}" />
-        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontWeight" Value="Black" />
         <Setter Property="FontSize" Value="{StaticResource Font.Size.HeroTitle}" />
         <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
         <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
@@ -78,7 +64,7 @@
 
     <Style x:Key="Text.Subtitle" TargetType="{x:Type TextBlock}">
         <Setter Property="FontFamily" Value="{StaticResource Font.RobotoCondensed}" />
-        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontWeight" Value="ExtraBold" />
         <Setter Property="FontSize" Value="{StaticResource Font.Size.Subtitle}" />
         <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
         <Setter Property="UseLayoutRounding" Value="True" />
@@ -100,7 +86,7 @@
 
     <Style x:Key="Text.HeaderMeta" TargetType="{x:Type TextBlock}">
         <Setter Property="FontFamily" Value="{StaticResource Font.RobotoCondensed}" />
-        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="FontSize" Value="{StaticResource Font.Size.HeaderMeta}" />
         <Setter Property="UseLayoutRounding" Value="True" />
     </Style>
