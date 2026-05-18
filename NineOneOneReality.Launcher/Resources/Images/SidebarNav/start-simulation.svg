@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <!--  Nav-only glyph: thin ring + play triangle (replaces full hero artwork at 22px).  -->
+  <circle cx="12" cy="12" r="9" stroke="#E8E8E8" stroke-width="1.35" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M10 7.5 L17 12 L10 16.5 Z" fill="#E8E8E8" />
+</svg>

@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="9-1-1 Reality — Milestone 4 inactive monitors"
         Width="720"
-        Height="520"
+        Height="580"
         MinWidth="520"
         MinHeight="420"
         Background="{DynamicResource Brush.Theme.Background}"
@@ -38,7 +38,7 @@
                        FontWeight="Medium"
                        Foreground="{DynamicResource Brush.Theme.Foreground.Muted}"
                        TextWrapping="Wrap"
-                       Text="Open each inactive monitor full-screen. The PNG already contains the full mock UI (titles, ECG, etc.) — only the app header and wordmark are overlaid in XAML. Swap Image Source in Views/Inactive/*.xaml when final art ships." />
+                       Text="Open each inactive monitor full-screen. Each view loads client PNG art (full-bleed inside a thin frame). ON AIR uses inactive-onair-source.png from Screen Images/upgrade_bottom_left.png." />
         </StackPanel>
 
         <StackPanel Grid.Row="1"
@@ -54,9 +54,14 @@
                     Click="OnOpenStudentBasic"
                     Content="2 — Student inactive (BASIC)"
                     Style="{StaticResource PrimaryButtonStyle}" />
-            <Button HorizontalAlignment="Stretch"
+            <Button Margin="0,0,0,12"
+                    HorizontalAlignment="Stretch"
                     Click="OnOpenStudentProcom"
                     Content="3 — Student inactive (PROCOM)"
+                    Style="{StaticResource PrimaryButtonStyle}" />
+            <Button HorizontalAlignment="Stretch"
+                    Click="OnOpenOnAir"
+                    Content="4 — ON AIR inactive (optional monitor)"
                     Style="{StaticResource PrimaryButtonStyle}" />
         </StackPanel>
 
@@ -64,6 +69,6 @@
                    FontSize="12"
                    Foreground="{DynamicResource Brush.Theme.Foreground.Subtle}"
                    TextWrapping="Wrap"
-                   Text="CLI: dotnet run -- --inactive=instructor | student-basic | student-procom" />
+                   Text="CLI: dotnet run -- --inactive=instructor | student-basic | student-procom | onair" />
     </Grid>
 </Window>

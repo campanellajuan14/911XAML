@@ -8,6 +8,7 @@
         Window level.
 
         Hex values sampled from "Light - Instructor - folder-view.png".
+        Main canvas + hero vignette use solid white per client (not translucent gray).
     -->
 
     <!--  ===== Color palette ===== -->
@@ -23,7 +24,7 @@
     <Color x:Key="Color.Theme.Sidebar">#FFFFFFFF</Color>
     <!--  white sidebar (per source PNG)  -->
 
-    <Color x:Key="Color.Theme.Sidebar.Frame">#33000000</Color>
+    <Color x:Key="Color.Theme.Sidebar.Frame">#00000000</Color>
 
     <Color x:Key="Color.Theme.Sidebar.ItemHover">#FFFFEDDB</Color>
     <Color x:Key="Color.Theme.Sidebar.ItemSelected">#FFFFE0BF</Color>
@@ -43,8 +44,8 @@
 
     <Color x:Key="Color.NavIcon.Layers">#FF00838F</Color>
     <Color x:Key="Color.NavIcon.Cube">#FF8E24AA</Color>
-    <Color x:Key="Color.NavIcon.Restart">#FF0288D1</Color>
-    <Color x:Key="Color.NavIcon.Shutdown">#FFE53935</Color>
+    <Color x:Key="Color.NavIcon.Restart">#FF007CD1</Color>
+    <Color x:Key="Color.NavIcon.Shutdown">#FFEE1F2A</Color>
 
     <Color x:Key="Color.Theme.UserAvatar.Bg">#FFEEF0F3</Color>
     <Color x:Key="Color.Theme.UserAvatar.Border">#FFD0D5DB</Color>
@@ -59,6 +60,8 @@
     <SolidColorBrush x:Key="Brush.Theme.Sidebar.Frame" Color="{StaticResource Color.Theme.Sidebar.Frame}" />
     <SolidColorBrush x:Key="Brush.Theme.Sidebar.ItemHover" Color="{StaticResource Color.Theme.Sidebar.ItemHover}" />
     <SolidColorBrush x:Key="Brush.Theme.Sidebar.ItemSelected" Color="{StaticResource Color.Theme.Sidebar.ItemSelected}" />
+    <!--  Flat warm tint for selected nav row (same key as dark; no gradient).  -->
+    <SolidColorBrush x:Key="Brush.Theme.Sidebar.RowSelectedTint" Color="#40FF8C1A" />
 
     <SolidColorBrush x:Key="Brush.Theme.Border" Color="{StaticResource Color.Theme.Border}" />
     <SolidColorBrush x:Key="Brush.Theme.Border.Subtle" Color="{StaticResource Color.Theme.Border.Subtle}" />
@@ -81,5 +84,24 @@
 
     <!--  Active light hero: opaque white wash (client: not transparent, just white).  -->
     <SolidColorBrush x:Key="Brush.Theme.HeroVignette" Color="#FFFFFFFF" />
+
+    <!--  Dashboard / Folder View (warm neutrals + amber accent).  -->
+    <SolidColorBrush x:Key="Brush.Dashboard.Panel" Color="#FFF5F3F0" />
+    <SolidColorBrush x:Key="Brush.Dashboard.RowSurface" Color="#FFF9F7F4" />
+    <SolidColorBrush x:Key="Brush.Dashboard.IconWell" Color="#FFF1EFEC" />
+    <SolidColorBrush x:Key="Brush.Dashboard.RowBorder" Color="#FFE9E5E1" />
+    <SolidColorBrush x:Key="Brush.Dashboard.AccentWarm" Color="#FFE67E22" />
+    <SolidColorBrush x:Key="Brush.Dashboard.AccentWarmHover" Color="#FFED9038" />
+    <SolidColorBrush x:Key="Brush.Dashboard.AccentWarmPressed" Color="#FFD35400" />
+    <SolidColorBrush x:Key="Brush.Dashboard.ChipSurface" Color="#FFFFF9F4" />
+    <SolidColorBrush x:Key="Brush.Dashboard.ChipBorder" Color="#FFF5D0B0" />
+    <SolidColorBrush x:Key="Brush.Dashboard.ChipSurfaceChecked" Color="#FFFFEED9" />
+    <SolidColorBrush x:Key="Brush.Dashboard.ChipSurfaceHover" Color="#FFFFF2E3" />
+    <SolidColorBrush x:Key="Brush.Dashboard.BulletWell" Color="#FFFFF4EC" />
+    <SolidColorBrush x:Key="Brush.Dashboard.StatusOk" Color="#FFE8F5E9" />
+    <SolidColorBrush x:Key="Brush.Dashboard.StatusOkText" Color="#FF2E7D32" />
+    <SolidColorBrush x:Key="Brush.Dashboard.RowSurfaceHover" Color="#FFF0EBE5" />
+    <SolidColorBrush x:Key="Brush.Dashboard.ToolbarOutlineHover" Color="#FFFFEDDB" />
+    <SolidColorBrush x:Key="Brush.Dashboard.ToolbarOutlinePressed" Color="#FFFFE4CC" />
 
 </ResourceDictionary>

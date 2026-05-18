@@ -10,8 +10,11 @@
     <Color x:Key="Color.Brand.Orange">#FFFF7A00</Color>
     <Color x:Key="Color.Brand.Orange.Bright">#FFFF8C1A</Color>
     <Color x:Key="Color.Brand.Orange.Deep">#FFE85F00</Color>
-    <Color x:Key="Color.Brand.Orange.Glow">#FFFF6A00</Color>
+    <Color x:Key="Color.Brand.Orange.Glow">#FFEA6120</Color>
     <Color x:Key="Color.Brand.Orange.Pressed">#FFCC5400</Color>
+
+    <Color x:Key="Color.Brand.SidebarInstructor">#FFEE6622</Color>
+    <Color x:Key="Color.Brand.Header911">#FFFB6E25</Color>
 
     <Color x:Key="Color.Status.Green">#FF5AC85A</Color>
     <Color x:Key="Color.Status.Green.Bright">#FF66FF66</Color>
@@ -22,25 +25,88 @@
     <SolidColorBrush x:Key="Brush.Brand.Orange.Deep" Color="{StaticResource Color.Brand.Orange.Deep}" />
     <SolidColorBrush x:Key="Brush.Brand.Orange.Glow" Color="{StaticResource Color.Brand.Orange.Glow}" />
     <SolidColorBrush x:Key="Brush.Brand.Orange.Pressed" Color="{StaticResource Color.Brand.Orange.Pressed}" />
+    <SolidColorBrush x:Key="Brush.Brand.SidebarInstructor" Color="{StaticResource Color.Brand.SidebarInstructor}" />
+    <SolidColorBrush x:Key="Brush.Brand.Header911" Color="{StaticResource Color.Brand.Header911}" />
 
     <SolidColorBrush x:Key="Brush.Status.Green" Color="{StaticResource Color.Status.Green}" />
     <SolidColorBrush x:Key="Brush.Status.Green.Bright" Color="{StaticResource Color.Status.Green.Bright}" />
     <SolidColorBrush x:Key="Brush.Status.Red" Color="{StaticResource Color.Status.Red}" />
 
-    <!--  START button vertical gradient (top to bottom: bright -> glow)  -->
+    <!--  START button (#EA6120 client); vertical gradient + hover/pressed variants.  -->
     <LinearGradientBrush x:Key="Brush.PrimaryButton.Idle" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Offset="0.0" Color="{StaticResource Color.Brand.Orange.Bright}" />
-        <GradientStop Offset="1.0" Color="{StaticResource Color.Brand.Orange.Glow}" />
+        <GradientStop Offset="0.0" Color="#FFF17442" />
+        <GradientStop Offset="1.0" Color="#FFEA6120" />
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="Brush.PrimaryButton.Hover" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Offset="0.0" Color="#FFFFA040" />
-        <GradientStop Offset="1.0" Color="{StaticResource Color.Brand.Orange.Bright}" />
+        <GradientStop Offset="0.0" Color="#FFF99A72" />
+        <GradientStop Offset="1.0" Color="#FFF17442" />
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="Brush.PrimaryButton.Pressed" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Offset="0.0" Color="{StaticResource Color.Brand.Orange.Deep}" />
-        <GradientStop Offset="1.0" Color="{StaticResource Color.Brand.Orange.Pressed}" />
+        <GradientStop Offset="0.0" Color="#FFD4551C" />
+        <GradientStop Offset="1.0" Color="#FFB23E14" />
+    </LinearGradientBrush>
+
+    <!--
+        Hero ECG trace: transparent tips → warm amber ramp → bright peak (reads
+        clearly on dark hero; tuned brighter than brown-map baseline).
+    -->
+    <LinearGradientBrush x:Key="Brush.Hero.EcgPulseStroke" StartPoint="0,0.5" EndPoint="1,0.5">
+        <GradientStop Offset="0.00" Color="#00000000" />
+        <GradientStop Offset="0.05" Color="#55D08048" />
+        <GradientStop Offset="0.10" Color="#78E09058" />
+        <GradientStop Offset="0.16" Color="#90F0A068" />
+        <GradientStop Offset="0.22" Color="#A8F4A878" />
+        <GradientStop Offset="0.28" Color="#C0F8B888" />
+        <GradientStop Offset="0.34" Color="#D8FCC898" />
+        <GradientStop Offset="0.40" Color="#E8FFD0A8" />
+        <GradientStop Offset="0.44" Color="#F0FFD8B8" />
+        <GradientStop Offset="0.47" Color="#F8FFE8C8" />
+        <GradientStop Offset="0.49" Color="#FFFFF0D8" />
+        <GradientStop Offset="0.50" Color="#FFFFB078" />
+        <GradientStop Offset="0.51" Color="#FFFFF0D8" />
+        <GradientStop Offset="0.53" Color="#F8FFE8C8" />
+        <GradientStop Offset="0.56" Color="#F0FFD8B8" />
+        <GradientStop Offset="0.60" Color="#E8FFD0A8" />
+        <GradientStop Offset="0.66" Color="#D8FCC898" />
+        <GradientStop Offset="0.72" Color="#C0F8B888" />
+        <GradientStop Offset="0.78" Color="#A8F4A878" />
+        <GradientStop Offset="0.84" Color="#90F0A068" />
+        <GradientStop Offset="0.90" Color="#78E09058" />
+        <GradientStop Offset="0.95" Color="#55D08048" />
+        <GradientStop Offset="1.00" Color="#00000000" />
+    </LinearGradientBrush>
+
+    <!--  2px rule under header (inactive HeaderBarStyle): warm, readable on dark bg.  -->
+    <LinearGradientBrush x:Key="Brush.Header.AccentLine" StartPoint="0,0.5" EndPoint="1,0.5">
+        <GradientStop Offset="0.0" Color="#00FB6E25" />
+        <GradientStop Offset="0.42" Color="#A0FB6E25" />
+        <GradientStop Offset="0.5" Color="#FFFF9848" />
+        <GradientStop Offset="0.58" Color="#A0FB6E25" />
+        <GradientStop Offset="1.0" Color="#00FB6E25" />
+    </LinearGradientBrush>
+
+    <!--
+        Active / Dashboard under-header glow row: same shape idea as the ECG stroke
+        but shifted toward bright amber (avoids the brown map read on a thin line).
+    -->
+    <LinearGradientBrush x:Key="Brush.Header.UnderGlow" StartPoint="0,0.5" EndPoint="1,0.5">
+        <GradientStop Offset="0.00" Color="#00000000" />
+        <GradientStop Offset="0.06" Color="#40FB6E25" />
+        <GradientStop Offset="0.14" Color="#70F28840" />
+        <GradientStop Offset="0.24" Color="#98F5A058" />
+        <GradientStop Offset="0.34" Color="#B8F8B070" />
+        <GradientStop Offset="0.42" Color="#D8FCC888" />
+        <GradientStop Offset="0.48" Color="#F0FFD098" />
+        <GradientStop Offset="0.50" Color="#FFFFB078" />
+        <GradientStop Offset="0.52" Color="#F0FFD098" />
+        <GradientStop Offset="0.58" Color="#D8FCC888" />
+        <GradientStop Offset="0.66" Color="#B8F8B070" />
+        <GradientStop Offset="0.76" Color="#98F5A058" />
+        <GradientStop Offset="0.86" Color="#70F28840" />
+        <GradientStop Offset="0.94" Color="#40FB6E25" />
+        <GradientStop Offset="1.00" Color="#00000000" />
     </LinearGradientBrush>
 
 </ResourceDictionary>

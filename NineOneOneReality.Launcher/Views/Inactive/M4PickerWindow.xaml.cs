@@ -26,4 +26,10 @@ public partial class M4PickerWindow : Window
         new InactiveStudentProcomWindow().Show();
         Close();
     }
+
+    private void OnOpenOnAir(object sender, RoutedEventArgs e)
+    {
+        new InactiveOnAirWindow().Show();
+        Close();
+    }
 }

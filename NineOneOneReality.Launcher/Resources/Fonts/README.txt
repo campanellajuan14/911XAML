@@ -1,6 +1,10 @@
-Fonts in this folder are embedded as WPF assembly resources.
+Fonts in this folder are embedded as WPF assembly resources (Roboto Condensed, Apache License 2.0, Google Fonts).
 
-- Montserrat.ttf — legacy file (kept for reference; UI no longer references #Montserrat by default).
-- RobotoCondensed-Regular.ttf — Google Fonts, Apache License 2.0. Used for all UI text per client Fixes M4.pdf.
+Included weights:
+  RobotoCondensed-Light.ttf      (300)
+  RobotoCondensed-Regular.ttf    (400)
+  RobotoCondensed-Medium.ttf     (500)
+  RobotoCondensed-SemiBold.ttf   (600)
+  RobotoCondensed-Bold.ttf       (700)
 
-If the client supplies additional weights (e.g. Bold) or a white wordmark-only asset, add the TTF/PNG and update Themes/Typography.xaml or Image paths in Views as needed.
+All UI text uses pack://application:,,,/Resources/Fonts/#Roboto Condensed via Themes/Typography.xaml (Font.RobotoCondensed).

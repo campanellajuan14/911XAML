@@ -19,7 +19,7 @@ public partial class ActiveDarkWindow : Window
             return;
         }
 
-        _dashboardWindow = new DashboardWindow { Owner = this };
+        _dashboardWindow = new DashboardWindow(this);
         _dashboardWindow.Closed += (_, _) => _dashboardWindow = null;
         _dashboardWindow.Show();
     }

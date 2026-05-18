@@ -13,7 +13,7 @@
           Fill       : orange vertical gradient (Brush.PrimaryButton.Idle)
           Hover      : slightly brighter orange (Brush.PrimaryButton.Hover)
           Pressed    : slightly darker orange (Brush.PrimaryButton.Pressed)
-          Text       : white, Montserrat ExtraBold ~38px, all caps
+          Text       : white, Roboto Condensed Bold ~38px, all caps
     -->
 
     <Style x:Key="PrimaryButtonStyle" TargetType="{x:Type Button}">
@@ -50,11 +50,10 @@
                         <Border x:Name="Surface"
                                 Background="{TemplateBinding Background}"
                                 CornerRadius="10"
+                                RenderTransformOrigin="0.5,0.5"
                                 SnapsToDevicePixels="True">
                             <Border.RenderTransform>
                                 <ScaleTransform x:Name="SurfaceScale"
-                                                CenterX="220"
-                                                CenterY="41"
                                                 ScaleX="1.0"
                                                 ScaleY="1.0" />
                             </Border.RenderTransform>

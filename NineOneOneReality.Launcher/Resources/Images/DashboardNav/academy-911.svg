@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>.cls-1{fill:#424d56;}.cls-2{fill:#e26f25;}</style>
+  </defs>
+  <!-- Mortarboard top (perspective) -->
+  <path class="cls-1"
+        d="M12 2.25 2.4 6.85c-.18.1-.24.32-.14.5.08.14.23.22.39.22h1.35v5.55c0 .62.34 1.18.9 1.47l6.75 3.72c.38.21.84.21 1.22 0l6.75-3.72c.56-.31.9-.87.9-1.47V7.57h1.35c.16 0 .31-.08.39-.22.1-.18.04-.4-.14-.5L12 2.25Zm0 1.9 6.95 3.45L12 10.95 5.05 7.6 12 4.15Z"/>
+  <!-- Cap band -->
+  <path class="cls-1"
+        d="M6.6 9.35v3.45c0 .42.23.8.6 1l4.8 2.64c.27.15.6.15.87 0l4.8-2.64c.37-.2.6-.58.6-1V9.35L12 11.85 6.6 9.35Z"/>
+  <!-- Tassel cord + bob -->
+  <line x1="20.85" y1="6.9" x2="20.85" y2="12" stroke="#e26f25" stroke-width="1.35" stroke-linecap="round"/>
+  <circle class="cls-2" cx="20.85" cy="13.35" r="0.95"/>
+</svg>

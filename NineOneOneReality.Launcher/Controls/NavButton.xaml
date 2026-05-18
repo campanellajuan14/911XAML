@@ -1,9 +1,12 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:assist="clr-namespace:NineOneOneReality.Launcher">
+                    xmlns:assist="clr-namespace:NineOneOneReality.Launcher"
+                    xmlns:svgc="clr-namespace:SharpVectors.Converters;assembly=SharpVectors.Converters.Wpf">
 
     <assist:NavIconIdleFillConverter x:Key="NavIconIdleFillConverter" />
     <assist:NavIconSlotVisibilityConverter x:Key="NavIconSlotVisibilityConverter" />
+    <assist:NavIconSlotMultiVisibilityConverter x:Key="NavIconSlotMultiVisibilityConverter" />
+    <assist:NavIconSvgUriConverter x:Key="NavIconSvgUriConverter" />
 
     <!--
         NAV BUTTON
@@ -12,23 +15,28 @@
         selected / pressed states. Driven by RadioButton so each sidebar group
         keeps single-selection behaviour without code-behind.
 
-        Required attached/exposed properties:
-          - Tag          : Geometry for vector icons (fallback when BitmapIcon is unset)
-          - BitmapIcon   : optional pack path for PNG (e.g. /Resources/Images/nav-sidebar-dashboard.png);
-                           when set, the bitmap is shown instead of the Path.
-          - Content      : the label text (e.g. "Dashboard")
-          - IsChecked    : selected state (driven by GroupName binding)
+        Icon (first column), in priority order:
+          - assist:NavIconAssist.SvgIcon   : pack URI to embedded SVG (SharpVectors SvgViewbox)
+          - assist:NavIconAssist.BitmapIcon: pack URI to PNG (Image)
+          - Tag                            : Geometry for vector Path
+
+        - Content      : the label text (e.g. "Dashboard")
+        - IsChecked    : selected state (driven by GroupName binding)
 
         Theme dependence:
           - Foreground/icon = Brush.Theme.Foreground.Soft (idle)
-          - Hover bg        = Brush.Theme.Sidebar.ItemHover
-          - Selected        = Sidebar.ItemSelected pill + orange icon (no left accent bar)
+          - Hover (unchecked) = same as selected: Brush.Theme.Sidebar.RowSelectedTint, 4px orange left bar,
+                                sharp full-width row, orange label + icon
+          - Selected (IsChecked) = same chrome as hover; row margin is 0 horizontally so tint
+                                reaches the sidebar edge while icon/text use inner Margin only.
+          - NavButtonStyle.Dashboard (DashboardWindow sidebar only): same row tint + bar; label and Path/Svg
+            stay theme neutrals on hover/checked (no orange/yellow text or icon tint).
     -->
 
     <Style x:Key="NavButtonStyle" TargetType="{x:Type RadioButton}">
         <Setter Property="GroupName" Value="SidebarNav" />
         <Setter Property="Height" Value="44" />
-        <Setter Property="Margin" Value="14,3,14,3" />
+        <Setter Property="Margin" Value="0,3,0,3" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
@@ -41,60 +49,105 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RadioButton}">
-                    <Grid>
-                        <!--  Background pill (rounded)  -->
-                        <Border x:Name="Bg"
-                                Background="Transparent"
-                                CornerRadius="10"
+                    <Grid SnapsToDevicePixels="True">
+                        <!--  Selected / hover row: full-width tint + left accent (no corner radius)  -->
+                        <Border x:Name="SelectionFill"
+                                Background="{DynamicResource Brush.Theme.Sidebar.RowSelectedTint}"
+                                CornerRadius="0"
+                                Opacity="0"
+                                SnapsToDevicePixels="True" />
+                        <Border x:Name="SelectionBar"
+                                Width="4"
+                                HorizontalAlignment="Left"
+                                Background="{StaticResource Brush.Brand.Orange}"
+                                CornerRadius="0"
+                                Opacity="0"
                                 SnapsToDevicePixels="True" />
 
-                        <!--  Left accent bar removed (client: no yellow/orange strip on selection).  -->
-
-                        <!--  Content row: icon + label  -->
-                        <Grid Margin="14,0,12,0">
+                        <!--  Content row: icon + label (inset only; row chrome is edge-to-edge).  -->
+                        <Grid Margin="28,0,14,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="28" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
-                            <Image x:Name="IconBitmap"
-                                   Grid.Column="0"
-                                   Width="22"
-                                   Height="22"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   RenderOptions.BitmapScalingMode="HighQuality"
-                                   SnapsToDevicePixels="True"
-                                   Stretch="Uniform"
-                                   Visibility="{Binding Path=(assist:NavIconAssist.BitmapIcon),
-                                                        RelativeSource={RelativeSource TemplatedParent},
-                                                        Converter={StaticResource NavIconSlotVisibilityConverter},
-                                                        ConverterParameter=Bitmap}"
-                                   Source="{Binding Path=(assist:NavIconAssist.BitmapIcon),
-                                                     RelativeSource={RelativeSource TemplatedParent},
-                                                     Mode=OneWay}" />
-
-                            <Path x:Name="IconPath"
-                                  Grid.Column="0"
+                            <Grid Grid.Column="0"
                                   Width="22"
                                   Height="22"
                                   HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"
-                                  Data="{TemplateBinding Tag}"
-                                  Stretch="Uniform"
-                                  Visibility="{Binding Path=(assist:NavIconAssist.BitmapIcon),
-                                                        RelativeSource={RelativeSource TemplatedParent},
-                                                        Converter={StaticResource NavIconSlotVisibilityConverter},
-                                                        ConverterParameter=Vector}">
-                                <Path.Fill>
-                                    <MultiBinding Converter="{StaticResource NavIconIdleFillConverter}">
-                                        <Binding Path="(assist:NavIconAssist.IdleFill)"
-                                                 RelativeSource="{RelativeSource TemplatedParent}" />
-                                        <Binding Path="."
-                                                 RelativeSource="{RelativeSource TemplatedParent}" />
-                                    </MultiBinding>
-                                </Path.Fill>
-                            </Path>
+                                  VerticalAlignment="Center">
+                                <svgc:SvgViewbox x:Name="IconSvg"
+                                                 Width="22"
+                                                 Height="22"
+                                                 HorizontalAlignment="Center"
+                                                 VerticalAlignment="Center"
+                                                 RenderOptions.BitmapScalingMode="HighQuality"
+                                                 Stretch="Uniform"
+                                                 UriSource="{Binding Path=(assist:NavIconAssist.SvgIcon),
+                                                                      RelativeSource={RelativeSource TemplatedParent},
+                                                                      Mode=OneWay,
+                                                                      Converter={StaticResource NavIconSvgUriConverter}}">
+                                    <svgc:SvgViewbox.Visibility>
+                                        <MultiBinding Converter="{StaticResource NavIconSlotMultiVisibilityConverter}"
+                                                      ConverterParameter="Svg">
+                                            <Binding Path="(assist:NavIconAssist.SvgIcon)"
+                                                     RelativeSource="{RelativeSource TemplatedParent}" />
+                                            <Binding Path="(assist:NavIconAssist.BitmapIcon)"
+                                                     RelativeSource="{RelativeSource TemplatedParent}" />
+                                        </MultiBinding>
+                                    </svgc:SvgViewbox.Visibility>
+                                </svgc:SvgViewbox>
+
+                                <Image x:Name="IconBitmap"
+                                       Width="22"
+                                       Height="22"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       RenderOptions.BitmapScalingMode="HighQuality"
+                                       SnapsToDevicePixels="True"
+                                       Stretch="Uniform">
+                                    <Image.Visibility>
+                                        <MultiBinding Converter="{StaticResource NavIconSlotMultiVisibilityConverter}"
+                                                      ConverterParameter="Bitmap">
+                                            <Binding Path="(assist:NavIconAssist.SvgIcon)"
+                                                     RelativeSource="{RelativeSource TemplatedParent}" />
+                                            <Binding Path="(assist:NavIconAssist.BitmapIcon)"
+                                                     RelativeSource="{RelativeSource TemplatedParent}" />
+                                        </MultiBinding>
+                                    </Image.Visibility>
+                                    <Image.Source>
+                                        <Binding Path="(assist:NavIconAssist.BitmapIcon)"
+                                                 RelativeSource="{RelativeSource TemplatedParent}"
+                                                 Mode="OneWay" />
+                                    </Image.Source>
+                                </Image>
+
+                                <Path x:Name="IconPath"
+                                      Width="22"
+                                      Height="22"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Data="{TemplateBinding Tag}"
+                                      Stretch="Uniform">
+                                    <Path.Visibility>
+                                        <MultiBinding Converter="{StaticResource NavIconSlotMultiVisibilityConverter}"
+                                                      ConverterParameter="Path">
+                                            <Binding Path="(assist:NavIconAssist.SvgIcon)"
+                                                     RelativeSource="{RelativeSource TemplatedParent}" />
+                                            <Binding Path="(assist:NavIconAssist.BitmapIcon)"
+                                                     RelativeSource="{RelativeSource TemplatedParent}" />
+                                        </MultiBinding>
+                                    </Path.Visibility>
+                                    <Path.Fill>
+                                        <MultiBinding Converter="{StaticResource NavIconIdleFillConverter}">
+                                            <Binding Path="(assist:NavIconAssist.IdleFill)"
+                                                     RelativeSource="{RelativeSource TemplatedParent}" />
+                                            <Binding Path="."
+                                                     RelativeSource="{RelativeSource TemplatedParent}" />
+                                        </MultiBinding>
+                                    </Path.Fill>
+                                </Path>
+                            </Grid>
 
                             <TextBlock x:Name="LabelHost"
                                        Grid.Column="1"
@@ -111,46 +164,227 @@
 
                     <ControlTemplate.Triggers>
 
-                        <!--
-                            Hover (not selected). A Setter swap is used instead of a
-                            ColorAnimation because Storyboard.Seal() forbids DynamicResource
-                            inside animation values, and the hover background comes from a
-                            Window-level theme dictionary (Brush.Theme.Sidebar.ItemHover)
-                            that the App-level NavButton template can only resolve dynamically.
-                            Animated color transitions on theme-bound brushes can be re-added
-                            later via a per-element unfrozen SolidColorBrush + DoubleAnimation
-                            on Opacity of an overlay layer.
-                        -->
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Bg" Property="Background" Value="{DynamicResource Brush.Theme.Sidebar.ItemHover}" />
-                        </Trigger>
-
-                        <!--  Selected: pill background + tinted vector icon OR orange glow on bitmap + emphasised text.  -->
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter TargetName="Bg" Property="Background" Value="{DynamicResource Brush.Theme.Sidebar.ItemSelected}" />
+                            <Setter TargetName="SelectionFill" Property="Opacity" Value="1" />
+                            <Setter TargetName="SelectionBar" Property="Opacity" Value="1" />
                             <Setter TargetName="IconPath" Property="Fill" Value="{StaticResource Brush.Brand.Orange}" />
                             <Setter TargetName="IconBitmap" Property="Effect">
                                 <Setter.Value>
-                                    <DropShadowEffect BlurRadius="10"
-                                                      Opacity="0.82"
+                                    <DropShadowEffect BlurRadius="8"
+                                                      Opacity="0.65"
                                                       ShadowDepth="0"
                                                       Color="#FFFA7C00" />
                                 </Setter.Value>
                             </Setter>
-                            <Setter Property="Foreground" Value="{DynamicResource Brush.Theme.Foreground}" />
+                            <Setter TargetName="IconSvg" Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect BlurRadius="8"
+                                                      Opacity="0.65"
+                                                      ShadowDepth="0"
+                                                      Color="#FFFA7C00" />
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Foreground" Value="{StaticResource Brush.Brand.Orange}" />
                         </Trigger>
 
-                        <!--  Pressed: small downscale + slightly darker bg  -->
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="Bg" Property="Background" Value="{DynamicResource Brush.Theme.Surface}" />
-                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True" />
+                                <Condition Property="IsChecked" Value="False" />
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="SelectionFill" Property="Opacity" Value="1" />
+                            <Setter TargetName="SelectionBar" Property="Opacity" Value="1" />
+                            <Setter TargetName="IconPath" Property="Fill" Value="{StaticResource Brush.Brand.Orange}" />
+                            <Setter TargetName="IconBitmap" Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect BlurRadius="8"
+                                                      Opacity="0.65"
+                                                      ShadowDepth="0"
+                                                      Color="#FFFA7C00" />
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="IconSvg" Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect BlurRadius="8"
+                                                      Opacity="0.65"
+                                                      ShadowDepth="0"
+                                                      Color="#FFFA7C00" />
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Foreground" Value="{StaticResource Brush.Brand.Orange}" />
+                        </MultiTrigger>
 
-                        <!--  Disabled  -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True" />
+                                <Condition Property="IsPressed" Value="True" />
+                                <Condition Property="IsChecked" Value="False" />
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="SelectionFill" Property="Opacity" Value="0.82" />
+                        </MultiTrigger>
+
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Opacity" Value="0.38" />
                             <Setter Property="Cursor" Value="Arrow" />
                         </Trigger>
 
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--  Dashboard sidebar: neutral label/icon; hover/checked still show row chrome (tint + bar only).  -->
+    <Style x:Key="NavButtonStyle.Dashboard" TargetType="{x:Type RadioButton}">
+        <Setter Property="GroupName" Value="SidebarNav" />
+        <Setter Property="Height" Value="44" />
+        <Setter Property="Margin" Value="0,3,0,3" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.Theme.Foreground.Soft}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RadioButton}">
+                    <Grid SnapsToDevicePixels="True">
+                        <Border x:Name="SelectionFill"
+                                Background="{DynamicResource Brush.Theme.Sidebar.RowSelectedTint}"
+                                CornerRadius="0"
+                                Opacity="0"
+                                SnapsToDevicePixels="True" />
+                        <Border x:Name="SelectionBar"
+                                Width="4"
+                                HorizontalAlignment="Left"
+                                Background="{StaticResource Brush.Brand.Orange}"
+                                CornerRadius="0"
+                                Opacity="0"
+                                SnapsToDevicePixels="True" />
+                        <Grid Margin="28,0,14,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="28" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0"
+                                  Width="22"
+                                  Height="22"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center">
+                                <svgc:SvgViewbox x:Name="IconSvg"
+                                                 Width="22"
+                                                 Height="22"
+                                                 HorizontalAlignment="Center"
+                                                 VerticalAlignment="Center"
+                                                 RenderOptions.BitmapScalingMode="HighQuality"
+                                                 Stretch="Uniform"
+                                                 UriSource="{Binding Path=(assist:NavIconAssist.SvgIcon),
+                                                                      RelativeSource={RelativeSource TemplatedParent},
+                                                                      Mode=OneWay,
+                                                                      Converter={StaticResource NavIconSvgUriConverter}}">
+                                    <svgc:SvgViewbox.Visibility>
+                                        <MultiBinding Converter="{StaticResource NavIconSlotMultiVisibilityConverter}"
+                                                      ConverterParameter="Svg">
+                                            <Binding Path="(assist:NavIconAssist.SvgIcon)"
+                                                     RelativeSource="{RelativeSource TemplatedParent}" />
+                                            <Binding Path="(assist:NavIconAssist.BitmapIcon)"
+                                                     RelativeSource="{RelativeSource TemplatedParent}" />
+                                        </MultiBinding>
+                                    </svgc:SvgViewbox.Visibility>
+                                </svgc:SvgViewbox>
+                                <Image x:Name="IconBitmap"
+                                       Width="22"
+                                       Height="22"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       RenderOptions.BitmapScalingMode="HighQuality"
+                                       SnapsToDevicePixels="True"
+                                       Stretch="Uniform">
+                                    <Image.Visibility>
+                                        <MultiBinding Converter="{StaticResource NavIconSlotMultiVisibilityConverter}"
+                                                      ConverterParameter="Bitmap">
+                                            <Binding Path="(assist:NavIconAssist.SvgIcon)"
+                                                     RelativeSource="{RelativeSource TemplatedParent}" />
+                                            <Binding Path="(assist:NavIconAssist.BitmapIcon)"
+                                                     RelativeSource="{RelativeSource TemplatedParent}" />
+                                        </MultiBinding>
+                                    </Image.Visibility>
+                                    <Image.Source>
+                                        <Binding Path="(assist:NavIconAssist.BitmapIcon)"
+                                                 RelativeSource="{RelativeSource TemplatedParent}"
+                                                 Mode="OneWay" />
+                                    </Image.Source>
+                                </Image>
+                                <Path x:Name="IconPath"
+                                      Width="22"
+                                      Height="22"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Data="{TemplateBinding Tag}"
+                                      Stretch="Uniform">
+                                    <Path.Visibility>
+                                        <MultiBinding Converter="{StaticResource NavIconSlotMultiVisibilityConverter}"
+                                                      ConverterParameter="Path">
+                                            <Binding Path="(assist:NavIconAssist.SvgIcon)"
+                                                     RelativeSource="{RelativeSource TemplatedParent}" />
+                                            <Binding Path="(assist:NavIconAssist.BitmapIcon)"
+                                                     RelativeSource="{RelativeSource TemplatedParent}" />
+                                        </MultiBinding>
+                                    </Path.Visibility>
+                                    <Path.Fill>
+                                        <MultiBinding Converter="{StaticResource NavIconIdleFillConverter}">
+                                            <Binding Path="(assist:NavIconAssist.IdleFill)"
+                                                     RelativeSource="{RelativeSource TemplatedParent}" />
+                                            <Binding Path="."
+                                                     RelativeSource="{RelativeSource TemplatedParent}" />
+                                        </MultiBinding>
+                                    </Path.Fill>
+                                </Path>
+                            </Grid>
+                            <TextBlock x:Name="LabelHost"
+                                       Grid.Column="1"
+                                       Margin="10,0,0,0"
+                                       VerticalAlignment="Center"
+                                       FontFamily="{StaticResource Font.Montserrat}"
+                                       FontSize="{StaticResource Font.Size.NavItem}"
+                                       FontWeight="Medium"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       Text="{TemplateBinding Content}"
+                                       TextTrimming="CharacterEllipsis" />
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="SelectionFill" Property="Opacity" Value="1" />
+                            <Setter TargetName="SelectionBar" Property="Opacity" Value="1" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True" />
+                                <Condition Property="IsChecked" Value="False" />
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="SelectionFill" Property="Opacity" Value="1" />
+                            <Setter TargetName="SelectionBar" Property="Opacity" Value="1" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True" />
+                                <Condition Property="IsPressed" Value="True" />
+                                <Condition Property="IsChecked" Value="False" />
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="SelectionFill" Property="Opacity" Value="0.82" />
+                        </MultiTrigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.38" />
+                            <Setter Property="Cursor" Value="Arrow" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

@@ -1,8 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <DefaultItemExcludes>$(DefaultItemExcludes);NineOneOneReality.Launcher\**</DefaultItemExcludes>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
     <UseWPF>true</UseWPF>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -20,6 +22,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
+    <PackageReference Include="SharpVectors.Wpf" Version="1.8.5" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +30,12 @@
     <Resource Include="Resources\Fonts\*.ttf" />
     <Resource Include="Resources\Images\**\*.png" />
     <Resource Include="Resources\Images\**\*.jpg" />
+    <Resource Include="Resources\Images\SidebarNav\*.svg" />
+    <Resource Include="Resources\Images\DashboardNav\*.svg" />
+    <Resource Include="Resources\Images\911-reality-logo.svg" />
+    <Resource Include="Resources\Images\header-navigation-user.svg" />
+    <!--  Vector source for instructor chip (WPF renders Path/Canvas in XAML, not this file).  -->
+    <None Include="Resources\Images\instructor-profile.svg" />
   </ItemGroup>
 
 </Project>

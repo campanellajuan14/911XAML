@@ -13,8 +13,8 @@ public partial class App : Application
     //   --dark              → ActiveDarkWindow
     //   --m4                → M4 picker (three inactive placeholders)
     //   --inactive=<name>   → one inactive window directly:
-    //                           instructor | student-basic | student-procom
-    //                         (aliases: basic, procom)
+    //                           instructor | student-basic | student-procom | onair
+    //                         (aliases: basic, procom, on-air, air)
     //
     // OutputType=WinExe means stdout/stderr are detached, so any exception
     // raised during InitializeComponent() or at runtime would otherwise
@@ -61,6 +61,11 @@ public partial class App : Application
                 case "student-procom":
                 case "procom":
                     new Views.Inactive.InactiveStudentProcomWindow().Show();
+                    return;
+                case "onair":
+                case "on-air":
+                case "air":
+                    new Views.Inactive.InactiveOnAirWindow().Show();
                     return;
             }
         }

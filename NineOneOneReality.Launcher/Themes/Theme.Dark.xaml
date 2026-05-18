@@ -22,13 +22,13 @@
     <Color x:Key="Color.Theme.Surface.Elevated">#FF141414</Color>
     <!--  hover and focus overlay surfaces  -->
 
-    <!--  Semi-transparent panel (client: rounded + glassy vs flat opaque).  -->
-    <Color x:Key="Color.Theme.Sidebar">#E6282C33</Color>
+    <!--  Opaque sidebar: sampled from client reference (#030404).  -->
+    <Color x:Key="Color.Theme.Sidebar">#FF030404</Color>
 
-    <Color x:Key="Color.Theme.Sidebar.Frame">#55FFFFFF</Color>
-    <!--  hairline around the rounded sidebar stack  -->
+    <Color x:Key="Color.Theme.Sidebar.Frame">#00000000</Color>
 
-    <Color x:Key="Color.Theme.Sidebar.ItemHover">#FF2A2D33</Color>
+    <Color x:Key="Color.Theme.Sidebar.ItemHover">#FF2D2E32</Color>
+    <!--  nav row hover pill (Settings row ref); solid charcoal, not blue-gray  -->
     <Color x:Key="Color.Theme.Sidebar.ItemSelected">#FF35373E</Color>
 
     <Color x:Key="Color.Theme.Border">#FF2A2A2A</Color>
@@ -46,8 +46,8 @@
 
     <Color x:Key="Color.NavIcon.Layers">#FF26C6DA</Color>
     <Color x:Key="Color.NavIcon.Cube">#FFAB47BC</Color>
-    <Color x:Key="Color.NavIcon.Restart">#FF29B6F6</Color>
-    <Color x:Key="Color.NavIcon.Shutdown">#FFEF5350</Color>
+    <Color x:Key="Color.NavIcon.Restart">#FF007CD1</Color>
+    <Color x:Key="Color.NavIcon.Shutdown">#FFEE1F2A</Color>
 
     <Color x:Key="Color.Theme.UserAvatar.Bg">#FF2A2D33</Color>
     <Color x:Key="Color.Theme.UserAvatar.Border">#FF4A4D54</Color>
@@ -62,6 +62,8 @@
     <SolidColorBrush x:Key="Brush.Theme.Sidebar.Frame" Color="{StaticResource Color.Theme.Sidebar.Frame}" />
     <SolidColorBrush x:Key="Brush.Theme.Sidebar.ItemHover" Color="{StaticResource Color.Theme.Sidebar.ItemHover}" />
     <SolidColorBrush x:Key="Brush.Theme.Sidebar.ItemSelected" Color="{StaticResource Color.Theme.Sidebar.ItemSelected}" />
+    <!--  Flat uniform tint for selected nav row (no left-to-right gradient).  -->
+    <SolidColorBrush x:Key="Brush.Theme.Sidebar.RowSelectedTint" Color="#2AFF7A00" />
 
     <SolidColorBrush x:Key="Brush.Theme.Border" Color="{StaticResource Color.Theme.Border}" />
     <SolidColorBrush x:Key="Brush.Theme.Border.Subtle" Color="{StaticResource Color.Theme.Border.Subtle}" />
@@ -91,5 +93,24 @@
         <GradientStop Offset="0.5" Color="#33000000" />
         <GradientStop Offset="1.0" Color="#B3000000" />
     </LinearGradientBrush>
+
+    <!--  Dashboard / Folder View — dark surfaces so body matches shell + readable text.  -->
+    <SolidColorBrush x:Key="Brush.Dashboard.Panel" Color="#FF0C0C0C" />
+    <SolidColorBrush x:Key="Brush.Dashboard.RowSurface" Color="#FF161616" />
+    <SolidColorBrush x:Key="Brush.Dashboard.IconWell" Color="#FF101010" />
+    <SolidColorBrush x:Key="Brush.Dashboard.RowBorder" Color="#FF2A2A2A" />
+    <SolidColorBrush x:Key="Brush.Dashboard.AccentWarm" Color="#FFE67E22" />
+    <SolidColorBrush x:Key="Brush.Dashboard.AccentWarmHover" Color="#FFED9038" />
+    <SolidColorBrush x:Key="Brush.Dashboard.AccentWarmPressed" Color="#FFD35400" />
+    <SolidColorBrush x:Key="Brush.Dashboard.ChipSurface" Color="#FF181614" />
+    <SolidColorBrush x:Key="Brush.Dashboard.ChipBorder" Color="#FF5C3D24" />
+    <SolidColorBrush x:Key="Brush.Dashboard.ChipSurfaceChecked" Color="#FF2A1F14" />
+    <SolidColorBrush x:Key="Brush.Dashboard.ChipSurfaceHover" Color="#FF201C18" />
+    <SolidColorBrush x:Key="Brush.Dashboard.BulletWell" Color="#FF1A1714" />
+    <SolidColorBrush x:Key="Brush.Dashboard.StatusOk" Color="#FF143322" />
+    <SolidColorBrush x:Key="Brush.Dashboard.StatusOkText" Color="#FF8BC34A" />
+    <SolidColorBrush x:Key="Brush.Dashboard.RowSurfaceHover" Color="#FF242424" />
+    <SolidColorBrush x:Key="Brush.Dashboard.ToolbarOutlineHover" Color="#FF3A2E1A" />
+    <SolidColorBrush x:Key="Brush.Dashboard.ToolbarOutlinePressed" Color="#FF2A2214" />
 
 </ResourceDictionary>

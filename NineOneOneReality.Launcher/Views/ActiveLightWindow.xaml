@@ -50,51 +50,18 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="78" />
+            <RowDefinition Height="7" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-        <!--  =================================================================
-              ROW 0 - HEADER BAR
-              Client Fixes M4.pdf: no wordmark in the header strip — status +
-              clock only.
-              ================================================================= -->
-        <ContentControl Grid.Row="0" Style="{StaticResource HeaderBarStyle}">
-            <Grid VerticalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-
-                <!--  Right: simulation status + clock  -->
-                <StackPanel Grid.Column="1"
-                            Orientation="Horizontal"
-                            VerticalAlignment="Center">
-                    <ContentControl Content="SIMULATION:"
-                                    Style="{StaticResource StatusPill.Header}"
-                                    Tag="READY" />
-                    <TextBlock Margin="36,0,0,0"
-                               VerticalAlignment="Center"
-                               FontFamily="{StaticResource Font.Montserrat}"
-                               FontSize="{StaticResource Font.Size.HeaderMeta}"
-                               FontWeight="Medium"
-                               Foreground="{DynamicResource Brush.Theme.Foreground}"
-                               Text="11:23 AM" />
-                </StackPanel>
-            </Grid>
-        </ContentControl>
-
-        <!--  =================================================================
-              ROW 1 - SIDEBAR + HERO
-              ================================================================= -->
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="260" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <!--  ========== SIDEBAR ==========
-                  Rounded panel + colored Training/System icons (client reference).  -->
-            <Border Grid.Column="0"
+        <!--  ========== SIDEBAR (inset from window edges; inner chrome unchanged).  ========== -->
+            <Border Grid.Row="0"
+                    Grid.RowSpan="3"
+                    Grid.Column="0"
                     Background="Transparent"
                     Margin="14,14,12,14"
                     Padding="0">
@@ -127,23 +94,18 @@
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <Border Width="42"
                                     Height="42"
-                                    Background="#FF000000"
+                                    Background="{DynamicResource Brush.Theme.Sidebar}"
                                     CornerRadius="21"
                                     ClipToBounds="True"
                                     SnapsToDevicePixels="True">
-                                <Border.Effect>
-                                    <DropShadowEffect BlurRadius="16"
-                                                      Opacity="0.55"
-                                                      ShadowDepth="0"
-                                                      Color="#FFFF7A00" />
-                                </Border.Effect>
+                                <!--  Sidebar-tinted disc behind PNG so light mode matches panel (no black halo).  -->
                                 <Image Width="42"
                                        Height="42"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
                                        RenderOptions.BitmapScalingMode="HighQuality"
                                        SnapsToDevicePixels="True"
-                                       Source="/Resources/Images/instructor-2-911-badge.png"
+                                       Source="/Resources/Images/SidebarNav/instructor-sidebar-badge.png"
                                        Stretch="UniformToFill" />
                             </Border>
                             <TextBlock Margin="12,0,0,0"
@@ -160,26 +122,26 @@
                     <!--  1  Primary nav  -->
                     <StackPanel Grid.Row="1" Margin="0,4,0,4">
                         <RadioButton Content="Dashboard"
+                                     assist:NavIconAssist.SvgIcon="pack://application:,,,/Resources/Images/SidebarNav/dashboard.svg"
                                      Checked="OnDashboardNavChecked"
                                      Unchecked="OnDashboardNavUnchecked"
-                                     Style="{StaticResource NavButtonStyle}"
-                                     Tag="{StaticResource Icon.Dashboard}" />
+                                     Style="{StaticResource NavButtonStyle}" />
                         <RadioButton Content="Start Simulation"
+                                     assist:NavIconAssist.SvgIcon="pack://application:,,,/Resources/Images/SidebarNav/start-simulation.svg"
                                      IsChecked="True"
-                                     Style="{StaticResource NavButtonStyle}"
-                                     Tag="{StaticResource Icon.StartSimulation}" />
-                        <RadioButton Content="User Manuals / IT Info"
-                                     Style="{StaticResource NavButtonStyle}"
-                                     Tag="{StaticResource Icon.UserManuals}" />
-                        <RadioButton Content="Video Tutorials"
-                                     Style="{StaticResource NavButtonStyle}"
-                                     Tag="{StaticResource Icon.VideoTutorials}" />
-                        <RadioButton Content="Listen To Recordings"
-                                     Style="{StaticResource NavButtonStyle}"
-                                     Tag="{StaticResource Icon.ListenToRecordings}" />
+                                     Style="{StaticResource NavButtonStyle}" />
+                        <RadioButton assist:NavIconAssist.SvgIcon="pack://application:,,,/Resources/Images/SidebarNav/user-manuals.svg"
+                                     Content="User Manuals / IT Info"
+                                     Style="{StaticResource NavButtonStyle}" />
+                        <RadioButton assist:NavIconAssist.SvgIcon="pack://application:,,,/Resources/Images/SidebarNav/video-tutorials.svg"
+                                     Content="Video Tutorials"
+                                     Style="{StaticResource NavButtonStyle}" />
+                        <RadioButton assist:NavIconAssist.SvgIcon="pack://application:,,,/Resources/Images/SidebarNav/listen-to-recording.svg"
+                                     Content="Listen To Recordings"
+                                     Style="{StaticResource NavButtonStyle}" />
                         <RadioButton Content="Settings"
-                                     Style="{StaticResource NavButtonStyle}"
-                                     Tag="{StaticResource Icon.Settings}" />
+                                     assist:NavIconAssist.SvgIcon="pack://application:,,,/Resources/Images/SidebarNav/settings.svg"
+                                     Style="{StaticResource NavButtonStyle}" />
                     </StackPanel>
 
                     <!--  2  divider  -->
@@ -194,15 +156,13 @@
                                    Foreground="{StaticResource Brush.Brand.Orange}"
                                    Text="TRAINING RESOURCES" />
                         <RadioButton GroupName="TrainingNav"
-                                     assist:NavIconAssist.IdleFill="{StaticResource Brush.NavIcon.Layers}"
+                                     assist:NavIconAssist.SvgIcon="pack://application:,,,/Resources/Images/SidebarNav/welcome.svg"
                                      Content="Welcome - Start Here"
-                                     Style="{StaticResource NavButtonStyle}"
-                                     Tag="{StaticResource Icon.StartHere}" />
+                                     Style="{StaticResource NavButtonStyle}" />
                         <RadioButton GroupName="TrainingNav"
-                                     assist:NavIconAssist.IdleFill="{StaticResource Brush.NavIcon.Cube}"
+                                     assist:NavIconAssist.SvgIcon="pack://application:,,,/Resources/Images/SidebarNav/academy-911.svg"
                                      Content="9-1-1 Academy / AI"
-                                     Style="{StaticResource NavButtonStyle}"
-                                     Tag="{StaticResource Icon.Academy}" />
+                                     Style="{StaticResource NavButtonStyle}" />
                     </StackPanel>
 
                     <!--  5  divider (Row 4 is spacer)  -->
@@ -232,31 +192,197 @@
                     <Border Grid.Row="7"
                             Margin="14,16,14,18"
                             Padding="12,10"
-                            Background="Transparent"
+                            Background="{DynamicResource Brush.Theme.Surface}"
                             BorderBrush="{DynamicResource Brush.Theme.Border}"
                             BorderThickness="1"
                             CornerRadius="10">
-                        <StackPanel HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Orientation="Horizontal">
-                            <Path Width="22"
-                                  Height="22"
-                                  VerticalAlignment="Center"
-                                  Data="{StaticResource Icon.UserAvatar.Outline}"
-                                  Fill="{DynamicResource Brush.Theme.Foreground}"
-                                  Stretch="Uniform" />
-                            <TextBlock Margin="10,0,0,0"
+                        <Grid Grid.IsSharedSizeScope="True"
+                              VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"
+                                                  SharedSizeGroup="InstructorChipBalance" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto"
+                                                  SharedSizeGroup="InstructorChipBalance" />
+                            </Grid.ColumnDefinitions>
+                            <Viewbox Grid.Column="0"
+                                     Width="30"
+                                     Height="30"
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Center"
+                                     SnapsToDevicePixels="True"
+                                     UseLayoutRounding="True">
+                                <Canvas Width="24"
+                                        Height="24"
+                                        SnapsToDevicePixels="True"
+                                        UseLayoutRounding="True">
+                                    <Ellipse Canvas.Left="2"
+                                             Canvas.Top="2"
+                                             Width="20"
+                                             Height="20"
+                                             Fill="Transparent"
+                                             Stroke="{DynamicResource Brush.Theme.Foreground}"
+                                             StrokeThickness="1.35" />
+                                    <Ellipse Canvas.Left="8"
+                                             Canvas.Top="6"
+                                             Width="8"
+                                             Height="8"
+                                             Fill="Transparent"
+                                             Stroke="{DynamicResource Brush.Theme.Foreground}"
+                                             StrokeThickness="1.35"
+                                             HorizontalAlignment="Center"
+                                             VerticalAlignment="Top" />
+                                    <Path Data="M5.75,17.75 Q12,13.75 18.25,17.75"
+                                          Fill="Transparent"
+                                          Stroke="{DynamicResource Brush.Theme.Foreground}"
+                                          StrokeEndLineCap="Round"
+                                          StrokeStartLineCap="Round"
+                                          StrokeThickness="1.35" />
+                                </Canvas>
+                            </Viewbox>
+                            <TextBlock Grid.Column="1"
+                                       HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
                                        FontFamily="{StaticResource Font.Montserrat}"
                                        FontSize="13"
                                        FontWeight="Bold"
                                        Foreground="{DynamicResource Brush.Theme.Foreground}"
                                        Text="INSTRUCTOR" />
-                        </StackPanel>
+                            <Border Grid.Column="2"
+                                    Background="Transparent" />
+                        </Grid>
                     </Border>
                 </Grid>
                 </Border>
             </Border>
+
+        <!--  =================================================================
+              HEADER (column 1): brand left + status / clock right.
+              ================================================================= -->
+        <ContentControl Grid.Row="0"
+                        Grid.Column="1"
+                        Style="{StaticResource HeaderBarStyle.Active}">
+            <Grid VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!--  Brand: headset-in-circle, no mic (native shapes).  -->
+                <StackPanel Grid.Column="0"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center">
+                    <Viewbox Width="40"
+                             Height="40"
+                             SnapsToDevicePixels="True"
+                             Stretch="Uniform"
+                             UseLayoutRounding="True">
+                        <Canvas Width="48" Height="48" SnapsToDevicePixels="True">
+                            <Ellipse Canvas.Left="3"
+                                     Canvas.Top="3"
+                                     Width="42"
+                                     Height="42"
+                                     Fill="Transparent"
+                                     Stroke="{StaticResource Brush.Brand.Orange}"
+                                     StrokeThickness="2" />
+                            <Path Data="M 12.5,19.5 A 11.5,11.5 0 0 1 35.5,19.5"
+                                  Fill="Transparent"
+                                  Stroke="{StaticResource Brush.Brand.Orange}"
+                                  StrokeEndLineCap="Round"
+                                  StrokeStartLineCap="Round"
+                                  StrokeLineJoin="Round"
+                                  StrokeThickness="2" />
+                            <Path Data="M 15,36 C 17,32 20,30 24,30 S 31,32 33,36"
+                                  Fill="Transparent"
+                                  Stroke="{StaticResource Brush.Brand.Orange}"
+                                  StrokeEndLineCap="Round"
+                                  StrokeStartLineCap="Round"
+                                  StrokeLineJoin="Round"
+                                  StrokeThickness="2.35" />
+                            <Ellipse Canvas.Left="16.5"
+                                     Canvas.Top="11.5"
+                                     Width="15"
+                                     Height="15"
+                                     Fill="{StaticResource Brush.Brand.Orange}" />
+                            <Rectangle Canvas.Left="5.5"
+                                       Canvas.Top="15.5"
+                                       Width="5.5"
+                                       Height="12.5"
+                                       RadiusX="1.2"
+                                       RadiusY="1.2"
+                                       Fill="{StaticResource Brush.Brand.Orange}" />
+                            <Rectangle Canvas.Left="37"
+                                       Canvas.Top="15.5"
+                                       Width="5.5"
+                                       Height="12.5"
+                                       RadiusX="1.2"
+                                       RadiusY="1.2"
+                                       Fill="{StaticResource Brush.Brand.Orange}" />
+                        </Canvas>
+                    </Viewbox>
+                    <StackPanel Margin="12,0,0,0" VerticalAlignment="Center">
+                        <TextBlock FontFamily="{StaticResource Font.Montserrat}"
+                                   FontSize="{StaticResource Font.Size.HeaderBrand}"
+                                   FontWeight="ExtraBold">
+                            <Run Foreground="{StaticResource Brush.Brand.Header911}"
+                                 Text="911" />
+                            <Run Foreground="{DynamicResource Brush.Theme.Foreground}"
+                                 Text=" REALITY SIMULATOR" />
+                        </TextBlock>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center">
+                    <ContentControl Content="SIMULATION:"
+                                    Style="{StaticResource StatusPill.Header}"
+                                    Tag="READY" />
+                    <TextBlock Margin="36,0,0,0"
+                               VerticalAlignment="Center"
+                               FontFamily="{StaticResource Font.Montserrat}"
+                               FontSize="{StaticResource Font.Size.HeaderMeta}"
+                               FontWeight="Medium"
+                               Foreground="{DynamicResource Brush.Theme.Foreground}"
+                               Text="11:23 AM" />
+                </StackPanel>
+            </Grid>
+        </ContentControl>
+
+        <!--  Under-header glow: lighter warm ramp (Brush.Header.UnderGlow).  -->
+        <Grid Grid.Row="1"
+              Grid.Column="1"
+              Height="7"
+              VerticalAlignment="Stretch"
+              IsHitTestVisible="False">
+            <Rectangle VerticalAlignment="Stretch"
+                       Fill="{StaticResource Brush.Header.UnderGlow}"
+                       Opacity="0.62">
+                <Rectangle.OpacityMask>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Offset="0.00" Color="#00000000" />
+                        <GradientStop Offset="0.22" Color="#6FFFFFFF" />
+                        <GradientStop Offset="0.50" Color="#FFFFFFFF" />
+                        <GradientStop Offset="0.78" Color="#6FFFFFFF" />
+                        <GradientStop Offset="1.00" Color="#00000000" />
+                    </LinearGradientBrush>
+                </Rectangle.OpacityMask>
+            </Rectangle>
+            <Rectangle Height="2"
+                       VerticalAlignment="Center"
+                       Fill="{StaticResource Brush.Header.UnderGlow}">
+                <Rectangle.OpacityMask>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Offset="0.00" Color="#00000000" />
+                        <GradientStop Offset="0.28" Color="#D0FFFFFF" />
+                        <GradientStop Offset="0.50" Color="#FFFFFFFF" />
+                        <GradientStop Offset="0.72" Color="#D0FFFFFF" />
+                        <GradientStop Offset="1.00" Color="#00000000" />
+                    </LinearGradientBrush>
+                </Rectangle.OpacityMask>
+            </Rectangle>
+        </Grid>
 
             <!--  ========== HERO PANEL ==========
                   Cinematic-depth layer order (bottom to top):
@@ -269,11 +395,12 @@
                     L6   multi-stop radial spotlight     (warm halo behind logo)
                     L7   scanline overlay                (per City Scape doc)
                     L8   vignette                        (legibility frame)
-                    L9   top orange separator stripe     (continues from header)
-                    L10  hero content stack              (white wordmark, ECG,
-                                                          button, status)
+                    L9   hero chrome (wordmark top, then ECG, START, status)
                   ============================================================ -->
-            <Grid Grid.Column="1" ClipToBounds="True">
+            <Grid Grid.Row="2"
+                  Grid.Column="1"
+                  Background="{DynamicResource Brush.Theme.Background}"
+                  ClipToBounds="False">
 
                 <!--  L2  vector grid texture  -->
                 <Rectangle>
@@ -388,23 +515,21 @@
                 <Rectangle Fill="{DynamicResource Brush.Theme.HeroVignette}"
                            IsHitTestVisible="False" />
 
-                <!--  L9  full-bleed orange separator from header continues  -->
-                <Rectangle Height="1"
-                           VerticalAlignment="Top"
-                           Fill="{StaticResource Brush.Brand.Orange}"
-                           Opacity="0.6" />
+                <!--  L9  hero content  -->
+                <Grid>
+                    <StackPanel HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                        <StackPanel.RenderTransform>
+                            <TranslateTransform Y="18" />
+                        </StackPanel.RenderTransform>
 
-                <!--  L10  hero content (vertically centered stack)  -->
-                <StackPanel HorizontalAlignment="Center"
-                            VerticalAlignment="Center">
-
-                    <!--  Centered white wordmark (rasterized from client 911 reality.svg).  -->
-                    <Grid Width="760"
-                          Height="300"
+                    <!--  Centered white wordmark (top of hero stack).  -->
+                    <Grid Width="1200"
+                          Height="440"
                           HorizontalAlignment="Center"
-                          Margin="0,0,0,4">
-                        <Ellipse Width="720"
-                                 Height="260"
+                          Margin="0,0,0,0">
+                        <Ellipse Width="1140"
+                                 Height="440"
                                  HorizontalAlignment="Center"
                                  VerticalAlignment="Center"
                                  IsHitTestVisible="False">
@@ -416,8 +541,8 @@
                                 </RadialGradientBrush>
                             </Ellipse.Fill>
                         </Ellipse>
-                        <Image MaxWidth="700"
-                               MaxHeight="280"
+                        <Image MaxWidth="1140"
+                               MaxHeight="440"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                RenderOptions.BitmapScalingMode="HighQuality"
@@ -432,44 +557,30 @@
                         </Image>
                     </Grid>
 
-                    <!--  ECG pulse line - wider + stronger bloom  -->
+                    <!--  Start block: pulled up toward wordmark (layout margin, not render-only transform).  -->
+                    <StackPanel Margin="0,-56,0,0">
                     <Path x:Name="EcgPulseLine"
-                          Width="620"
-                          Height="36"
-                          Margin="0,18,0,0"
+                          Width="760"
+                          Height="72"
+                          Margin="0,0,0,6"
                           HorizontalAlignment="Center"
                           Data="{StaticResource Icon.PulseLine}"
+                          SnapsToDevicePixels="True"
                           Stretch="Fill"
-                          Stroke="{StaticResource Brush.Brand.Orange}"
+                          Stroke="{StaticResource Brush.Hero.EcgPulseStroke}"
                           StrokeEndLineCap="Round"
                           StrokeStartLineCap="Round"
-                          StrokeThickness="3">
+                          StrokeThickness="2.5"
+                          UseLayoutRounding="True">
                         <Path.Effect>
                             <DropShadowEffect BlurRadius="20"
                                               Opacity="0.95"
                                               ShadowDepth="0"
-                                              Color="#FFFF6A00" />
+                                              Color="#FFFA7C00" />
                         </Path.Effect>
-                        <Path.Triggers>
-                            <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-                                <BeginStoryboard>
-                                    <Storyboard RepeatBehavior="Forever" AutoReverse="True">
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                         From="0.55"
-                                                         To="1.00"
-                                                         Duration="0:0:1.20">
-                                            <DoubleAnimation.EasingFunction>
-                                                <SineEase EasingMode="EaseInOut" />
-                                            </DoubleAnimation.EasingFunction>
-                                        </DoubleAnimation>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                        </Path.Triggers>
                     </Path>
 
-                    <!--  START SIMULATION label  -->
-                    <TextBlock Margin="0,16,0,8"
+                    <TextBlock Margin="0,0,0,8"
                                HorizontalAlignment="Center"
                                FontFamily="{StaticResource Font.Montserrat}"
                                FontSize="{StaticResource Font.Size.SectionLabel}"
@@ -477,7 +588,6 @@
                                Foreground="{DynamicResource Brush.Theme.Foreground}"
                                Text="START SIMULATION" />
 
-                    <!--  START button with floor-glow underneath  -->
                     <Grid HorizontalAlignment="Center">
                         <Ellipse Width="320"
                                  Height="50"
@@ -495,13 +605,13 @@
                         <Button Content="START" Style="{StaticResource PrimaryButtonStyle}" />
                     </Grid>
 
-                    <!--  System status row  -->
-                    <ContentControl Margin="0,20,0,4"
+                    <ContentControl Margin="0,10,0,18"
                                     Content="SYSTEM STATUS:"
                                     Style="{StaticResource StatusPill.System}"
                                     Tag="READY" />
-                </StackPanel>
+                    </StackPanel>
+                    </StackPanel>
+                </Grid>
             </Grid>
-        </Grid>
     </Grid>
 </Window>

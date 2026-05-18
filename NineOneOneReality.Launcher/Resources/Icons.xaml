@@ -78,11 +78,11 @@
     <!--  Sidebar nav: waveform / equalizer  -->
     <Geometry x:Key="Icon.ListenToRecordings">M7,18H9V6H7V18M11,22H13V2H11V22M3,14H5V10H3V14M15,18H17V6H15V18M19,10V14H21V10H19Z</Geometry>
 
-    <!--  Sidebar nav: 9-1-1 Academy / AI fallback (3D box)  -->
-    <Geometry x:Key="Icon.Academy">M12,3L1,9L5,11.18V17.18L12,21L19,17.18V11.18L21,10.09V17H23V9L12,3M18.82,9L12,12.72L5.18,9L12,5.28L18.82,9M17,15.99L12,18.72L7,15.99V12.27L12,15L17,12.27V15.99Z</Geometry>
+    <!--  Mortarboard / academy (24×24 box; single-fill for Folder View row — matches DashboardNav cap).  -->
+    <Geometry x:Key="Icon.Academy">M12,2.25L2.4,6.85C2.22,6.95,2.16,7.17,2.26,7.35C2.34,7.49,2.49,7.57,2.65,7.57H4V13.12C4,13.74,4.34,14.3,4.9,14.59L11.65,18.31C12.03,18.52,12.49,18.52,12.87,18.31L19.62,14.59C20.18,14.28,20.52,13.72,20.52,13.12V7.57H21.87C22.03,7.57,22.18,7.49,22.26,7.35C22.36,7.17,22.3,6.95,22.12,6.85L12,2.25ZM12,4.15L18.95,7.6L12,10.95L5.05,7.6L12,4.15ZM6.6,9.35L12,11.85L17.4,9.35V12.8C17.4,13.22,17.17,13.6,16.8,13.8L12,16.44L7.2,13.8C6.83,13.6,6.6,13.22,6.6,12.8V9.35Z</Geometry>
 
-    <!--  System: circular refresh arrow  -->
-    <Geometry x:Key="Icon.Restart">M12.5,8C9.85,8 7.45,9 5.6,10.6L2,7V16H11L7.38,12.38C8.77,11.22 10.54,10.5 12.5,10.5C16.04,10.5 19.05,12.81 20.1,16L22.47,15.22C21.08,11.03 17.15,8 12.5,8Z</Geometry>
+    <!--  System: circular refresh (Material-style arc + arrow; tints via Brush.NavIcon.Restart).  -->
+    <Geometry x:Key="Icon.Restart">M17.65,6.35C16.2,4.9,14.21,4,12,4A8,8,0,0,0,4,12A8,8,0,0,0,12,20C15.73,20,18.84,17.45,19.73,14H17.65C16.83,16.33,14.61,18,12,18A6,6,0,0,1,6,12A6,6,0,0,1,12,6C13.66,6,15.14,6.69,16.22,7.78L13,11H20V4L17.65,6.35Z</Geometry>
 
     <!--  System: power / shutdown  -->
     <Geometry x:Key="Icon.Shutdown">M13,3H11V13H13V3M17.83,5.17L16.41,6.59C18.05,7.91 19,9.89 19,12A7,7 0 0,1 12,19C8.13,19 5,15.87 5,12C5,9.89 5.95,7.91 7.58,6.58L6.17,5.17C4.23,6.82 3,9.26 3,12A9,9 0 0,0 12,21A9,9 0 0,0 21,12C21,9.26 19.77,6.82 17.83,5.17Z</Geometry>
@@ -96,6 +96,9 @@
     <!--  Status: green check-in-circle  -->
     <Geometry x:Key="Icon.CheckCircle">M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M10,17L5,12L6.41,10.59L10,14.17L17.59,6.58L19,8L10,17Z</Geometry>
 
+    <!--  Status row: standalone tick (no ring); render with Stroke + round caps. 24×24 box.  -->
+    <Geometry x:Key="Icon.StatusTick">M4.5,12.3 L10.8,18.6 L20.2,5.8</Geometry>
+
     <!--
         911 headset hero badge
         Used as the central hero on the active dark screen and as a logo glyph in
@@ -104,8 +107,12 @@
     -->
     <Geometry x:Key="Icon.HeadsetBadge">M50,12 C30.7,12 15,27.7 15,47 L15,52 L8,52 L8,68 L24,68 L24,47 C24,32.6 35.6,21 50,21 C64.4,21 76,32.6 76,47 L76,68 L92,68 L92,52 L85,52 L85,47 C85,27.7 69.3,12 50,12 Z M30,55 L30,80 C30,84.4 33.6,88 38,88 L62,88 C66.4,88 70,84.4 70,80 L70,55 L30,55 Z</Geometry>
 
-    <!--  Pulse line (orange ECG waveform under hero text)  -->
-    <Geometry x:Key="Icon.PulseLine">M0,12 L40,12 L46,4 L52,20 L58,8 L64,16 L70,12 L100,12</Geometry>
+    <!--
+        Hero ECG trace (static; one figure). Five-wave complex with short horizontal legs only
+        (no stretched “long-wave”); steep angles via small dx. Same amplitudes vs baseline 50;
+        compact width then long flat tail. Y 0..100.
+    -->
+    <Geometry x:Key="Icon.PulseLine">M0,50 L100,50 L180,50 L186,43 L192,50 L198,57 L204,50 L212,25 L220,64 L228,38 L236,50 L1000,50</Geometry>
 
     <!--  Folder icon used by the Available Folders rows in the light view  -->
     <Geometry x:Key="Icon.Folder">M10,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V8C22,6.89 21.1,6 20,6H12L10,4Z</Geometry>
