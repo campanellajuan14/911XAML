@@ -1,3 +1,6 @@
-/build
-/bin
-/obj
+[Bb]in/
+[Oo]bj/
+.vs/
+*.user
+*.suo
+*_wpftmp.csproj

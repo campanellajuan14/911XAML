@@ -106,6 +106,66 @@ public static class NavIconAssist
     public static void SetIdleFill(DependencyObject element, Brush? value) => element.SetValue(IdleFillProperty, value);
 
     public static Brush? GetIdleFill(DependencyObject element) => (Brush?)element.GetValue(IdleFillProperty);
+
+    /// <summary>
+    /// Optional SVG viewport width in DIP (e.g. wide Academy wordmark). 0 = default 22.
+    /// </summary>
+    public static readonly DependencyProperty SvgViewportWidthProperty = DependencyProperty.RegisterAttached(
+        "SvgViewportWidth",
+        typeof(double),
+        typeof(NavIconAssist),
+        new FrameworkPropertyMetadata(0.0));
+
+    public static void SetSvgViewportWidth(DependencyObject element, double value) =>
+        element.SetValue(SvgViewportWidthProperty, value);
+
+    public static double GetSvgViewportWidth(DependencyObject element) =>
+        (double)element.GetValue(SvgViewportWidthProperty);
+
+    /// <summary>
+    /// Optional SVG viewport height in DIP. 0 = default 22.
+    /// </summary>
+    public static readonly DependencyProperty SvgViewportHeightProperty = DependencyProperty.RegisterAttached(
+        "SvgViewportHeight",
+        typeof(double),
+        typeof(NavIconAssist),
+        new FrameworkPropertyMetadata(0.0));
+
+    public static void SetSvgViewportHeight(DependencyObject element, double value) =>
+        element.SetValue(SvgViewportHeightProperty, value);
+
+    public static double GetSvgViewportHeight(DependencyObject element) =>
+        (double)element.GetValue(SvgViewportHeightProperty);
+}
+
+/// <summary>Resolves icon slot width/height; uses attached viewport size when &gt; 0, else 22.</summary>
+public sealed class NavIconViewportConverter : IValueConverter
+{
+    private const double Default = 22;
+
+    public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        if (value is double d && d > 0)
+            return d;
+        return Default;
+    }
+
+    public object ConvertBack(object value, Type targetType, object? parameter, CultureInfo culture) =>
+        throw new NotSupportedException();
+}
+
+/// <summary>Icon column width: max(28, SvgViewportWidth) when viewport width is set.</summary>
+public sealed class NavIconColumnWidthConverter : IValueConverter
+{
+    public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        if (value is double w && w > 28)
+            return w;
+        return 28.0;
+    }
+
+    public object ConvertBack(object value, Type targetType, object? parameter, CultureInfo culture) =>
+        throw new NotSupportedException();
 }
 
 /// <summary>

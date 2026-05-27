@@ -25,9 +25,9 @@
         light instructor reference). Brand orange / green / START gradients stay
         on Brushes.Brand.xaml unchanged.
 
-        Light-specific tuning in this file only: softer title ink shadow for
-        dark text on a bright hero, slightly stronger orange grid lines, and
-        the sidebar headset badge uses Theme.UserAvatar.Bg instead of a hard
+        Light-specific tuning in this file only: white hero base (no citymap),
+        colored client wordmark at hero scale,
+        and the sidebar headset badge uses Theme.UserAvatar.Bg instead of a hard
         black chip.
     -->
 
@@ -384,138 +384,11 @@
             </Rectangle>
         </Grid>
 
-            <!--  ========== HERO PANEL ==========
-                  Cinematic-depth layer order (bottom to top):
-                    L1   dark base                       (Window background)
-                    L2   tiled vector grid               (DrawingBrush, subtle)
-                    L3   warm horizon glow at the bottom (suggests city lights)
-                    L4   diagonal atmospheric haze       (top-left -> bottom-right)
-                    L5   cityscape silhouette PLACEHOLDER  (reserved slot for
-                                                            artist's PNG)
-                    L6   multi-stop radial spotlight     (warm halo behind logo)
-                    L7   scanline overlay                (per City Scape doc)
-                    L8   vignette                        (legibility frame)
-                    L9   hero chrome (wordmark top, then ECG, START, status)
-                  ============================================================ -->
+            <!--  ========== HERO PANEL (light: white base only)  ========== -->
             <Grid Grid.Row="2"
                   Grid.Column="1"
-                  Background="{DynamicResource Brush.Theme.Background}"
-                  ClipToBounds="False">
+                  Background="{DynamicResource Brush.Theme.Background}">
 
-                <!--  L2  vector grid texture  -->
-                <Rectangle>
-                    <Rectangle.Fill>
-                        <DrawingBrush TileMode="Tile"
-                                      Viewport="0,0,56,56"
-                                      ViewportUnits="Absolute">
-                            <DrawingBrush.Drawing>
-                                <GeometryDrawing>
-                                    <GeometryDrawing.Pen>
-                                        <Pen Brush="#55FF7A00" Thickness="0.55" />
-                                    </GeometryDrawing.Pen>
-                                    <GeometryDrawing.Geometry>
-                                        <GeometryGroup>
-                                            <LineGeometry StartPoint="0,0" EndPoint="56,0" />
-                                            <LineGeometry StartPoint="0,0" EndPoint="0,56" />
-                                        </GeometryGroup>
-                                    </GeometryDrawing.Geometry>
-                                </GeometryDrawing>
-                            </DrawingBrush.Drawing>
-                        </DrawingBrush>
-                    </Rectangle.Fill>
-                </Rectangle>
-
-                <!--  L3  warm horizon glow at the bottom edge - the cinematic
-                      "city lights below" feel without needing the artwork.  -->
-                <Rectangle IsHitTestVisible="False">
-                    <Rectangle.Fill>
-                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                            <GradientStop Offset="0.00" Color="#00000000" />
-                            <GradientStop Offset="0.62" Color="#00000000" />
-                            <GradientStop Offset="0.85" Color="#22FF7A00" />
-                            <GradientStop Offset="1.00" Color="#44FF6600" />
-                        </LinearGradientBrush>
-                    </Rectangle.Fill>
-                </Rectangle>
-
-                <!--  L4  diagonal atmospheric haze  -->
-                <Rectangle IsHitTestVisible="False" Opacity="0.6">
-                    <Rectangle.Fill>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                            <GradientStop Offset="0.00" Color="#10FF9A40" />
-                            <GradientStop Offset="0.50" Color="#00000000" />
-                            <GradientStop Offset="1.00" Color="#15FF6600" />
-                        </LinearGradientBrush>
-                    </Rectangle.Fill>
-                </Rectangle>
-
-                <!--  L5  cityscape background.
-                      Artist-supplied dark-base + orange-road-glow PNG. Stretched
-                      to fill the hero pane edge-to-edge and held at low opacity
-                      so it sits behind the dashboard UI without competing with
-                      the title, ECG, or START button. A vertical soft mask
-                      fades the top and bottom edges so the image blends into
-                      the dark base instead of cutting hard.
-
-                      File: Resources/Images/citymap_dark_4k.png
-                      (Awaiting 3840 x 2160 re-export from client's artist;
-                       the current 1002 x 558 source renders fine on 1080p and
-                       will get sharper automatically when the higher-res file
-                       drops into the same path.)  -->
-                <Image IsHitTestVisible="False"
-                       Opacity="0.36"
-                       RenderOptions.BitmapScalingMode="HighQuality"
-                       Source="/Resources/Images/citymap_dark_4k.png"
-                       Stretch="UniformToFill">
-                    <Image.OpacityMask>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Offset="0.00" Color="#00000000" />
-                            <GradientStop Offset="0.18" Color="#FF000000" />
-                            <GradientStop Offset="0.82" Color="#FF000000" />
-                            <GradientStop Offset="1.00" Color="#00000000" />
-                        </LinearGradientBrush>
-                    </Image.OpacityMask>
-                </Image>
-
-                <!--  L6  multi-stop radial spotlight behind the hero stack.
-                      Three stops give a softer falloff than the prototype's
-                      two-stop version - this is the main "depth" contribution.  -->
-                <Ellipse Width="1200"
-                         Height="780"
-                         HorizontalAlignment="Center"
-                         VerticalAlignment="Center"
-                         IsHitTestVisible="False">
-                    <Ellipse.Fill>
-                        <RadialGradientBrush GradientOrigin="0.5,0.45">
-                            <GradientStop Offset="0.00" Color="#3DFF7A00" />
-                            <GradientStop Offset="0.30" Color="#22FF7A00" />
-                            <GradientStop Offset="0.65" Color="#0AFF7A00" />
-                            <GradientStop Offset="1.00" Color="#00000000" />
-                        </RadialGradientBrush>
-                    </Ellipse.Fill>
-                </Ellipse>
-
-                <!--  L7  scanline overlay - very subtle 1px horizontal lines
-                      every 3px, mimicking the optional pattern called out in
-                      City Scape for all.odt.  -->
-                <Rectangle IsHitTestVisible="False" Opacity="0.20">
-                    <Rectangle.Fill>
-                        <DrawingBrush TileMode="Tile"
-                                      Viewport="0,0,1,3"
-                                      ViewportUnits="Absolute">
-                            <DrawingBrush.Drawing>
-                                <GeometryDrawing Brush="#08FF7A00"
-                                                 Geometry="M 0,0 H 1 V 1 H 0 Z" />
-                            </DrawingBrush.Drawing>
-                        </DrawingBrush>
-                    </Rectangle.Fill>
-                </Rectangle>
-
-                <!--  L8  vignette  -->
-                <Rectangle Fill="{DynamicResource Brush.Theme.HeroVignette}"
-                           IsHitTestVisible="False" />
-
-                <!--  L9  hero content  -->
                 <Grid>
                     <StackPanel HorizontalAlignment="Center"
                                 VerticalAlignment="Center">
@@ -523,42 +396,21 @@
                             <TranslateTransform Y="18" />
                         </StackPanel.RenderTransform>
 
-                    <!--  Centered white wordmark (top of hero stack).  -->
+                    <!--  Centered wordmark at hero scale (first correction); no halo/shadow.  -->
                     <Grid Width="1200"
                           Height="440"
-                          HorizontalAlignment="Center"
-                          Margin="0,0,0,0">
-                        <Ellipse Width="1140"
-                                 Height="440"
-                                 HorizontalAlignment="Center"
-                                 VerticalAlignment="Center"
-                                 IsHitTestVisible="False">
-                            <Ellipse.Fill>
-                                <RadialGradientBrush>
-                                    <GradientStop Offset="0.00" Color="#55FF7A00" />
-                                    <GradientStop Offset="0.60" Color="#15FF7A00" />
-                                    <GradientStop Offset="1.00" Color="#00000000" />
-                                </RadialGradientBrush>
-                            </Ellipse.Fill>
-                        </Ellipse>
+                          HorizontalAlignment="Center">
                         <Image MaxWidth="1140"
                                MaxHeight="440"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                RenderOptions.BitmapScalingMode="HighQuality"
-                               Source="/Resources/Images/911-reality-logo-hero-white.png"
-                               Stretch="Uniform">
-                            <Image.Effect>
-                                <DropShadowEffect BlurRadius="22"
-                                                  Opacity="0.55"
-                                                  ShadowDepth="0"
-                                                  Color="#FFFF7A00" />
-                            </Image.Effect>
-                        </Image>
+                               Source="/Resources/Images/911-reality-logo.png"
+                               Stretch="Uniform" />
                     </Grid>
 
                     <!--  Start block: pulled up toward wordmark (layout margin, not render-only transform).  -->
-                    <StackPanel Margin="0,-56,0,0">
+                    <StackPanel Margin="0,-86,0,0">
                     <Path x:Name="EcgPulseLine"
                           Width="760"
                           Height="72"
@@ -571,14 +423,7 @@
                           StrokeEndLineCap="Round"
                           StrokeStartLineCap="Round"
                           StrokeThickness="2.5"
-                          UseLayoutRounding="True">
-                        <Path.Effect>
-                            <DropShadowEffect BlurRadius="20"
-                                              Opacity="0.95"
-                                              ShadowDepth="0"
-                                              Color="#FFFA7C00" />
-                        </Path.Effect>
-                    </Path>
+                          UseLayoutRounding="True" />
 
                     <TextBlock Margin="0,0,0,8"
                                HorizontalAlignment="Center"

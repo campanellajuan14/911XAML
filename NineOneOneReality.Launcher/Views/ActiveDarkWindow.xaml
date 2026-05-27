@@ -23,15 +23,12 @@
         the prototype review:
 
           1. Cinematic depth   - layered atmospheric backgrounds (warm horizon,
-                                  diagonal haze, scanline overlay, multi-stop
-                                  radial spotlight). Reserved slot for the
-                                  artist's `cityscape-active-source.png` master.
-          2. Glow layering     - multi-pass DropShadowEffects on the title, an
-                                  orange halo behind the wordmark, intensified
-                                  ECG bloom, floor-glow under the START button.
+                                  diagonal haze, scanline overlay). Reserved slot
+                                  for the artist's `cityscape-active-source.png` master.
+          2. Glow layering     - intensified ECG bloom, floor-glow under the START button.
           3. Sidebar           - full-height rail #030404, left-only rounding, machine
                                   row + nav (brand strip in top bar), no selection bar.
-          4. Hero scale        - centered white wordmark from client SVG (PNG),
+          4. Hero scale        - centered colored wordmark (911-reality-logo.png),
                                   no duplicate "9-1-1 REALITY SIMULATOR" titling.
 
         Theme architecture unchanged: Theme.Dark.xaml is merged at the Window
@@ -168,6 +165,8 @@
                                      Style="{StaticResource NavButtonStyle}" />
             <RadioButton GroupName="TrainingNav"
                                      assist:NavIconAssist.SvgIcon="pack://application:,,,/Resources/Images/SidebarNav/academy-911.svg"
+                                     assist:NavIconAssist.SvgViewportWidth="56"
+                                     assist:NavIconAssist.SvgViewportHeight="22"
                                      Content="9-1-1 Academy / AI"
                                      Style="{StaticResource NavButtonStyle}" />
           </StackPanel>
@@ -396,12 +395,10 @@
                     L2   tiled vector grid               (DrawingBrush, subtle)
                     L3   warm horizon glow at the bottom (suggests city lights)
                     L4   diagonal atmospheric haze       (top-left -> bottom-right)
-                    L5   cityscape silhouette PLACEHOLDER  (reserved slot for
-                                                            artist's PNG)
-                    L6   multi-stop radial spotlight     (warm halo behind logo)
-                    L7   scanline overlay                (per City Scape doc)
-                    L8   vignette                        (legibility frame)
-                    L9   hero chrome (wordmark top, then ECG, START, status)
+                    L5   cityscape background (citymap_dark_4k.png)
+                    L6   scanline overlay                (per City Scape doc)
+                    L7   vignette                        (legibility frame)
+                    L8   hero chrome (wordmark top, then ECG, START, status)
                   ============================================================ -->
     <Grid Grid.Row="2"
                   Grid.Column="1"
@@ -463,10 +460,8 @@
                       the dark base instead of cutting hard.
 
                       File: Resources/Images/citymap_dark_4k.png
-                      (Awaiting 3840 x 2160 re-export from client's artist;
-                       the current 1002 x 558 source renders fine on 1080p and
-                       will get sharper automatically when the higher-res file
-                       drops into the same path.)  -->
+                      (Replace this file to upgrade resolution; same path,
+                       no XAML changes required.)  -->
       <Image IsHitTestVisible="False"
                        Opacity="0.42"
                        RenderOptions.BitmapScalingMode="HighQuality"
@@ -482,25 +477,7 @@
         </Image.OpacityMask>
       </Image>
 
-      <!--  L6  multi-stop radial spotlight behind the hero stack.
-                      Three stops give a softer falloff than the prototype's
-                      two-stop version - this is the main "depth" contribution.  -->
-      <Ellipse Width="1200"
-                         Height="780"
-                         HorizontalAlignment="Center"
-                         VerticalAlignment="Center"
-                         IsHitTestVisible="False">
-        <Ellipse.Fill>
-          <RadialGradientBrush GradientOrigin="0.5,0.45">
-            <GradientStop Offset="0.00" Color="#3DFF7A00" />
-            <GradientStop Offset="0.30" Color="#22FF7A00" />
-            <GradientStop Offset="0.65" Color="#0AFF7A00" />
-            <GradientStop Offset="1.00" Color="#00000000" />
-          </RadialGradientBrush>
-        </Ellipse.Fill>
-      </Ellipse>
-
-      <!--  L7  scanline overlay - very subtle 1px horizontal lines
+      <!--  L6  scanline overlay - very subtle 1px horizontal lines
                       every 3px, mimicking the optional pattern called out in
                       City Scape for all.odt.  -->
       <Rectangle IsHitTestVisible="False" Opacity="0.20">
@@ -516,11 +493,11 @@
         </Rectangle.Fill>
       </Rectangle>
 
-      <!--  L8  vignette  -->
+      <!--  L7  vignette  -->
       <Rectangle Fill="{DynamicResource Brush.Theme.HeroVignette}"
                            IsHitTestVisible="False" />
 
-      <!--  L9  hero content  -->
+      <!--  L8  hero content  -->
       <Grid>
         <StackPanel HorizontalAlignment="Center"
                                 VerticalAlignment="Center">
@@ -529,38 +506,17 @@
             <TranslateTransform Y="18" />
           </StackPanel.RenderTransform>
 
-          <!--  Centered white wordmark (top of hero stack).  -->
+          <!--  Centered wordmark (top of hero stack); same scale as light mode.  -->
           <Grid Width="1200"
-                          Height="440"
-                          HorizontalAlignment="Center"
-                          Margin="0,0,0,0">
-            <Ellipse Width="1140"
-                                 Height="440"
-                                 HorizontalAlignment="Center"
-                                 VerticalAlignment="Center"
-                                 IsHitTestVisible="False">
-              <Ellipse.Fill>
-                <RadialGradientBrush>
-                  <GradientStop Offset="0.00" Color="#55FF7A00" />
-                  <GradientStop Offset="0.60" Color="#15FF7A00" />
-                  <GradientStop Offset="1.00" Color="#00000000" />
-                </RadialGradientBrush>
-              </Ellipse.Fill>
-            </Ellipse>
+                Height="440"
+                HorizontalAlignment="Center">
             <Image MaxWidth="1140"
-                               MaxHeight="440"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               RenderOptions.BitmapScalingMode="HighQuality"
-                               Source="/Resources/Images/911-reality-logo-hero-white.png"
-                               Stretch="Uniform">
-              <Image.Effect>
-                <DropShadowEffect BlurRadius="22"
-                                                  Opacity="0.55"
-                                                  ShadowDepth="0"
-                                                  Color="#FFFF7A00" />
-              </Image.Effect>
-            </Image>
+                   MaxHeight="440"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   RenderOptions.BitmapScalingMode="HighQuality"
+                   Source="/Resources/Images/911-reality-logo.png"
+                   Stretch="Uniform" />
           </Grid>
 
           <!--  Start block: pulled up toward wordmark (layout margin, not render-only transform).  -->

@@ -1,17 +1,14 @@
-# Milestone 4 — Three inactive monitor placeholders
+# Milestone 4 — Inactive monitor skins
 
 **Scope (per client PDF):** three full-screen **inactive** monitor skins aligned
 to the hardware model split:
 
-| # | Monitor | Window class | Placeholder artwork (swap when final art ships) |
+| # | Monitor | Window class | Artwork file (swap PNG, rebuild) |
 |---|---------|--------------|-----------------------------------------------------|
 | 1 | PLUS / BASIC — **Instructor** inactive | `InactiveInstructorWindow` | `Resources/Images/inactive-viewstudent-source.png` |
 | 2 | **BASIC** — Student inactive | `InactiveStudentBasicWindow` | `Resources/Images/inactive-callcards-source.png` |
 | 3 | **PROCOM** — Student inactive | `InactiveStudentProcomWindow` | `Resources/Images/inactive-mapping-source.png` |
-
-`inactive-onair-source.png` remains in the project for a future “on air”
-variant if the product team wants a fourth skin — it is **not** wired into
-these three placeholders.
+| 4 | **ON AIR** (optional fourth monitor) | `InactiveOnAirWindow` | `Resources/Images/inactive-onair-source.png` |
 
 Each screen:
 
@@ -21,7 +18,7 @@ Each screen:
   (aligned with the active console).
 - **Body = full-bleed PNG only** — the inactive artwork already includes the
   large titles, ECG line, and layout from the client mockups. No extra XAML
-  text, dim layer, or “placeholder” caption is drawn on top (that would
+  text, dim layer, or overlay caption is drawn on top (that would
   duplicate or fight the art).
 
 ---
@@ -41,6 +38,7 @@ dotnet run --project NineOneOneReality.Launcher -- --m4
 dotnet run --project NineOneOneReality.Launcher -- --inactive=instructor
 dotnet run --project NineOneOneReality.Launcher -- --inactive=student-basic
 dotnet run --project NineOneOneReality.Launcher -- --inactive=student-procom
+dotnet run --project NineOneOneReality.Launcher -- --inactive=onair
 ```
 
 Aliases: `--inactive=basic` → student BASIC; `--inactive=procom` → student PROCOM.

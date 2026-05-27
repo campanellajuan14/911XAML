@@ -6,10 +6,12 @@ namespace NineOneOneReality.Launcher.Views;
 
 public partial class DashboardWindow : Window
 {
-    public DashboardWindow(Window owner)
+  public DashboardWindow(Window? owner = null, bool? forceDarkTheme = null)
     {
-        ArgumentNullException.ThrowIfNull(owner);
-        Owner = owner;
+        if (owner is not null)
+            Owner = owner;
+
+        var useDarkTheme = forceDarkTheme ?? owner is ActiveDarkWindow;
 
         // Merge theme after InitializeComponent: LoadComponent can replace/reorder
         // window merged dictionaries. Brush.Dashboard.* in template triggers use DynamicResource
@@ -21,7 +23,7 @@ public partial class DashboardWindow : Window
             new ResourceDictionary
             {
                 Source = new Uri(
-                    owner is ActiveDarkWindow
+                    useDarkTheme
                         ? "pack://application:,,,/Themes/Theme.Dark.xaml"
                         : "pack://application:,,,/Themes/Theme.Light.xaml",
                     UriKind.Absolute),

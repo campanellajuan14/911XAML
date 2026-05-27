@@ -1,4 +1,26 @@
-/packages
-/build
-/obj
-/bin
+# Build
+[Bb]in/
+[Oo]bj/
+_build_verify_out/
+
+# Visual Studio / Rider
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# WPF / SDK temp
+*_wpftmp.csproj
+
+# Cursor / agent tooling
+.agents/
+skills-lock.json
+
+# OS
+Thumbs.db
+Desktop.ini
+
+# Duplicate design-source folders (not part of the WPF project)
+icon/
+new icon/

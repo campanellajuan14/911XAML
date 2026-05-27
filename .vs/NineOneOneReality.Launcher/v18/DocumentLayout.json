@@ -3,28 +3,12 @@
   "WorkspaceRootPath": "E:\\space\\911XAML\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8A5C2E37-3D4F-4A7B-9F2C-1B5E2C8D3A91}|NineOneOneReality.Launcher\\NineOneOneReality.Launcher.csproj|e:\\space\\911xaml\\nineoneonereality.launcher\\views\\activedarkwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{8A5C2E37-3D4F-4A7B-9F2C-1B5E2C8D3A91}|NineOneOneReality.Launcher\\NineOneOneReality.Launcher.csproj|solutionrelative:nineoneonereality.launcher\\views\\activedarkwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8A5C2E37-3D4F-4A7B-9F2C-1B5E2C8D3A91}|NineOneOneReality.Launcher\\NineOneOneReality.Launcher.csproj|e:\\space\\911xaml\\nineoneonereality.launcher\\views\\activelightwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{8A5C2E37-3D4F-4A7B-9F2C-1B5E2C8D3A91}|NineOneOneReality.Launcher\\NineOneOneReality.Launcher.csproj|solutionrelative:nineoneonereality.launcher\\views\\activelightwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8A5C2E37-3D4F-4A7B-9F2C-1B5E2C8D3A91}|NineOneOneReality.Launcher\\NineOneOneReality.Launcher.csproj|e:\\space\\911xaml\\nineoneonereality.launcher\\views\\inactive\\inactiveinstructorwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{8A5C2E37-3D4F-4A7B-9F2C-1B5E2C8D3A91}|NineOneOneReality.Launcher\\NineOneOneReality.Launcher.csproj|solutionrelative:nineoneonereality.launcher\\views\\inactive\\inactiveinstructorwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8A5C2E37-3D4F-4A7B-9F2C-1B5E2C8D3A91}|NineOneOneReality.Launcher\\NineOneOneReality.Launcher.csproj|e:\\space\\911xaml\\nineoneonereality.launcher\\views\\inactive\\inactivestudentbasicwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{8A5C2E37-3D4F-4A7B-9F2C-1B5E2C8D3A91}|NineOneOneReality.Launcher\\NineOneOneReality.Launcher.csproj|solutionrelative:nineoneonereality.launcher\\views\\inactive\\inactivestudentbasicwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8A5C2E37-3D4F-4A7B-9F2C-1B5E2C8D3A91}|NineOneOneReality.Launcher\\NineOneOneReality.Launcher.csproj|e:\\space\\911xaml\\nineoneonereality.launcher\\views\\inactive\\inactivestudentprocomwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{8A5C2E37-3D4F-4A7B-9F2C-1B5E2C8D3A91}|NineOneOneReality.Launcher\\NineOneOneReality.Launcher.csproj|solutionrelative:nineoneonereality.launcher\\views\\inactive\\inactivestudentprocomwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8A5C2E37-3D4F-4A7B-9F2C-1B5E2C8D3A91}|NineOneOneReality.Launcher\\NineOneOneReality.Launcher.csproj|e:\\space\\911xaml\\nineoneonereality.launcher\\views\\inactive\\m4pickerwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{8A5C2E37-3D4F-4A7B-9F2C-1B5E2C8D3A91}|NineOneOneReality.Launcher\\NineOneOneReality.Launcher.csproj|solutionrelative:nineoneonereality.launcher\\views\\inactive\\m4pickerwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{8A5C2E37-3D4F-4A7B-9F2C-1B5E2C8D3A91}|NineOneOneReality.Launcher\\NineOneOneReality.Launcher.csproj|e:\\space\\911xaml\\nineoneonereality.launcher\\views\\activedarkwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{8A5C2E37-3D4F-4A7B-9F2C-1B5E2C8D3A91}|NineOneOneReality.Launcher\\NineOneOneReality.Launcher.csproj|solutionrelative:nineoneonereality.launcher\\views\\activedarkwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,78 +18,30 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "ActiveLightWindow.xaml",
               "DocumentMoniker": "E:\\space\\911XAML\\NineOneOneReality.Launcher\\Views\\ActiveLightWindow.xaml",
               "RelativeDocumentMoniker": "NineOneOneReality.Launcher\\Views\\ActiveLightWindow.xaml",
               "ToolTip": "E:\\space\\911XAML\\NineOneOneReality.Launcher\\Views\\ActiveLightWindow.xaml",
               "RelativeToolTip": "NineOneOneReality.Launcher\\Views\\ActiveLightWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-05-18T02:32:18.284Z",
+              "WhenOpened": "2026-05-20T20:48:33.901Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "ActiveDarkWindow.xaml",
               "DocumentMoniker": "E:\\space\\911XAML\\NineOneOneReality.Launcher\\Views\\ActiveDarkWindow.xaml",
               "RelativeDocumentMoniker": "NineOneOneReality.Launcher\\Views\\ActiveDarkWindow.xaml",
               "ToolTip": "E:\\space\\911XAML\\NineOneOneReality.Launcher\\Views\\ActiveDarkWindow.xaml",
               "RelativeToolTip": "NineOneOneReality.Launcher\\Views\\ActiveDarkWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-05-18T02:32:17.063Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "InactiveInstructorWindow.xaml",
-              "DocumentMoniker": "E:\\space\\911XAML\\NineOneOneReality.Launcher\\Views\\Inactive\\InactiveInstructorWindow.xaml",
-              "RelativeDocumentMoniker": "NineOneOneReality.Launcher\\Views\\Inactive\\InactiveInstructorWindow.xaml",
-              "ToolTip": "E:\\space\\911XAML\\NineOneOneReality.Launcher\\Views\\Inactive\\InactiveInstructorWindow.xaml",
-              "RelativeToolTip": "NineOneOneReality.Launcher\\Views\\Inactive\\InactiveInstructorWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-05-18T00:30:44.656Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "InactiveStudentBasicWindow.xaml",
-              "DocumentMoniker": "E:\\space\\911XAML\\NineOneOneReality.Launcher\\Views\\Inactive\\InactiveStudentBasicWindow.xaml",
-              "RelativeDocumentMoniker": "NineOneOneReality.Launcher\\Views\\Inactive\\InactiveStudentBasicWindow.xaml",
-              "ToolTip": "E:\\space\\911XAML\\NineOneOneReality.Launcher\\Views\\Inactive\\InactiveStudentBasicWindow.xaml",
-              "RelativeToolTip": "NineOneOneReality.Launcher\\Views\\Inactive\\InactiveStudentBasicWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-05-18T00:30:31.976Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "InactiveStudentProcomWindow.xaml",
-              "DocumentMoniker": "E:\\space\\911XAML\\NineOneOneReality.Launcher\\Views\\Inactive\\InactiveStudentProcomWindow.xaml",
-              "RelativeDocumentMoniker": "NineOneOneReality.Launcher\\Views\\Inactive\\InactiveStudentProcomWindow.xaml",
-              "ToolTip": "E:\\space\\911XAML\\NineOneOneReality.Launcher\\Views\\Inactive\\InactiveStudentProcomWindow.xaml",
-              "RelativeToolTip": "NineOneOneReality.Launcher\\Views\\Inactive\\InactiveStudentProcomWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-05-18T00:30:26.027Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "M4PickerWindow.xaml",
-              "DocumentMoniker": "E:\\space\\911XAML\\NineOneOneReality.Launcher\\Views\\Inactive\\M4PickerWindow.xaml",
-              "RelativeDocumentMoniker": "NineOneOneReality.Launcher\\Views\\Inactive\\M4PickerWindow.xaml",
-              "ToolTip": "E:\\space\\911XAML\\NineOneOneReality.Launcher\\Views\\Inactive\\M4PickerWindow.xaml",
-              "RelativeToolTip": "NineOneOneReality.Launcher\\Views\\Inactive\\M4PickerWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-05-18T00:30:24.06Z",
+              "WhenOpened": "2026-05-20T18:45:44.563Z",
               "EditorCaption": ""
             }
           ]

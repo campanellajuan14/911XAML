@@ -168,22 +168,6 @@
                             <Setter TargetName="SelectionFill" Property="Opacity" Value="1" />
                             <Setter TargetName="SelectionBar" Property="Opacity" Value="1" />
                             <Setter TargetName="IconPath" Property="Fill" Value="{StaticResource Brush.Brand.Orange}" />
-                            <Setter TargetName="IconBitmap" Property="Effect">
-                                <Setter.Value>
-                                    <DropShadowEffect BlurRadius="8"
-                                                      Opacity="0.65"
-                                                      ShadowDepth="0"
-                                                      Color="#FFFA7C00" />
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="IconSvg" Property="Effect">
-                                <Setter.Value>
-                                    <DropShadowEffect BlurRadius="8"
-                                                      Opacity="0.65"
-                                                      ShadowDepth="0"
-                                                      Color="#FFFA7C00" />
-                                </Setter.Value>
-                            </Setter>
                             <Setter Property="Foreground" Value="{StaticResource Brush.Brand.Orange}" />
                         </Trigger>
 
@@ -196,22 +180,6 @@
                             <Setter TargetName="SelectionFill" Property="Opacity" Value="1" />
                             <Setter TargetName="SelectionBar" Property="Opacity" Value="1" />
                             <Setter TargetName="IconPath" Property="Fill" Value="{StaticResource Brush.Brand.Orange}" />
-                            <Setter TargetName="IconBitmap" Property="Effect">
-                                <Setter.Value>
-                                    <DropShadowEffect BlurRadius="8"
-                                                      Opacity="0.65"
-                                                      ShadowDepth="0"
-                                                      Color="#FFFA7C00" />
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="IconSvg" Property="Effect">
-                                <Setter.Value>
-                                    <DropShadowEffect BlurRadius="8"
-                                                      Opacity="0.65"
-                                                      ShadowDepth="0"
-                                                      Color="#FFFA7C00" />
-                                </Setter.Value>
-                            </Setter>
                             <Setter Property="Foreground" Value="{StaticResource Brush.Brand.Orange}" />
                         </MultiTrigger>
 

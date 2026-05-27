@@ -1,0 +1,10 @@
+﻿911 Reality Simulator - Launcher (Milestone 5)
+============================================
+
+DOUBLE-CLICK ONE OF THE "START - ..." FILES IN THIS FOLDER.
+
+For plain-English instructions, open:
+  ..\docs\QUICK-START.md
+
+Requires .NET 8 Desktop Runtime:
+  https://dotnet.microsoft.com/download/dotnet/8.0

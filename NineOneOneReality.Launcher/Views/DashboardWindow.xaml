@@ -314,6 +314,8 @@
                                      Content="Video Tutorials"
                                      Style="{StaticResource NavButtonStyle.Dashboard}" />
                         <RadioButton assist:NavIconAssist.SvgIcon="pack://application:,,,/Resources/Images/DashboardNav/academy-911.svg"
+                                     assist:NavIconAssist.SvgViewportWidth="56"
+                                     assist:NavIconAssist.SvgViewportHeight="22"
                                      Content="9-1-1 Academy / AI"
                                      Style="{StaticResource NavButtonStyle.Dashboard}" />
                         <RadioButton assist:NavIconAssist.SvgIcon="pack://application:,,,/Resources/Images/DashboardNav/listen-to-recording.svg"
