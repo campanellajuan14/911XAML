@@ -4,10 +4,15 @@
 
 ## Start here (non-technical)
 
-1. Unzip `911XAML-delivery.zip`
-2. Open folder **`Launcher-Run`**
-3. Double-click **`START - Active Light.bat`**
-4. Read [docs/QUICK-START.md](docs/QUICK-START.md) and [docs/EMERGENCY-RECOVERY.md](docs/EMERGENCY-RECOVERY.md)
+**Send the client this file:** `Windows911-Launcher-Setup.exe` — double-click install, no SDK or .NET download needed.
+
+1. Double-click **`Windows911-Launcher-Setup.exe`**
+2. Click through the wizard
+3. Start menu → **911 Reality Launcher** → **Active Light (main screen)**
+
+Alternative ZIP package: unzip `911XAML-delivery.zip` → open **`Launcher-Run`** → **`START - Active Light.bat`**
+
+Read [docs/QUICK-START.md](docs/QUICK-START.md) and [docs/EMERGENCY-RECOVERY.md](docs/EMERGENCY-RECOVERY.md)
 
 Full ZIP inventory: [DELIVERY-CONTENTS.md](DELIVERY-CONTENTS.md)
 
@@ -45,11 +50,13 @@ cd NineOneOneReality.Launcher
 dotnet build -c Release
 ```
 
-Or regenerate the full client package:
+Or build only the client installer:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\tools\Build-FinalDelivery.ps1
+powershell -ExecutionPolicy Bypass -File .\tools\Build-WindowsInstaller.ps1
 ```
+
+Output: `Windows911-Launcher-Setup.exe` at the repository root (~180 MB, self-contained).
 
 ## Entry points
 
@@ -70,16 +77,22 @@ Dashboard can also be opened from the active screen sidebar (**Dashboard** nav i
 ## Requirements
 
 - Windows 10/11 (64-bit)
-- [.NET 8 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/8.0) (or SDK to build from source)
+- No separate .NET install required (runtime is bundled in the installer and `Launcher-Run`)
 
-## Delivery ZIP
+## Delivery package
 
-Run from repository root (builds everything):
+**Client installer (primary):**
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\tools\Build-WindowsInstaller.ps1
+```
+
+Output: `Windows911-Launcher-Setup.exe` — send this single file to the client.
+
+**Full ZIP (source + docs + optional folder run):**
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\tools\Build-FinalDelivery.ps1
 ```
 
-Output: `911XAML-delivery.zip` containing **source**, **Launcher-Run** (exe + START bats), **assets**, **docs**, **screenshots**, **QA proof** — no `.git`/`.vs`.
-
-Do **not** zip the repo folder manually in Explorer.
+Output: `911XAML-delivery.zip` and `Windows911-Launcher-Setup.exe` at the repository root.

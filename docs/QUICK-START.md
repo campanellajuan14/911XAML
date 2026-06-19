@@ -1,41 +1,56 @@
 # Quick Start — For non-technical users (Sue / lab operators)
 
-**Read this first.** You do not need Visual Studio or programming knowledge to run the simulator skins.
+**Read this first.** You do not need Visual Studio, programming knowledge, or a separate .NET install.
 
 ---
 
-## What you need installed once per PC
+## Easiest way — use the installer (recommended)
 
-1. **Windows 10 or 11** (64-bit)
-2. **[.NET 8 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/8.0)** — download “Desktop Runtime” for Windows x64 and run the installer.
+1. Double-click **`Windows911-Launcher-Setup.exe`**
+2. Click **Next** through the wizard (accept the default install location)
+3. When finished, open the **Start menu** → **911 Reality Launcher** → **Active Light (main screen)**
 
-If the app will not open, install .NET 8 first, then try again.
+That is it. The installer includes everything the app needs.
+
+**Desktop shortcut:** If you checked “Create a desktop shortcut” during setup, double-click **911 Reality Launcher** on the desktop.
 
 ---
 
-## Where to put the files
+## Alternative — ZIP package (if you received a ZIP instead)
 
 1. Unzip **`911XAML-delivery.zip`** to a simple folder, for example:  
    `C:\911Reality\`
-2. Inside you will see a folder named **`Launcher-Run`**.  
-   That folder contains everything you double-click to start the app.
+2. Open folder **`Launcher-Run`**
+3. Double-click **`START - Active Light.bat`**
 
-You may move `Launcher-Run` to the Desktop or any drive letter. Avoid very long path names.
+No separate .NET install is required — the ZIP also includes the runtime.
 
 ---
 
-## How to start (easiest)
+## What you need on the PC
 
-Open the **`Launcher-Run`** folder and double-click:
+- **Windows 10 or 11** (64-bit)
+- About **200 MB** free disk space
 
-| File | What opens |
-|------|------------|
-| **START - Active Light.bat** | Main instructor screen (white background, no map) — normal daily use |
-| **START - Active Dark.bat** | Main instructor screen (dark + cityscape) |
-| **START - Dashboard Light.bat** | Folder-view dashboard only (light) |
-| **START - Dashboard Dark.bat** | Folder-view dashboard only (dark) |
+You do **not** need to install the .NET SDK or Desktop Runtime separately.
 
-**Typical lab use:** double-click **START - Active Light.bat**, then click **Dashboard** in the left sidebar to open the second screen on another monitor.
+---
+
+## How to start each screen
+
+After installing, use **Start menu → 911 Reality Launcher**:
+
+| Shortcut | What opens |
+|----------|------------|
+| **Active Light (main screen)** | Main instructor screen (white) — normal daily use |
+| **Active Dark** | Main instructor screen (dark + cityscape) |
+| **Dashboard Light / Dark** | Folder-view dashboard only |
+| **Inactive …** shortcuts | Full-screen inactive monitor skins |
+| **Inactive Picker (M4)** | Menu to pick inactive screens |
+
+**Typical lab use:** open **Active Light**, then click **Dashboard** in the left sidebar to open the second screen on another monitor.
+
+If you used the ZIP instead, the same screens are in **`Launcher-Run`** as **START - …** files.
 
 ---
 
@@ -45,7 +60,7 @@ Open the **`Launcher-Run`** folder and double-click:
 |---------|---------------------|
 | **1 (main)** | Active instructor screen (Start Simulation) |
 | **2** | Dashboard / Folder View (open from sidebar **Dashboard**) |
-| **3** | Instructor inactive (VIEW STUDENT art) — use shortcut or IT script |
+| **3** | Instructor inactive (VIEW STUDENT art) |
 | **4** | Student CALL CARDS inactive |
 | **5** | Student MAPPING inactive |
 | Optional | ON AIR inactive |
@@ -68,7 +83,7 @@ After a reboot, you may need to move windows again.
 
 1. Close all 911 Reality windows.
 2. Open Task Manager (Ctrl+Shift+Esc) → end **NineOneOneReality.Launcher** if it is still listed.
-3. Double-click **START - Active Light.bat** again.
+3. Start **Active Light** again from the Start menu (or **START - Active Light.bat** if using the ZIP).
 
 See [EMERGENCY-RECOVERY.md](EMERGENCY-RECOVERY.md) for a one-page recovery guide.
 
@@ -76,7 +91,11 @@ See [EMERGENCY-RECOVERY.md](EMERGENCY-RECOVERY.md) for a one-page recovery guide
 
 ## Changing pictures later (artwork)
 
-Art files live in the **source** folder (for IT), not in `Launcher-Run`:
+Installed location (default):
+
+`C:\Program Files\911 Reality\Launcher\`
+
+Art source files for IT updates live in the **source** folder inside the ZIP:
 
 `NineOneOneReality.Launcher\Resources\Images\`
 
@@ -89,7 +108,7 @@ Art files live in the **source** folder (for IT), not in `Launcher-Run`:
 | Dark city background | `citymap_dark_4k.png` |
 | Main logo on active screen | `911-reality-logo.png` |
 
-After replacing a file, IT must rebuild or copy a new `Launcher-Run` folder from Juan’s build script. Operators normally only replace PNGs when IT provides an updated `Launcher-Run` zip.
+After replacing a file, IT must rebuild and send a new installer or `Launcher-Run` folder.
 
 ---
 

@@ -2,19 +2,18 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!--
-        Brand colors are theme-INDEPENDENT. The orange brand identity, the
-        status green, and the white pulse stay the same in dark and light
-        screens. Hex values come directly from the spec PDF.
+        Brand colors are theme-INDEPENDENT. Dominant text orange (active +
+        inactive): #FF7A00 RGB(255,122,0) — client safety-orange spec.
     -->
 
     <Color x:Key="Color.Brand.Orange">#FFFF7A00</Color>
     <Color x:Key="Color.Brand.Orange.Bright">#FFFF8C1A</Color>
     <Color x:Key="Color.Brand.Orange.Deep">#FFE85F00</Color>
-    <Color x:Key="Color.Brand.Orange.Glow">#FFEA6120</Color>
+    <Color x:Key="Color.Brand.Orange.Glow">#FFFF7A00</Color>
     <Color x:Key="Color.Brand.Orange.Pressed">#FFCC5400</Color>
 
-    <Color x:Key="Color.Brand.SidebarInstructor">#FFEE6622</Color>
-    <Color x:Key="Color.Brand.Header911">#FFFB6E25</Color>
+    <Color x:Key="Color.Brand.SidebarInstructor">#FFFF7A00</Color>
+    <Color x:Key="Color.Brand.Header911">#FFFF7A00</Color>
 
     <Color x:Key="Color.Status.Green">#FF5AC85A</Color>
     <Color x:Key="Color.Status.Green.Bright">#FF66FF66</Color>
@@ -32,20 +31,20 @@
     <SolidColorBrush x:Key="Brush.Status.Green.Bright" Color="{StaticResource Color.Status.Green.Bright}" />
     <SolidColorBrush x:Key="Brush.Status.Red" Color="{StaticResource Color.Status.Red}" />
 
-    <!--  START button (#EA6120 client); vertical gradient + hover/pressed variants.  -->
+    <!--  START button — #FF7A00 base with lighter top / deeper pressed.  -->
     <LinearGradientBrush x:Key="Brush.PrimaryButton.Idle" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Offset="0.0" Color="#FFF17442" />
-        <GradientStop Offset="1.0" Color="#FFEA6120" />
+        <GradientStop Offset="0.0" Color="#FFFF8C1A" />
+        <GradientStop Offset="1.0" Color="#FFFF7A00" />
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="Brush.PrimaryButton.Hover" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Offset="0.0" Color="#FFF99A72" />
-        <GradientStop Offset="1.0" Color="#FFF17442" />
+        <GradientStop Offset="0.0" Color="#FFFFA040" />
+        <GradientStop Offset="1.0" Color="#FFFF8C1A" />
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="Brush.PrimaryButton.Pressed" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Offset="0.0" Color="#FFD4551C" />
-        <GradientStop Offset="1.0" Color="#FFB23E14" />
+        <GradientStop Offset="0.0" Color="#FFE85F00" />
+        <GradientStop Offset="1.0" Color="#FFCC5400" />
     </LinearGradientBrush>
 
     <!--
@@ -64,7 +63,7 @@
         <GradientStop Offset="0.44" Color="#F0FFD8B8" />
         <GradientStop Offset="0.47" Color="#F8FFE8C8" />
         <GradientStop Offset="0.49" Color="#FFFFF0D8" />
-        <GradientStop Offset="0.50" Color="#FFFFB078" />
+        <GradientStop Offset="0.50" Color="#FFFF7A00" />
         <GradientStop Offset="0.51" Color="#FFFFF0D8" />
         <GradientStop Offset="0.53" Color="#F8FFE8C8" />
         <GradientStop Offset="0.56" Color="#F0FFD8B8" />
@@ -80,11 +79,11 @@
 
     <!--  2px rule under header (inactive HeaderBarStyle): warm, readable on dark bg.  -->
     <LinearGradientBrush x:Key="Brush.Header.AccentLine" StartPoint="0,0.5" EndPoint="1,0.5">
-        <GradientStop Offset="0.0" Color="#00FB6E25" />
-        <GradientStop Offset="0.42" Color="#A0FB6E25" />
-        <GradientStop Offset="0.5" Color="#FFFF9848" />
-        <GradientStop Offset="0.58" Color="#A0FB6E25" />
-        <GradientStop Offset="1.0" Color="#00FB6E25" />
+        <GradientStop Offset="0.0" Color="#00FF7A00" />
+        <GradientStop Offset="0.42" Color="#A0FF7A00" />
+        <GradientStop Offset="0.5" Color="#FFFF7A00" />
+        <GradientStop Offset="0.58" Color="#A0FF7A00" />
+        <GradientStop Offset="1.0" Color="#00FF7A00" />
     </LinearGradientBrush>
 
     <!--
@@ -93,19 +92,19 @@
     -->
     <LinearGradientBrush x:Key="Brush.Header.UnderGlow" StartPoint="0,0.5" EndPoint="1,0.5">
         <GradientStop Offset="0.00" Color="#00000000" />
-        <GradientStop Offset="0.06" Color="#40FB6E25" />
+        <GradientStop Offset="0.06" Color="#40FF7A00" />
         <GradientStop Offset="0.14" Color="#70F28840" />
         <GradientStop Offset="0.24" Color="#98F5A058" />
         <GradientStop Offset="0.34" Color="#B8F8B070" />
         <GradientStop Offset="0.42" Color="#D8FCC888" />
         <GradientStop Offset="0.48" Color="#F0FFD098" />
-        <GradientStop Offset="0.50" Color="#FFFFB078" />
+        <GradientStop Offset="0.50" Color="#FFFF7A00" />
         <GradientStop Offset="0.52" Color="#F0FFD098" />
         <GradientStop Offset="0.58" Color="#D8FCC888" />
         <GradientStop Offset="0.66" Color="#B8F8B070" />
         <GradientStop Offset="0.76" Color="#98F5A058" />
         <GradientStop Offset="0.86" Color="#70F28840" />
-        <GradientStop Offset="0.94" Color="#40FB6E25" />
+        <GradientStop Offset="0.94" Color="#40FF7A00" />
         <GradientStop Offset="1.00" Color="#00000000" />
     </LinearGradientBrush>
 

@@ -44,6 +44,12 @@
         <StackPanel Grid.Row="1"
                     Margin="0,24,0,24"
                     VerticalAlignment="Center">
+            <CheckBox x:Name="LightThemeCheckBox"
+                      Margin="0,0,0,16"
+                      Content="White inactive demo (same four monitors as dark)"
+                      FontSize="14"
+                      FontWeight="Medium"
+                      Foreground="{DynamicResource Brush.Theme.Foreground.Muted}" />
             <Button Margin="0,0,0,12"
                     HorizontalAlignment="Stretch"
                     Click="OnOpenInstructor"
@@ -69,6 +75,6 @@
                    FontSize="12"
                    Foreground="{DynamicResource Brush.Theme.Foreground.Subtle}"
                    TextWrapping="Wrap"
-                   Text="CLI: dotnet run -- --inactive=instructor | student-basic | student-procom | onair" />
+                   Text="CLI: dotnet run -- --inactive=instructor | student-basic | student-procom | onair&#x0a;White inactive demo: add --light (e.g. --inactive=instructor --light)" />
     </Grid>
 </Window>

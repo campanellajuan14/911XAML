@@ -37,6 +37,7 @@ See [DELIVERY.md](DELIVERY.md) for all CLI entry points and [USER_MANUAL.md](USE
 | BASIC student inactive (CALL CARDS) | `InactiveStudentBasicWindow` | `dotnet run -- --inactive=student-basic` |
 | PROCOM student inactive (MAPPING) | `InactiveStudentProcomWindow` | `dotnet run -- --inactive=student-procom` |
 | ON AIR inactive | `InactiveOnAirWindow` | `dotnet run -- --inactive=onair` |
+| Any inactive — **white demo** | same windows + `--light` | `dotnet run -- --inactive=instructor --light` or M4 picker checkbox |
 
 Release executable (after build):
 

@@ -99,9 +99,9 @@
     <SolidColorBrush x:Key="Brush.Dashboard.RowSurface" Color="#FF161616" />
     <SolidColorBrush x:Key="Brush.Dashboard.IconWell" Color="#FF101010" />
     <SolidColorBrush x:Key="Brush.Dashboard.RowBorder" Color="#FF2A2A2A" />
-    <SolidColorBrush x:Key="Brush.Dashboard.AccentWarm" Color="#FFE67E22" />
-    <SolidColorBrush x:Key="Brush.Dashboard.AccentWarmHover" Color="#FFED9038" />
-    <SolidColorBrush x:Key="Brush.Dashboard.AccentWarmPressed" Color="#FFD35400" />
+    <SolidColorBrush x:Key="Brush.Dashboard.AccentWarm" Color="#FFFF7A00" />
+    <SolidColorBrush x:Key="Brush.Dashboard.AccentWarmHover" Color="#FFFF8C1A" />
+    <SolidColorBrush x:Key="Brush.Dashboard.AccentWarmPressed" Color="#FFE85F00" />
     <SolidColorBrush x:Key="Brush.Dashboard.ChipSurface" Color="#FF181614" />
     <SolidColorBrush x:Key="Brush.Dashboard.ChipBorder" Color="#FF5C3D24" />
     <SolidColorBrush x:Key="Brush.Dashboard.ChipSurfaceChecked" Color="#FF2A1F14" />

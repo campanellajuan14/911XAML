@@ -9,27 +9,29 @@ public partial class M4PickerWindow : Window
         InitializeComponent();
     }
 
+    private bool UseLightTheme => LightThemeCheckBox.IsChecked == true;
+
     private void OnOpenInstructor(object sender, RoutedEventArgs e)
     {
-        new InactiveInstructorWindow().Show();
+        new InactiveInstructorWindow(forceLightTheme: UseLightTheme).Show();
         Close();
     }
 
     private void OnOpenStudentBasic(object sender, RoutedEventArgs e)
     {
-        new InactiveStudentBasicWindow().Show();
+        new InactiveStudentBasicWindow(forceLightTheme: UseLightTheme).Show();
         Close();
     }
 
     private void OnOpenStudentProcom(object sender, RoutedEventArgs e)
     {
-        new InactiveStudentProcomWindow().Show();
+        new InactiveStudentProcomWindow(forceLightTheme: UseLightTheme).Show();
         Close();
     }
 
     private void OnOpenOnAir(object sender, RoutedEventArgs e)
     {
-        new InactiveOnAirWindow().Show();
+        new InactiveOnAirWindow(forceLightTheme: UseLightTheme).Show();
         Close();
     }
 }

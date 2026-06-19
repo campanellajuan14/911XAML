@@ -20,6 +20,12 @@ public partial class InactiveScreenView : UserControl
         typeof(InactiveScreenView),
         new PropertyMetadata(BitmapScalingMode.NearestNeighbor, OnArtBitmapScalingModeChanged));
 
+    public static readonly DependencyProperty UseLightChromeProperty = DependencyProperty.Register(
+        nameof(UseLightChrome),
+        typeof(bool),
+        typeof(InactiveScreenView),
+        new PropertyMetadata(false));
+
     public InactiveScreenView()
     {
         InitializeComponent();
@@ -37,6 +43,12 @@ public partial class InactiveScreenView : UserControl
     {
         get => (BitmapScalingMode)GetValue(ArtBitmapScalingModeProperty);
         set => SetValue(ArtBitmapScalingModeProperty, value);
+    }
+
+    public bool UseLightChrome
+    {
+        get => (bool)GetValue(UseLightChromeProperty);
+        set => SetValue(UseLightChromeProperty, value);
     }
 
     private static void OnArtBitmapScalingModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -87,6 +99,9 @@ public partial class InactiveScreenView : UserControl
 
     private void FitHostWindow()
     {
+        if (Visibility != Visibility.Visible)
+            return;
+
         var window = Window.GetWindow(this);
         if (window is null)
             return;
@@ -94,7 +109,7 @@ public partial class InactiveScreenView : UserControl
         window.SizeToContent = SizeToContent.WidthAndHeight;
         window.WindowState = WindowState.Normal;
         window.ResizeMode = ResizeMode.NoResize;
-        window.Background = Brushes.Black;
+        window.Background = UseLightChrome ? Brushes.White : Brushes.Black;
         window.UpdateLayout();
     }
 }

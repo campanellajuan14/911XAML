@@ -15,8 +15,13 @@ Write-Host "`n=== 3/5 Prepare Launcher-Run (published exe) ==="
 Write-Host "`n=== 4/5 Create delivery ZIP ==="
 & (Join-Path $PSScriptRoot "Create-DeliveryZip.ps1")
 
-Write-Host "`n=== 5/5 Verify ZIP ==="
+Write-Host "`n=== 5/6 Verify ZIP ==="
 & (Join-Path $PSScriptRoot "Verify-DeliveryZip.ps1")
 
-Write-Host "`nFINAL DELIVERY READY: $(Join-Path $root '911XAML-delivery.zip')" -ForegroundColor Green
-Write-Host "Send with docs/QUICK-START.md and DELIVERY-CONTENTS.md to the client."
+Write-Host "`n=== 6/6 Build Windows installer (Windows911-Launcher-Setup.exe) ==="
+& (Join-Path $PSScriptRoot "Build-WindowsInstaller.ps1")
+
+Write-Host "`nFINAL DELIVERY READY:" -ForegroundColor Green
+Write-Host "  ZIP:       $(Join-Path $root '911XAML-delivery.zip')"
+Write-Host "  INSTALLER: $(Join-Path $root 'Windows911-Launcher-Setup.exe')"
+Write-Host "Send Windows911-Launcher-Setup.exe to the client (one double-click install, no SDK needed)."

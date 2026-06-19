@@ -8,14 +8,14 @@
                       BlurRadius="24"
                       Opacity="0.65"
                       ShadowDepth="0"
-                      Color="#FFFF6A00" />
+                      Color="#FFFF7A00" />
 
     <!--  Tighter glow for the orange brand mark in the header  -->
     <DropShadowEffect x:Key="Effect.OrangeGlow.Tight"
                       BlurRadius="12"
                       Opacity="0.55"
                       ShadowDepth="0"
-                      Color="#FFFF6A00" />
+                      Color="#FFFF7A00" />
 
     <!--  Subtle text drop shadow for legibility on the cityscape background  -->
     <DropShadowEffect x:Key="Effect.TextShadow"

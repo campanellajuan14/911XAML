@@ -9,7 +9,7 @@ $runDir = Join-Path $root "Launcher-Run"
 Write-Host "Publishing Release to Launcher-Run..."
 if (Test-Path $runDir) { Remove-Item $runDir -Recurse -Force }
 
-dotnet publish $project -c Release -r win-x64 --self-contained false -o $runDir --nologo
+dotnet publish $project -c Release -r win-x64 --self-contained true -o $runDir --nologo
 if ($LASTEXITCODE -ne 0) { throw "dotnet publish failed" }
 
 $bat = @(
@@ -42,8 +42,8 @@ DOUBLE-CLICK ONE OF THE "START - ..." FILES IN THIS FOLDER.
 For plain-English instructions, open:
   ..\docs\QUICK-START.md
 
-Requires .NET 8 Desktop Runtime:
-  https://dotnet.microsoft.com/download/dotnet/8.0
+No extra software required — .NET runtime is included.
+If the app will not open, see ..\docs\EMERGENCY-RECOVERY.md
 "@ | Set-Content -Path (Join-Path $runDir "READ ME FIRST.txt") -Encoding UTF8
 
 Write-Host "Created: $runDir"

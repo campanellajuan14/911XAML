@@ -20,6 +20,7 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <inactive:InactiveScreenView ArtBitmapScalingMode="HighQuality"
+    <inactive:InactiveScreenView x:Name="Art"
+                                 ArtBitmapScalingMode="HighQuality"
                                  ArtFileName="inactive-viewstudent-source.png" />
 </Window>

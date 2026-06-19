@@ -10,6 +10,17 @@ to the hardware model split:
 | 3 | **PROCOM** — Student inactive | `InactiveStudentProcomWindow` | `Resources/Images/inactive-mapping-source.png` |
 | 4 | **ON AIR** (optional fourth monitor) | `InactiveOnAirWindow` | `Resources/Images/inactive-onair-source.png` |
 
+**White inactive demo** (same four monitors, white perspective-grid background):
+
+| Monitor | Light artwork file |
+|---------|-------------------|
+| Instructor | `inactive-viewstudent-light-source.png` |
+| BASIC student | `inactive-callcards-light-source.png` |
+| PROCOM student | `inactive-mapping-light-source.png` |
+| ON AIR | `inactive-onair-light-source.png` |
+
+Open with the M4 picker checkbox **White inactive demo**, or add `--light` to any `--inactive=*` CLI command. Replace the `*-light-source.png` files when final white artwork is delivered — same swap-and-rebuild workflow as dark.
+
 Each screen:
 
 - Merges **`Theme.Dark.xaml`** at the window (inactive lab monitors read as
@@ -39,9 +50,16 @@ dotnet run --project NineOneOneReality.Launcher -- --inactive=instructor
 dotnet run --project NineOneOneReality.Launcher -- --inactive=student-basic
 dotnet run --project NineOneOneReality.Launcher -- --inactive=student-procom
 dotnet run --project NineOneOneReality.Launcher -- --inactive=onair
+dotnet run --project NineOneOneReality.Launcher -- --inactive=instructor --light
 ```
 
 Aliases: `--inactive=basic` → student BASIC; `--inactive=procom` → student PROCOM.
+
+**Regenerate white placeholder PNGs** (after changing the light inactive layout):
+
+```powershell
+dotnet run --project NineOneOneReality.Launcher -- --export-inactive-light-pngs
+```
 
 **Active skins unchanged:**
 

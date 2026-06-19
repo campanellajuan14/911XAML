@@ -329,7 +329,7 @@
             <TextBlock FontFamily="{StaticResource Font.Montserrat}"
                                    FontSize="{StaticResource Font.Size.HeaderBrand}"
                                    FontWeight="ExtraBold">
-                            <Run Foreground="{StaticResource Brush.Brand.Header911}"
+                            <Run Foreground="{StaticResource Brush.Brand.Orange}"
                                  Text="911" />
                             <Run Foreground="{DynamicResource Brush.Theme.Foreground}"
                                  Text=" REALITY SIMULATOR" />
@@ -435,7 +435,7 @@
             <GradientStop Offset="0.00" Color="#00000000" />
             <GradientStop Offset="0.62" Color="#00000000" />
             <GradientStop Offset="0.85" Color="#22FF7A00" />
-            <GradientStop Offset="1.00" Color="#44FF6600" />
+            <GradientStop Offset="1.00" Color="#44FF7A00" />
           </LinearGradientBrush>
         </Rectangle.Fill>
       </Rectangle>
@@ -446,7 +446,7 @@
           <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
             <GradientStop Offset="0.00" Color="#10FF9A40" />
             <GradientStop Offset="0.50" Color="#00000000" />
-            <GradientStop Offset="1.00" Color="#15FF6600" />
+            <GradientStop Offset="1.00" Color="#15FF7A00" />
           </LinearGradientBrush>
         </Rectangle.Fill>
       </Rectangle>
@@ -538,7 +538,7 @@
                 <DropShadowEffect BlurRadius="20"
                                               Opacity="0.95"
                                               ShadowDepth="0"
-                                              Color="#FFFA7C00" />
+                                              Color="#FFFF7A00" />
               </Path.Effect>
             </Path>
 

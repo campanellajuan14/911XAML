@@ -1,6 +1,6 @@
 # Final delivery ZIP — contents checklist
 
-**Package name:** `911XAML-delivery.zip`  
+**Package names:** `Windows911-Launcher-Setup.exe` (client installer) · `911XAML-delivery.zip` (full handoff)  
 **Milestone:** 5 — Final QA, cleanup, and handoff  
 **Confirmation:** This is the **final complete production delivery** for the WPF **skin and dashboard** (presentation UI). Backend simulator integration is out of scope unless separately contracted.
 
@@ -8,9 +8,10 @@
 
 ## What is inside the ZIP
 
-| Item | Location in ZIP | Purpose |
-|------|-----------------|--------|
-| **Runnable application** | `Launcher-Run\` | Double-click `.bat` or `NineOneOneReality.Launcher.exe` — no build required |
+| Item | Location | Purpose |
+|------|----------|--------|
+| **Client installer** | `Windows911-Launcher-Setup.exe` | **Send this to Sue** — one double-click install, Start menu shortcuts, no .NET download |
+| **Runnable application (ZIP)** | `Launcher-Run\` | Double-click `.bat` or exe — no build required |
 | **Source code** | `NineOneOneReality.Launcher\` | Full WPF project (.NET 8) |
 | **Solution file** | `NineOneOneReality.Launcher.sln` | Open in Visual Studio if IT rebuilds |
 | **Images / assets** | `NineOneOneReality.Launcher\Resources\Images\` | PNG, SVG, fonts |
@@ -48,14 +49,22 @@
 ## Prerequisites on each PC
 
 - Windows 10/11 (64-bit)
-- [.NET 8 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/8.0)
+- No separate .NET Desktop Runtime install (bundled in installer and `Launcher-Run`)
 
 ---
 
 ## Regenerate package (developer)
 
+**Installer only (what the client needs):**
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\tools\Build-WindowsInstaller.ps1
+```
+
+**Full ZIP + installer:**
+
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\tools\Build-FinalDelivery.ps1
 ```
 
-Creates `911XAML-delivery.zip` at the repository root.
+Creates `Windows911-Launcher-Setup.exe` and `911XAML-delivery.zip` at the repository root.

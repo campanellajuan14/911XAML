@@ -61,7 +61,7 @@
     <SolidColorBrush x:Key="Brush.Theme.Sidebar.ItemHover" Color="{StaticResource Color.Theme.Sidebar.ItemHover}" />
     <SolidColorBrush x:Key="Brush.Theme.Sidebar.ItemSelected" Color="{StaticResource Color.Theme.Sidebar.ItemSelected}" />
     <!--  Flat warm tint for selected nav row (same key as dark; no gradient).  -->
-    <SolidColorBrush x:Key="Brush.Theme.Sidebar.RowSelectedTint" Color="#40FF8C1A" />
+    <SolidColorBrush x:Key="Brush.Theme.Sidebar.RowSelectedTint" Color="#40FF7A00" />
 
     <SolidColorBrush x:Key="Brush.Theme.Border" Color="{StaticResource Color.Theme.Border}" />
     <SolidColorBrush x:Key="Brush.Theme.Border.Subtle" Color="{StaticResource Color.Theme.Border.Subtle}" />
@@ -94,9 +94,9 @@
     <SolidColorBrush x:Key="Brush.Dashboard.RowSurface" Color="#FFF9F7F4" />
     <SolidColorBrush x:Key="Brush.Dashboard.IconWell" Color="#FFF1EFEC" />
     <SolidColorBrush x:Key="Brush.Dashboard.RowBorder" Color="#FFE9E5E1" />
-    <SolidColorBrush x:Key="Brush.Dashboard.AccentWarm" Color="#FFE67E22" />
-    <SolidColorBrush x:Key="Brush.Dashboard.AccentWarmHover" Color="#FFED9038" />
-    <SolidColorBrush x:Key="Brush.Dashboard.AccentWarmPressed" Color="#FFD35400" />
+    <SolidColorBrush x:Key="Brush.Dashboard.AccentWarm" Color="#FFFF7A00" />
+    <SolidColorBrush x:Key="Brush.Dashboard.AccentWarmHover" Color="#FFFF8C1A" />
+    <SolidColorBrush x:Key="Brush.Dashboard.AccentWarmPressed" Color="#FFE85F00" />
     <SolidColorBrush x:Key="Brush.Dashboard.ChipSurface" Color="#FFFFF9F4" />
     <SolidColorBrush x:Key="Brush.Dashboard.ChipBorder" Color="#FFF5D0B0" />
     <SolidColorBrush x:Key="Brush.Dashboard.ChipSurfaceChecked" Color="#FFFFEED9" />

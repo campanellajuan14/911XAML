@@ -25,8 +25,8 @@
         light instructor reference). Brand orange / green / START gradients stay
         on Brushes.Brand.xaml unchanged.
 
-        Light-specific tuning in this file only: white hero base (no citymap),
-        colored client wordmark at hero scale,
+        Light-specific tuning in this file only: perspective-grid cityscape hero
+        (citymap_light_4k.png), colored client wordmark at hero scale,
         and the sidebar headset badge uses Theme.UserAvatar.Bg instead of a hard
         black chip.
     -->
@@ -384,10 +384,25 @@
             </Rectangle>
         </Grid>
 
-            <!--  ========== HERO PANEL (light: white base only)  ========== -->
+            <!--  ========== HERO PANEL (light: perspective-grid cityscape)  ========== -->
             <Grid Grid.Row="2"
                   Grid.Column="1"
-                  Background="{DynamicResource Brush.Theme.Background}">
+                  Background="{DynamicResource Brush.Theme.Background}"
+                  ClipToBounds="False">
+
+                <!--  Light cityscape background — artist perspective grid on white.
+                      File: Resources/Images/citymap_light_4k.png
+                      (Replace this file to upgrade resolution; same path,
+                       no XAML changes required.)  -->
+                <Image IsHitTestVisible="False"
+                       RenderOptions.BitmapScalingMode="HighQuality"
+                       Source="/Resources/Images/citymap_light_4k.png"
+                       Stretch="UniformToFill" />
+
+                <!--  Soft white vignette so hero chrome stays legible on the grid.  -->
+                <Rectangle Fill="{DynamicResource Brush.Theme.HeroVignette}"
+                           IsHitTestVisible="False"
+                           Opacity="0.28" />
 
                 <Grid>
                     <StackPanel HorizontalAlignment="Center"
